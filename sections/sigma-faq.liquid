@@ -1,0 +1,148 @@
+<div class="sigma-faq-sec">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+:root{--bone:#EDE7DA;--bone-light:#F5F1E8;--bone-card:#F7F4EC;--ink:#17302D;--ink-soft:rgba(23,48,45,.66);--ink-faint:rgba(23,48,45,.42);--teal-deep:#0D3D3E;--teal-mid:#3B7C77;--bronze:#A6844E;--bronze-light:#C4A472;--line:rgba(23,48,45,.14);--line-light:rgba(245,241,232,.16)}
+.sigma-faq-sec *{box-sizing:border-box;margin:0;padding:0}
+.sigma-faq-sec{scroll-behavior:smooth}
+.sigma-faq-sec{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+.sigma-faq-sec h1, .sigma-faq-sec h2, .sigma-faq-sec h3{font-family:'Fraunces',serif;font-weight:400;letter-spacing:-.015em}
+.sigma-faq-sec a{color:inherit;text-decoration:none}
+.sigma-faq-sec .wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+.sigma-faq-sec .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);display:inline-flex;align-items:center;gap:11px}
+.sigma-faq-sec .eyebrow::before{content:'●';font-size:7px;transform:translateY(-1px)}
+.sigma-faq-sec .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.sigma-faq-sec .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.sigma-faq-sec .reveal{opacity:1;transform:none;transition:none}
+.sigma-faq-sec{scroll-behavior:auto}}
+.sigma-faq-sec .hero{padding:104px 0 56px;text-align:center;border-bottom:1px solid var(--line)}
+.sigma-faq-sec .hero h1{font-size:clamp(40px,5.4vw,72px);line-height:1.02;font-weight:300;letter-spacing:-.028em;margin:24px auto 22px;max-width:800px}
+.sigma-faq-sec .hero h1 em{font-style:italic;color:var(--teal-mid)}
+.sigma-faq-sec .hero p{font-size:17.5px;color:var(--ink-soft);line-height:1.66;max-width:520px;margin:0 auto}
+.sigma-faq-sec /* category nav */
+.catnav{position:sticky;top:0;z-index:50;background:rgba(237,231,218,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:18px 0}
+.sigma-faq-sec .catnav-in{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.sigma-faq-sec .catnav a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:8px 16px;transition:all .2s}
+.sigma-faq-sec .catnav a:hover{border-color:var(--teal-mid);color:var(--teal-deep)}
+.sigma-faq-sec .cat{padding:72px 0 0}
+.sigma-faq-sec .cat:last-of-type{padding-bottom:20px}
+.sigma-faq-sec .cat-title{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
+.sigma-faq-sec .cat-title .ci{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--bronze);letter-spacing:.06em}
+.sigma-faq-sec .cat-title h2{font-size:clamp(24px,2.8vw,34px);font-weight:300;letter-spacing:-.02em}
+.sigma-faq-sec .q{border-bottom:1px solid var(--line)}
+.sigma-faq-sec .q-head{display:flex;justify-content:space-between;align-items:center;gap:22px;padding:24px 0;cursor:pointer}
+.sigma-faq-sec .q-head h3{font-family:'Fraunces',serif;font-size:19px;font-weight:400;letter-spacing:-.01em}
+.sigma-faq-sec .q-head .plus{font-family:'IBM Plex Mono',monospace;color:var(--bronze);font-size:20px;transition:transform .25s;flex-shrink:0}
+.sigma-faq-sec .q.open .plus{transform:rotate(45deg)}
+.sigma-faq-sec .q-body{max-height:0;overflow:hidden;transition:max-height .32s ease,padding-bottom .32s ease}
+.sigma-faq-sec .q.open .q-body{max-height:360px;padding-bottom:24px}
+.sigma-faq-sec .q-body p{font-size:15px;color:var(--ink-soft);line-height:1.7}
+.sigma-faq-sec .q-body p+p{margin-top:12px}
+.sigma-faq-sec .help{margin:90px 0 0;background:var(--teal-deep);color:var(--bone);border-radius:8px;padding:56px 48px;text-align:center}
+.sigma-faq-sec .help h2{color:var(--bone);font-size:clamp(26px,3vw,38px);font-weight:300;letter-spacing:-.02em;margin-bottom:14px}
+.sigma-faq-sec .help h2 em{font-style:italic;color:var(--bronze-light)}
+.sigma-faq-sec .help p{color:rgba(237,231,218,.7);font-size:16px;margin-bottom:30px}
+.sigma-faq-sec .help a{display:inline-block;background:var(--bronze);color:var(--ink);padding:15px 30px;border-radius:2px;font-size:14.5px;font-weight:500;transition:background .2s}
+.sigma-faq-sec .help a:hover{background:var(--bronze-light)}
+.sigma-faq-sec .disc{padding:48px 0 40px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);text-align:center;line-height:1.7}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Help Centre</span>
+    <h1 class="reveal">Questions, <em>answered honestly.</em></h1>
+    <p class="reveal">Everything about the formula, the science, and getting NMN–01 to your door. Can't find it? We're one message away.</p>
+  </div>
+</header>
+
+<nav class="catnav">
+  <div class="catnav-in">
+    <a href="#product">Product &amp; Usage</a>
+    <a href="#science">The Science</a>
+    <a href="#orders">Orders &amp; Subscriptions</a>
+    <a href="#shipping">Shipping &amp; Returns</a>
+  </div>
+</nav>
+
+<section class="cat" id="product">
+  <div class="wrap">
+    <div class="cat-title reveal"><span class="ci">01</span><h2>Product &amp; Usage</h2></div>
+    <div class="reveal">
+      <div class="q"><div class="q-head"><h3>How do I take NMN–01?</h3><span class="plus">+</span></div><div class="q-body"><p>Two capsules daily, ideally in the morning, with or without food. Consistency matters more than timing — NAD⁺ replenishment is a gradual process, so a steady daily habit beats perfect scheduling.</p></div></div>
+      <div class="q"><div class="q-head"><h3>What's actually in it?</h3><span class="plus">+</span></div><div class="q-body"><p>NMN (nicotinamide mononucleotide), trans-resveratrol, and TMG, in a plant-based HPMC capsule. Every dose is printed in full on the label — no proprietary blends, no fillers, no flow agents. The exact milligrams are on the product page and the Certificate of Analysis.</p></div></div>
+      <div class="q"><div class="q-head"><h3>Is it vegan?</h3><span class="plus">+</span></div><div class="q-body"><p>Yes. The capsule shell is plant-based HPMC — no gelatin or animal-derived ingredients.</p></div></div>
+      <div class="q"><div class="q-head"><h3>Are there side effects?</h3><span class="plus">+</span></div><div class="q-body"><p>NMN is generally well tolerated in studies to date. As with any supplement, if you're pregnant, nursing, taking medication, or managing a health condition, talk to your doctor before starting. We're not able to give individual medical advice.</p></div></div>
+      <div class="q"><div class="q-head"><h3>How should I store it?</h3><span class="plus">+</span></div><div class="q-body"><p>Somewhere cool, dry, and out of direct sunlight. The sealed jar is designed to protect the actives — reseal it firmly after each use.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cat" id="science">
+  <div class="wrap">
+    <div class="cat-title reveal"><span class="ci">02</span><h2>The Science</h2></div>
+    <div class="reveal">
+      <div class="q"><div class="q-head"><h3>Why NMN instead of NAD⁺ directly?</h3><span class="plus">+</span></div><div class="q-body"><p>NAD⁺ is a large, charged molecule that's poorly absorbed when swallowed. NMN is a direct precursor your body readily converts into NAD⁺ through a pathway it already uses — which makes it the more effective delivery route.</p></div></div>
+      <div class="q"><div class="q-head"><h3>How long until I notice something?</h3><span class="plus">+</span></div><div class="q-body"><p>Most people take NMN–01 daily for 4–8 weeks before evaluating effects. Replenishing cellular NAD⁺ is gradual, and individual response varies considerably. We'd rather set an honest expectation than promise an overnight change.</p></div></div>
+      <div class="q"><div class="q-head"><h3>Will this make me live longer?</h3><span class="plus">+</span></div><div class="q-body"><p>No NMN supplement — ours included — has been shown to extend human lifespan, and we won't claim otherwise. The underlying biology is compelling and the research is active, but "supports healthy aging pathways" and "extends lifespan" are very different statements. We only make the first.</p></div></div>
+      <div class="q"><div class="q-head"><h3>Where can I read the research?</h3><span class="plus">+</span></div><div class="q-body"><p>Our Science page lays out what's well established, what's emerging, and what isn't known — in plain English, with the honest limits included.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cat" id="orders">
+  <div class="wrap">
+    <div class="cat-title reveal"><span class="ci">03</span><h2>Orders &amp; Subscriptions</h2></div>
+    <div class="reveal">
+      <div class="q"><div class="q-head"><h3>How does the subscription work?</h3><span class="plus">+</span></div><div class="q-body"><p>Choose Subscribe &amp; Save at checkout and your NMN–01 arrives automatically every 60 days at a lower price. You're always in control of the schedule.</p></div></div>
+      <div class="q"><div class="q-head"><h3>Can I pause or cancel?</h3><span class="plus">+</span></div><div class="q-body"><p>Anytime — no fees, no minimum commitment, no phone call. Pause, skip, or cancel directly from your account dashboard.</p></div></div>
+      <div class="q"><div class="q-head"><h3>How do I find my batch's lab report?</h3><span class="plus">+</span></div><div class="q-body"><p>Your batch number is printed on the base of the jar. Enter it on our Lab Reports page to pull the Certificate of Analysis for the exact batch you have.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cat" id="shipping">
+  <div class="wrap">
+    <div class="cat-title reveal"><span class="ci">04</span><h2>Shipping &amp; Returns</h2></div>
+    <div class="reveal">
+      <div class="q"><div class="q-head"><h3>Where do you ship, and how much is it?</h3><span class="plus">+</span></div><div class="q-body"><p>[Describe your shipping regions and rates here. Placeholder — update with your real shipping policy before publishing.] Free US shipping is offered over $60.</p></div></div>
+      <div class="q"><div class="q-head"><h3>How long does delivery take?</h3><span class="plus">+</span></div><div class="q-body"><p>[Add your real dispatch and delivery timeframes here before publishing.]</p></div></div>
+      <div class="q"><div class="q-head"><h3>What's your return policy?</h3><span class="plus">+</span></div><div class="q-body"><p>[State your real returns/guarantee policy here. Many supplement brands offer a satisfaction guarantee — only promise what you'll actually honour.]</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cat">
+  <div class="wrap">
+    <div class="help reveal">
+      <h2>Still have a <em>question?</em></h2>
+      <p>We answer every message ourselves. No bots, no runaround.</p>
+      <a href="#">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<div class="disc"><div class="wrap">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</div></div>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.q-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+</script>
+</div>
+
+{% schema %}
+{
+  "name": "Sigma FAQ Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This page is fully designed. Edit its text directly in the code, or ask Claude Code to change specific copy."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sigma FAQ Page"
+    }
+  ]
+}
+{% endschema %}

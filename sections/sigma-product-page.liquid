@@ -1,0 +1,538 @@
+<div class="sigma-pdp">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+:root{
+    --bone:#EDE7DA; --bone-light:#F5F1E8; --bone-card:#F7F4EC;
+    --ink:#17302D; --ink-soft:rgba(23,48,45,0.66); --ink-faint:rgba(23,48,45,0.42);
+    --teal-deep:#0D3D3E; --teal:#14514F; --teal-mid:#3B7C77; --teal-frost:#D9E5E1;
+    --bronze:#A6844E; --bronze-light:#C4A472;
+    --line:rgba(23,48,45,0.14); --line-light:rgba(245,241,232,0.16);
+  }
+.sigma-pdp *{box-sizing:border-box;margin:0;padding:0;}
+.sigma-pdp{scroll-behavior:smooth;}
+.sigma-pdp{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;padding-bottom:80px;}
+.sigma-pdp h1, .sigma-pdp h2, .sigma-pdp h3, .sigma-pdp h4{font-family:'Fraunces',serif;font-weight:400;letter-spacing:-0.015em;}
+.sigma-pdp a{color:inherit;text-decoration:none;}
+.sigma-pdp .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+.sigma-pdp sup{font-size:.55em;vertical-align:super;color:var(--bronze);font-family:'IBM Plex Mono',monospace;}
+.sigma-pdp .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);display:inline-flex;align-items:center;gap:11px;}
+.sigma-pdp .eyebrow::before{content:'●';font-size:7px;transform:translateY(-1px);}
+.sigma-pdp .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.sigma-pdp .reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.sigma-pdp .reveal{opacity:1;transform:none;transition:none;}
+.sigma-pdp{scroll-behavior:auto;}}
+.sigma-pdp nav{position:sticky;top:0;z-index:100;background:rgba(237,231,218,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.sigma-pdp .nav-inner{max-width:1200px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;}
+.sigma-pdp .logo{display:flex;align-items:baseline;gap:9px;font-size:17px;font-weight:500;}
+.sigma-pdp .logo .sigma{font-family:'Fraunces',serif;font-size:23px;color:var(--teal-deep);transform:translateY(2px);}
+.sigma-pdp .nav-links{display:flex;gap:38px;font-size:13.5px;font-weight:500;}
+.sigma-pdp .nav-links a{opacity:.7;}
+.sigma-pdp .nav-links a:hover{opacity:1;}
+@media(max-width:880px){.sigma-pdp .nav-links{display:none;}}
+.sigma-pdp /* ---------- BUY BLOCK ---------- */
+  .buy{padding:56px 0 90px;}
+.sigma-pdp .buy-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
+.sigma-pdp .gallery{position:sticky;top:96px;}
+.sigma-pdp .gal-main{background:var(--bone-card);border:1px solid var(--line);border-radius:8px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.sigma-pdp .gal-main img{width:78%;filter:drop-shadow(0 26px 40px rgba(13,61,62,.22));}
+.sigma-pdp .gal-badge{position:absolute;top:20px;left:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);padding:6px 11px;border-radius:2px;background:rgba(255,255,255,.5);}
+.sigma-pdp .gal-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+.sigma-pdp .thumb{aspect-ratio:1/1;background:var(--bone-card);border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--ink-faint);text-align:center;padding:6px;cursor:pointer;transition:border-color .2s;}
+.sigma-pdp .thumb:hover, .sigma-pdp .thumb.active{border-color:var(--teal-mid);}
+.sigma-pdp .pd .sku{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--bronze);text-transform:uppercase;}
+.sigma-pdp .pd h1{font-size:clamp(36px,4.4vw,54px);line-height:1.02;font-weight:300;letter-spacing:-.025em;margin:12px 0 14px;}
+.sigma-pdp .rating{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.sigma-pdp .rating .stars{color:var(--bronze);font-size:12px;letter-spacing:2px;}
+.sigma-pdp .rating .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-faint);text-decoration:underline;text-underline-offset:3px;}
+.sigma-pdp .pd .desc{font-size:16.5px;line-height:1.65;color:var(--ink-soft);margin-bottom:28px;}
+.sigma-pdp .plans{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
+.sigma-pdp .plan{border:1px solid var(--line);border-radius:5px;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;background:var(--bone-card);transition:border-color .2s,background .2s;}
+.sigma-pdp .plan:hover{border-color:var(--teal-mid);}
+.sigma-pdp .plan.sel{border-color:var(--teal-deep);background:#fff;box-shadow:0 0 0 1px var(--teal-deep);}
+.sigma-pdp .plan .radio{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--ink-faint);flex-shrink:0;position:relative;}
+.sigma-pdp .plan.sel .radio{border-color:var(--teal-deep);}
+.sigma-pdp .plan.sel .radio::after{content:'';position:absolute;inset:3.5px;border-radius:50%;background:var(--teal-deep);}
+.sigma-pdp .plan .body{flex:1;}
+.sigma-pdp .plan .t{font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:8px;}
+.sigma-pdp .plan .t .tag{font-family:'IBM Plex Mono',monospace;font-size:9px;background:var(--bronze);color:var(--ink);padding:2px 7px;border-radius:2px;letter-spacing:.05em;text-transform:uppercase;}
+.sigma-pdp .plan .s{font-size:12.5px;color:var(--ink-faint);margin-top:3px;}
+.sigma-pdp .plan .p{text-align:right;}
+.sigma-pdp .plan .p .now{font-family:'Fraunces',serif;font-size:21px;}
+.sigma-pdp .plan .p .unit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-faint);}
+.sigma-pdp .cta{display:block;width:100%;text-align:center;background:var(--ink);color:var(--bone);padding:17px;border-radius:2px;font-size:15px;font-weight:500;border:none;cursor:pointer;transition:background .2s;}
+.sigma-pdp .cta:hover{background:var(--teal-deep);}
+.sigma-pdp .guarantee{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:14px;letter-spacing:.03em;}
+.sigma-pdp .accord{margin-top:32px;border-top:1px solid var(--line);}
+.sigma-pdp .acc-item{border-bottom:1px solid var(--line);}
+.sigma-pdp .acc-q{display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;font-family:'Fraunces',serif;font-size:17px;}
+.sigma-pdp .acc-q .plus{font-family:'IBM Plex Mono',monospace;color:var(--bronze);font-size:18px;transition:transform .25s;}
+.sigma-pdp .acc-item.open .plus{transform:rotate(45deg);}
+.sigma-pdp .acc-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding-bottom .3s ease;font-size:14.5px;color:var(--ink-soft);line-height:1.65;}
+.sigma-pdp .acc-item.open .acc-a{max-height:340px;padding-bottom:18px;}
+.sigma-pdp .acc-a ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.sigma-pdp .acc-a li{display:flex;gap:11px;}
+.sigma-pdp .acc-a li::before{content:'—';color:var(--bronze);}
+@media(max-width:880px){.sigma-pdp .buy-grid{grid-template-columns:1fr;gap:36px;}
+.sigma-pdp .gallery{position:static;}}
+.sigma-pdp /* ---------- BENEFIT GRID ---------- */
+  .bene{background:var(--bone-light);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:100px 0;}
+.sigma-pdp .sec-head{max-width:640px;margin-bottom:52px;}
+.sigma-pdp .sec-head h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1;font-weight:300;margin-top:18px;letter-spacing:-.02em;}
+.sigma-pdp .sec-head p{font-size:16.5px;color:var(--ink-soft);margin-top:16px;line-height:1.62;}
+.sigma-pdp .bene-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.sigma-pdp .bene-card{background:var(--bone-card);border:1px solid var(--line);border-radius:6px;padding:30px 24px;}
+.sigma-pdp .bene-card .ico{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--bronze);display:flex;align-items:center;justify-content:center;color:var(--bronze);font-family:'IBM Plex Mono',monospace;font-size:14px;margin-bottom:22px;}
+.sigma-pdp .bene-card h3{font-size:18px;margin-bottom:10px;font-weight:400;}
+.sigma-pdp .bene-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+@media(max-width:980px){.sigma-pdp .bene-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.sigma-pdp .bene-grid{grid-template-columns:1fr;}}
+.sigma-pdp /* ---------- CAPSULE ANATOMY (signature) ---------- */
+  .anat{background:linear-gradient(175deg,var(--teal-deep),#0A3132);color:var(--bone);padding:118px 0;}
+.sigma-pdp .anat .eyebrow{color:var(--bronze-light);}
+.sigma-pdp .anat-grid{display:grid;grid-template-columns:1fr 1fr;gap:66px;align-items:center;}
+.sigma-pdp .anat h2{color:var(--bone);font-size:clamp(34px,4.2vw,54px);line-height:1.06;font-weight:300;margin:22px 0 22px;letter-spacing:-.02em;}
+.sigma-pdp .anat h2 em{font-style:italic;color:var(--bronze-light);}
+.sigma-pdp .anat .lead{color:rgba(237,231,218,.76);font-size:16.5px;line-height:1.68;margin-bottom:34px;max-width:440px;}
+.sigma-pdp .layers{display:flex;flex-direction:column;gap:12px;}
+.sigma-pdp .layer{border:1px solid var(--line-light);border-radius:5px;padding:18px 20px;cursor:pointer;transition:border-color .25s,background .25s;background:rgba(255,255,255,.02);}
+.sigma-pdp .layer:hover{border-color:rgba(196,164,114,.5);}
+.sigma-pdp .layer.on{border-color:var(--bronze);background:rgba(196,164,114,.08);}
+.sigma-pdp .layer .top{display:flex;justify-content:space-between;align-items:center;}
+.sigma-pdp .layer .nm{font-size:15px;font-weight:500;color:var(--bone);display:flex;align-items:center;gap:11px;}
+.sigma-pdp .layer .sw{width:11px;height:11px;border-radius:2px;flex-shrink:0;}
+.sigma-pdp .layer .dose{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--bronze-light);}
+.sigma-pdp .layer .fn{font-size:13.5px;color:rgba(237,231,218,.6);margin-top:7px;line-height:1.55;max-height:0;overflow:hidden;transition:max-height .3s,margin-top .3s;}
+.sigma-pdp .layer.on .fn{max-height:70px;}
+.sigma-pdp .cap-stage{display:flex;align-items:center;justify-content:center;position:relative;}
+.sigma-pdp .cap-stage svg{width:100%;max-width:420px;height:auto;}
+.sigma-pdp .cap-band{transition:opacity .35s,transform .35s;transform-origin:center;cursor:pointer;}
+.sigma-pdp .cap-band.dim{opacity:.28;}
+.sigma-pdp .cap-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:rgba(237,231,218,.55);letter-spacing:.05em;}
+.sigma-pdp .anat-foot{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(237,231,218,.38);margin-top:28px;line-height:1.6;}
+@media(max-width:880px){.sigma-pdp .anat-grid{grid-template-columns:1fr;gap:44px;}
+.sigma-pdp .anat .lead{max-width:100%;}}
+.sigma-pdp /* ---------- COMPARISON ---------- */
+  .comp{padding:110px 0;}
+.sigma-pdp .ctable{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bone-card);}
+.sigma-pdp .crow{display:grid;grid-template-columns:1.8fr .8fr .9fr;align-items:center;border-bottom:1px solid var(--line);}
+.sigma-pdp .crow:last-child{border-bottom:none;}
+.sigma-pdp .crow.head{background:var(--teal-deep);color:var(--bone);}
+.sigma-pdp .crow.head>div{padding:18px 22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;}
+.sigma-pdp .crow.head .us{color:var(--bronze-light);font-weight:500;}
+.sigma-pdp .crow>div{padding:18px 22px;font-size:14.5px;}
+.sigma-pdp .crow .feat{color:var(--ink);}
+.sigma-pdp .crow .us{text-align:center;color:var(--teal-deep);font-size:17px;}
+.sigma-pdp .crow .them{text-align:center;color:var(--ink-faint);font-size:13px;font-family:'IBM Plex Mono',monospace;}
+@media(max-width:700px){.sigma-pdp .crow{grid-template-columns:1.4fr .6fr .8fr;}
+.sigma-pdp .crow>div{padding:14px 12px;font-size:13px;}}
+.sigma-pdp /* ---------- TESTED BADGES ---------- */
+  .tested{background:var(--bone-light);border-top:1px solid var(--line);padding:100px 0;}
+.sigma-pdp .badges{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:44px;}
+.sigma-pdp .badge{border:1px solid var(--line);border-radius:5px;padding:22px 12px;text-align:center;background:var(--bone-card);}
+.sigma-pdp .badge .ring{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--teal-mid);color:var(--teal-mid);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:13px;}
+.sigma-pdp .badge span{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;display:block;}
+@media(max-width:980px){.sigma-pdp .badges{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.sigma-pdp .badges{grid-template-columns:repeat(2,1fr);}}
+.sigma-pdp /* ---------- FAQ ---------- */
+  .faq{padding:110px 0;}
+.sigma-pdp .faq-wrap{max-width:820px;margin:0 auto;}
+.sigma-pdp /* ---------- STICKY BUY BAR ---------- */
+  .sticky{position:fixed;bottom:0;left:0;right:0;z-index:120;background:rgba(23,48,45,.96);backdrop-filter:blur(10px);color:var(--bone);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1);}
+.sigma-pdp .sticky.show{transform:none;}
+.sigma-pdp .sticky-in{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.sigma-pdp .sticky .l{display:flex;align-items:center;gap:14px;}
+.sigma-pdp .sticky .l .nm{font-size:14.5px;font-weight:500;}
+.sigma-pdp .sticky .l .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(237,231,218,.5);text-transform:uppercase;letter-spacing:.05em;}
+.sigma-pdp .sticky .r{display:flex;align-items:center;gap:18px;}
+.sigma-pdp .sticky .pr{font-family:'Fraunces',serif;font-size:20px;}
+.sigma-pdp .sticky .btn{background:var(--bronze);color:var(--ink);padding:12px 26px;border-radius:2px;font-size:14px;font-weight:500;border:none;cursor:pointer;}
+.sigma-pdp .sticky .btn:hover{background:var(--bronze-light);}
+@media(max-width:700px){.sigma-pdp .sticky-in{padding:12px 20px;}
+.sigma-pdp .sticky .l .sub{display:none;}}
+.sigma-pdp footer{background:var(--ink);color:rgba(237,231,218,.6);padding:56px 0 30px;font-size:13px;}
+.sigma-pdp .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line-light);font-size:11.5px;color:rgba(237,231,218,.4);line-height:1.5;}
+</style>
+
+{%- assign prod = section.settings.product -%}
+
+
+<!-- BUY -->
+<section class="buy">
+  <div class="wrap buy-grid">
+    <div class="gallery reveal">
+      <div class="gal-main">
+        <span class="gal-badge">Batch SF–NMN–0225</span>
+        {%- if prod and prod.featured_image -%}{{ prod.featured_image | image_url: width: 900 | image_tag: alt: prod.title, loading: "eager" }}{%- elsif section.settings.fallback_image -%}{{ section.settings.fallback_image | image_url: width: 900 | image_tag: alt: "NMN-01", loading: "eager" }}{%- else -%}{{ "product-1" | placeholder_svg_tag }}{%- endif -%}
+      </div>
+      <div class="gal-thumbs">
+        <div class="thumb active">Product</div>
+        <div class="thumb">Capsule<br>anatomy</div>
+        <div class="thumb">Supplement<br>facts</div>
+        <div class="thumb">Lab<br>report</div>
+      </div>
+    </div>
+
+    <div class="pd reveal">
+      <div class="sku">NMN–01</div>
+      <h1>{% if prod %}{{ prod.title }}{% else %}{{ section.settings.fallback_title }}{% endif %}</h1>
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span class="count">[XXX] Reviews</span>
+      </div>
+      <p class="desc">{{ section.settings.product_desc }}</p>
+
+      <div class="plans" id="plans">
+        <div class="plan sel" data-price="XX" data-label="Every 60 days">
+          <div class="radio"></div>
+          <div class="body">
+            <div class="t">Subscribe &amp; Save <span class="tag">Save 15%</span></div>
+            <div class="s">120 capsules · delivered every 60 days · cancel anytime</div>
+          </div>
+          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div><div class="unit">/ month</div></div>
+        </div>
+        <div class="plan" data-price="XX" data-label="One-time">
+          <div class="radio"></div>
+          <div class="body">
+            <div class="t">One-Time Purchase</div>
+            <div class="s">120 capsules · 60-day supply</div>
+          </div>
+          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div><div class="unit">once</div></div>
+        </div>
+      </div>
+
+      {%- if prod -%}
+        {%- form 'product', prod -%}
+          <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
+          <button type="submit" class="cta"{% unless prod.available %} disabled{% endunless %}>
+            {% if prod.available %}Add to Cart{% else %}Sold Out{% endif %}
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        <button class="cta" type="button">Add to Cart</button>
+      {%- endif -%}
+      <div class="guarantee">Free US shipping over $60 · Pause or cancel anytime</div>
+
+      <div class="accord">
+        <div class="acc-item open">
+          <div class="acc-q">Benefits<sup>*</sup> <span class="plus">+</span></div>
+          <div class="acc-a">
+            <ul>
+              <li>Supports cellular energy production via NAD⁺ replenishment.</li>
+              <li>Supports DNA repair pathways and cellular resilience.</li>
+              <li>Supports sirtuin activity associated with healthy aging.</li>
+              <li>Every ingredient disclosed at full dose — no proprietary blends.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-q">Ingredients <span class="plus">+</span></div>
+          <div class="acc-a">
+            <ul>
+              <li>Nicotinamide Mononucleotide (NMN) — [XXX] mg</li>
+              <li>Trans-Resveratrol — [XXX] mg</li>
+              <li>TMG (Trimethylglycine) — [XXX] mg</li>
+              <li>Vegan capsule shell (HPMC). Nothing else.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-q">How to take it <span class="plus">+</span></div>
+          <div class="acc-a">Two capsules daily, ideally in the morning with or without food. Consistency matters more than timing — NAD⁺ replenishment is gradual. Most people evaluate effects after 4–8 weeks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="bene">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why NMN–01</span>
+      <h2>Four things we refuse to compromise on.</h2>
+    </div>
+    <div class="bene-grid reveal">
+      <div class="bene-card">
+        <div class="ico">01</div>
+        <h3>Full Disclosure</h3>
+        <p>Every milligram of every ingredient, printed. No proprietary blends hiding underdosed actives.</p>
+      </div>
+      <div class="bene-card">
+        <div class="ico">02</div>
+        <h3>Research-Level Doses</h3>
+        <p>Dosed to the levels used in published research — not to whatever fits a cheaper margin.</p>
+      </div>
+      <div class="bene-card">
+        <div class="ico">03</div>
+        <h3>Verified Every Batch</h3>
+        <p>Independent third-party testing for purity, potency, heavy metals, and microbials. Every batch.</p>
+      </div>
+      <div class="bene-card">
+        <div class="ico">04</div>
+        <h3>Nothing Else</h3>
+        <p>No binders, no fillers, no flow agents. A vegan HPMC shell and the actives. That's it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPSULE ANATOMY -->
+<section class="anat" id="anat">
+  <div class="wrap anat-grid">
+    <div class="reveal">
+      <span class="eyebrow">Capsule Anatomy</span>
+      <h2>Open the capsule. <em>Nothing to hide.</em></h2>
+      <p class="lead">Most supplements ask you to trust a label. We'd rather show you the inside. Every NMN–01 capsule holds three actives in disclosed amounts — and a plant-based shell. Tap each to see what it does.</p>
+
+      <div class="layers" id="layers">
+        <div class="layer on" data-band="b1">
+          <div class="top">
+            <div class="nm"><span class="sw" style="background:#C4A472"></span>Nicotinamide Mononucleotide</div>
+            <div class="dose">[XXX] mg</div>
+          </div>
+          <div class="fn">The direct precursor your cells convert into NAD⁺ — the coenzyme behind energy production and DNA repair.</div>
+        </div>
+        <div class="layer" data-band="b2">
+          <div class="top">
+            <div class="nm"><span class="sw" style="background:#8FD6A6"></span>Trans-Resveratrol</div>
+            <div class="dose">[XXX] mg</div>
+          </div>
+          <div class="fn">A polyphenol studied for its role in supporting sirtuin activity — proteins linked to cellular resilience.</div>
+        </div>
+        <div class="layer" data-band="b3">
+          <div class="top">
+            <div class="nm"><span class="sw" style="background:#D9E5E1"></span>TMG (Trimethylglycine)</div>
+            <div class="dose">[XXX] mg</div>
+          </div>
+          <div class="fn">A methyl donor included to support healthy methylation balance alongside NMN intake.</div>
+        </div>
+        <div class="layer" data-band="b4">
+          <div class="top">
+            <div class="nm"><span class="sw" style="background:rgba(237,231,218,.35)"></span>Vegan HPMC Shell</div>
+            <div class="dose">—</div>
+          </div>
+          <div class="fn">A plant-based capsule. No gelatin, no binders, no fillers, no flow agents.</div>
+        </div>
+      </div>
+      <div class="anat-foot">Illustrative cross-section. Replace [XXX] with your verified Certificate of Analysis doses before publishing.*</div>
+    </div>
+
+    <div class="cap-stage reveal">
+      <svg viewBox="0 0 300 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross-section of an NMN-01 capsule showing its contents">
+        <defs>
+          <linearGradient id="shellG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2E6F6B"/><stop offset="45%" stop-color="#4E9A92"/><stop offset="100%" stop-color="#1E5250"/>
+          </linearGradient>
+          <clipPath id="capClip">
+            <path d="M75,120 a75,75 0 0 1 150,0 v220 a75,75 0 0 1 -150,0 z"/>
+          </clipPath>
+        </defs>
+
+        <!-- shell outline -->
+        <path d="M75,120 a75,75 0 0 1 150,0 v220 a75,75 0 0 1 -150,0 z" fill="url(#shellG)" opacity="0.16" stroke="rgba(196,164,114,.45)" stroke-width="1.4"/>
+
+        <g clip-path="url(#capClip)">
+          <!-- b1 NMN: biggest band -->
+          <g class="cap-band" id="b1">
+            <rect x="75" y="45" width="150" height="180" fill="#C4A472" opacity="0.85"/>
+            <circle cx="120" cy="120" r="7" fill="#EDE7DA" opacity=".3"/>
+            <circle cx="170" cy="95" r="5" fill="#EDE7DA" opacity=".25"/>
+            <circle cx="195" cy="160" r="6" fill="#EDE7DA" opacity=".22"/>
+            <circle cx="105" cy="185" r="5" fill="#EDE7DA" opacity=".25"/>
+          </g>
+          <!-- b2 resveratrol -->
+          <g class="cap-band" id="b2">
+            <rect x="75" y="225" width="150" height="85" fill="#8FD6A6" opacity="0.8"/>
+            <circle cx="130" cy="262" r="5" fill="#0D3D3E" opacity=".18"/>
+            <circle cx="185" cy="285" r="4" fill="#0D3D3E" opacity=".16"/>
+          </g>
+          <!-- b3 TMG -->
+          <g class="cap-band" id="b3">
+            <rect x="75" y="310" width="150" height="70" fill="#D9E5E1" opacity="0.75"/>
+            <circle cx="150" cy="345" r="5" fill="#0D3D3E" opacity=".14"/>
+          </g>
+          <!-- b4 shell highlight -->
+          <g class="cap-band" id="b4">
+            <path d="M75,120 a75,75 0 0 1 150,0 v220 a75,75 0 0 1 -150,0 z" fill="none" stroke="#EDE7DA" stroke-width="7" opacity=".5"/>
+          </g>
+        </g>
+
+        <!-- seam -->
+        <line x1="75" y1="225" x2="225" y2="225" stroke="rgba(237,231,218,.35)" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <!-- leader lines + labels -->
+        <line x1="225" y1="135" x2="268" y2="135" stroke="rgba(196,164,114,.5)" stroke-width="1"/>
+        <text class="cap-label" x="232" y="128">NMN</text>
+        <line x1="225" y1="265" x2="268" y2="265" stroke="rgba(196,164,114,.5)" stroke-width="1"/>
+        <text class="cap-label" x="232" y="258">RESVERATROL</text>
+        <line x1="75" y1="345" x2="32" y2="345" stroke="rgba(196,164,114,.5)" stroke-width="1"/>
+        <text class="cap-label" x="14" y="338">TMG</text>
+        <line x1="75" y1="105" x2="32" y2="105" stroke="rgba(196,164,114,.5)" stroke-width="1"/>
+        <text class="cap-label" x="8" y="98">HPMC SHELL</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comp" id="compare">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The Difference</span>
+      <h2>How NMN–01 compares.</h2>
+      <p>A fair comparison against how NMN supplements are commonly sold. Verify any claim against our Certificate of Analysis.</p>
+    </div>
+    <div class="ctable reveal">
+      <div class="crow head"><div>Standard</div><div class="us">NMN–01</div><div>Typical NMN</div></div>
+      <div class="crow"><div class="feat">Every ingredient dose disclosed</div><div class="us">✓</div><div class="them">Often blended</div></div>
+      <div class="crow"><div class="feat">Third-party tested every batch</div><div class="us">✓</div><div class="them">Sometimes</div></div>
+      <div class="crow"><div class="feat">Certificate of Analysis on request</div><div class="us">✓</div><div class="them">Rare</div></div>
+      <div class="crow"><div class="feat">Heavy metals + microbial screening</div><div class="us">✓</div><div class="them">Varies</div></div>
+      <div class="crow"><div class="feat">No binders, fillers, or flow agents</div><div class="us">✓</div><div class="them">Common</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTED -->
+<section class="tested" id="tested">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Testing</span>
+      <h2>What's not in it matters too.</h2>
+      <p>Every batch of NMN–01 is screened as a finished formula — not just at the ingredient level.</p>
+    </div>
+    <div class="badges reveal">
+      <div class="badge"><div class="ring">✓</div><span>Purity<br>Verified</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Heavy Metals<br>Screened</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Microbial<br>Tested</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Label<br>Accuracy</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Vegan<br>Certified</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Non<br>GMO</span></div>
+      <div class="badge"><div class="ring">✓</div><span>No<br>Binders</span></div>
+      <div class="badge"><div class="ring">✓</div><span>No<br>Fillers</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Gluten<br>Tested</span></div>
+      <div class="badge"><div class="ring">✓</div><span>Third<br>Party</span></div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:26px;line-height:1.6;">
+      Only claim a badge you can evidence with your Certificate of Analysis. Remove any that don't apply to your product.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="sec-head reveal" style="margin-bottom:34px;">
+      <span class="eyebrow">Questions</span>
+      <h2>We're here to help.</h2>
+    </div>
+    <div class="accord reveal" style="margin-top:0;">
+      <div class="acc-item">
+        <div class="acc-q">When will I feel something? <span class="plus">+</span></div>
+        <div class="acc-a">NAD⁺ replenishment is gradual. Most people take NMN–01 daily for 4–8 weeks before evaluating effects. Consistency matters far more than any single dose, and individual response varies.</div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q">Why NMN instead of NAD⁺ directly? <span class="plus">+</span></div>
+        <div class="acc-a">NAD⁺ is poorly absorbed when taken orally. NMN is a direct precursor your body readily converts into NAD⁺, which is why it's the preferred delivery route.</div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q">Can I see the lab report? <span class="plus">+</span></div>
+        <div class="acc-a">Yes. Certificates of Analysis are available on request for any batch — the batch number is printed on your jar.</div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-q">Can I cancel my subscription? <span class="plus">+</span></div>
+        <div class="acc-a">Anytime, with no fees or minimum commitment. Pause, skip, or cancel directly from your account.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- STICKY BUY -->
+<div class="sticky" id="sticky">
+  <div class="sticky-in">
+    <div class="l">
+      <div>
+        <div class="nm">NMN–01 Daily Longevity</div>
+        <div class="sub" id="stickySub">Subscribe &amp; Save · every 60 days</div>
+      </div>
+    </div>
+    <div class="r">
+      <div class="pr">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // accordions
+  document.querySelectorAll('.acc-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+  // plan selector
+  const plans=document.querySelectorAll('.plan'), stickySub=document.getElementById('stickySub');
+  plans.forEach(p=>p.addEventListener('click',()=>{
+    plans.forEach(x=>x.classList.remove('sel'));
+    p.classList.add('sel');
+    stickySub.textContent = p.querySelector('.t').textContent.trim().replace(/Save 15%/,'').trim() + ' · ' + p.dataset.label;
+  }));
+
+  // capsule anatomy
+  const layers=document.querySelectorAll('.layer');
+  const bands={b1:document.getElementById('b1'),b2:document.getElementById('b2'),b3:document.getElementById('b3'),b4:document.getElementById('b4')};
+  function focusBand(id){
+    layers.forEach(l=>l.classList.toggle('on', l.dataset.band===id));
+    Object.entries(bands).forEach(([k,el])=>{ if(el) el.classList.toggle('dim', k!==id); });
+  }
+  layers.forEach(l=>l.addEventListener('click',()=>focusBand(l.dataset.band)));
+  Object.entries(bands).forEach(([k,el])=>{ if(el) el.addEventListener('click',()=>focusBand(k)); });
+  focusBand('b1');
+
+  // sticky bar after hero scrolled
+  const buy=document.querySelector('.buy'), sticky=document.getElementById('sticky');
+  new IntersectionObserver(es=>{ sticky.classList.toggle('show', !es[0].isIntersecting); },{threshold:0}).observe(buy);
+</script>
+</div>
+
+{% schema %}
+{
+  "name": "Sigma Product Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Link a product (enables real Add to Cart)"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback image (if no product linked)"
+    },
+    {
+      "type": "text",
+      "id": "fallback_title",
+      "label": "Fallback title",
+      "default": "Daily Longevity"
+    },
+    {
+      "type": "textarea",
+      "id": "product_desc",
+      "label": "Short description",
+      "default": "A fully-disclosed NAD+ precursor formula - NMN, trans-resveratrol, and TMG - dosed to published research levels and verified by an independent lab, batch by batch.*"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sigma Product Page"
+    }
+  ]
+}
+{% endschema %}
