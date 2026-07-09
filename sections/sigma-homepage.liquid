@@ -1,0 +1,683 @@
+<div class="sigma-home">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+:root{
+    --bone:#EDE7DA; --bone-light:#F5F1E8; --bone-card:#F7F4EC;
+    --ink:#17302D; --ink-soft:rgba(23,48,45,0.66); --ink-faint:rgba(23,48,45,0.42);
+    --teal-deep:#0D3D3E; --teal:#14514F; --teal-mid:#3B7C77; --teal-frost:#D9E5E1;
+    --bronze:#A6844E; --bronze-light:#C4A472;
+    --line:rgba(23,48,45,0.14); --line-light:rgba(245,241,232,0.16);
+  }
+.sigma-home *{box-sizing:border-box; margin:0; padding:0;}
+.sigma-home{scroll-behavior:smooth;}
+.sigma-home{background:var(--bone); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; line-height:1.5;}
+.sigma-home h1, .sigma-home h2, .sigma-home h3, .sigma-home h4{font-family:'Fraunces',serif; font-weight:400; letter-spacing:-0.015em; color:var(--ink);}
+.sigma-home a{color:inherit; text-decoration:none;}
+.sigma-home .wrap{max-width:1200px; margin:0 auto; padding:0 40px;}
+.sigma-home ::selection{background:var(--bronze-light); color:var(--ink);}
+.sigma-home sup{font-size:0.55em; vertical-align:super; color:var(--bronze); font-family:'IBM Plex Mono',monospace;}
+.sigma-home .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px;}
+.sigma-home .eyebrow::before{content:'●'; font-size:7px; color:var(--bronze); transform:translateY(-1px);}
+.sigma-home .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+.sigma-home .reveal.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){.sigma-home .reveal{opacity:1; transform:none; transition:none;}
+.sigma-home{scroll-behavior:auto;}}
+.sigma-home nav{position:sticky; top:0; z-index:100; background:rgba(237,231,218,0.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line);}
+.sigma-home .nav-inner{max-width:1200px; margin:0 auto; padding:20px 40px; display:flex; align-items:center; justify-content:space-between;}
+.sigma-home .logo{display:flex; align-items:baseline; gap:9px; font-size:17px; letter-spacing:0.02em; font-weight:500;}
+.sigma-home .logo .sigma{font-family:'Fraunces',serif; font-size:23px; color:var(--teal-deep); font-weight:500; transform:translateY(2px);}
+.sigma-home .nav-links{display:flex; gap:38px; font-size:13.5px; font-weight:500;}
+.sigma-home .nav-links a{opacity:0.7; transition:opacity .2s;}
+.sigma-home .nav-links a:hover{opacity:1;}
+.sigma-home .nav-cta{background:var(--ink); color:var(--bone); padding:11px 24px; border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; transition:background .2s;}
+.sigma-home .nav-cta:hover{background:var(--teal-deep);}
+@media(max-width:880px){.sigma-home .nav-links{display:none;}}
+.sigma-home /* HERO */
+  .hero{padding:100px 0 84px; position:relative;}
+.sigma-home .hero-inner{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+.sigma-home .hero h1{font-size:clamp(46px,5.8vw,78px); line-height:1.0; font-weight:300; margin:26px 0 26px; letter-spacing:-0.028em;}
+.sigma-home .hero h1 em{font-style:italic; color:var(--teal-mid);}
+.sigma-home .hero .lede{font-size:18px; line-height:1.62; color:var(--ink-soft); max-width:450px; margin-bottom:36px;}
+.sigma-home .btn-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+.sigma-home .btn-primary{background:var(--ink); color:var(--bone); padding:16px 30px; font-size:14px; font-weight:500; border-radius:2px; transition:background .2s, transform .2s;}
+.sigma-home .btn-primary:hover{background:var(--teal-deep); transform:translateY(-1px);}
+.sigma-home .btn-ghost{border:1px solid var(--line); color:var(--ink); padding:15px 26px; font-size:14px; font-weight:500; border-radius:2px; transition:border-color .2s;}
+.sigma-home .btn-ghost:hover{border-color:var(--ink);}
+.sigma-home .hero-meta{display:flex; gap:32px; margin-top:40px; padding-top:26px; border-top:1px solid var(--line);}
+.sigma-home .hero-meta .stat{display:flex; flex-direction:column; gap:3px;}
+.sigma-home .hero-meta .stat .n{font-family:'Fraunces',serif; font-size:26px; color:var(--ink); font-weight:400;}
+.sigma-home .hero-meta .stat .l{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint);}
+.sigma-home .hero-visual{position:relative; display:flex; justify-content:center; align-items:flex-end; min-height:440px;}
+.sigma-home .hero-visual::after{content:''; position:absolute; bottom:5%; left:50%; transform:translateX(-50%); width:60%; height:26px; background:radial-gradient(ellipse, rgba(23,48,45,0.18), transparent 70%); filter:blur(6px); z-index:0;}
+.sigma-home .hero-visual img{width:100%; max-width:400px; position:relative; z-index:1; filter:drop-shadow(0 30px 45px rgba(13,61,62,0.22));}
+.sigma-home .spec-tag{position:absolute; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.05em; color:var(--ink-faint); z-index:2; text-align:left;}
+.sigma-home .spec-tag .val{color:var(--teal-mid); display:block; font-size:13px; margin-top:2px;}
+.sigma-home .spec-tag.t1{top:12%; right:0%;}
+.sigma-home .spec-tag.t2{bottom:22%; left:-2%;}
+.sigma-home .spec-tag .rule{display:inline-block; width:24px; height:1px; background:var(--line); vertical-align:middle; margin-right:8px;}
+@media(max-width:880px){.sigma-home .hero-inner{grid-template-columns:1fr; gap:28px;}
+.sigma-home .hero-visual{min-height:340px;}
+.sigma-home .spec-tag{display:none;}
+.sigma-home .hero-meta{gap:22px;}}
+.sigma-home /* THESIS */
+  .thesis{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bone-light);}
+.sigma-home .thesis-inner{max-width:1200px; margin:0 auto; padding:34px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;}
+.sigma-home .thesis h2{font-size:clamp(22px,2.4vw,30px); font-weight:400; letter-spacing:-0.01em;}
+.sigma-home .thesis .meta{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); display:flex; gap:26px; flex-wrap:wrap;}
+.sigma-home /* SIGNATURE — INTERACTIVE INSTRUMENT */
+  .instrument-sec{background:linear-gradient(175deg,var(--teal-deep),#0A3132); color:var(--bone); padding:118px 0; position:relative; overflow:hidden;}
+.sigma-home .instrument-sec .eyebrow{color:var(--bronze-light);}
+.sigma-home .instrument-sec .eyebrow::before{color:var(--bronze-light);}
+.sigma-home .inst-grid{display:grid; grid-template-columns:0.82fr 1.18fr; gap:60px; align-items:center;}
+.sigma-home .inst-copy h2{color:var(--bone); font-size:clamp(36px,4.4vw,56px); line-height:1.06; font-weight:300; margin:22px 0 24px; letter-spacing:-0.02em;}
+.sigma-home .inst-copy h2 em{font-style:italic; color:var(--bronze-light);}
+.sigma-home .inst-copy p{color:rgba(237,231,218,0.76); font-size:16.5px; line-height:1.68; max-width:420px;}
+.sigma-home .inst-copy .hint{display:inline-flex; align-items:center; gap:9px; margin-top:26px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.05em; color:var(--bronze-light); text-transform:uppercase;}
+.sigma-home .inst-copy .hint .arrow{animation:nudge 1.6s ease-in-out infinite;}
+@keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
+@media (prefers-reduced-motion: reduce){.sigma-home .inst-copy .hint .arrow{animation:none;}}
+.sigma-home .instrument{background:rgba(255,255,255,0.035); border:1px solid rgba(196,164,114,0.3); border-radius:8px; padding:26px 28px 24px;}
+.sigma-home .inst-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bronze-light);}
+.sigma-home .inst-head .live{display:flex; align-items:center; gap:7px; color:rgba(237,231,218,0.55);}
+.sigma-home .inst-head .live .led{width:6px; height:6px; border-radius:50%; background:#8FD6A6; box-shadow:0 0 7px #8FD6A6;}
+.sigma-home .inst-readouts{display:flex; gap:34px; align-items:flex-end; margin:14px 0 6px;}
+.sigma-home .ro-block .ro-label{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(237,231,218,0.5); margin-bottom:4px;}
+.sigma-home .ro-block .ro-val{font-family:'Fraunces',serif; font-weight:300; line-height:1; letter-spacing:-0.02em;}
+.sigma-home .ro-block.age .ro-val{font-size:34px; color:var(--bone);}
+.sigma-home .ro-block.nat .ro-val{font-size:44px; color:var(--bone);}
+.sigma-home .ro-block.sup{display:none;}
+.sigma-home .ro-block.sup .ro-val{font-size:44px; color:var(--bronze-light);}
+.sigma-home .ro-block.delta{display:none; margin-left:auto; text-align:right;}
+.sigma-home .ro-block.delta .ro-val{font-size:20px; color:#8FD6A6; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+.sigma-home .instrument.supported .ro-block.sup{display:block;}
+.sigma-home .instrument.supported .ro-block.delta{display:block;}
+.sigma-home .instrument.supported .ro-block.nat .ro-val{font-size:30px; color:rgba(237,231,218,0.55);}
+.sigma-home .instrument.supported .ro-block.nat .ro-label{color:rgba(237,231,218,0.4);}
+.sigma-home .inst-chart{position:relative; margin:8px 0 4px;}
+.sigma-home .inst-chart svg{width:100%; height:auto; display:block;}
+.sigma-home .grid-line{stroke:rgba(245,241,232,0.07);}
+.sigma-home .axis-base{stroke:rgba(245,241,232,0.16);}
+.sigma-home .curve-nat{fill:none; stroke:rgba(237,231,218,0.55); stroke-width:2.5; stroke-linecap:round;}
+.sigma-home .curve-sup{fill:none; stroke:var(--bronze-light); stroke-width:2.5; stroke-linecap:round; opacity:0; transition:opacity .5s;}
+.sigma-home .instrument.supported .curve-sup{opacity:1;}
+.sigma-home .fill-gap{fill:rgba(196,164,114,0.1); opacity:0; transition:opacity .5s;}
+.sigma-home .instrument.supported .fill-gap{opacity:1;}
+.sigma-home .scan-line{stroke:rgba(196,164,114,0.5); stroke-width:1; stroke-dasharray:3 3;}
+.sigma-home .dot-nat{fill:var(--bone);}
+.sigma-home .dot-sup{fill:var(--bronze-light); opacity:0;}
+.sigma-home .instrument.supported .dot-sup{opacity:1;}
+.sigma-home .axis-txt{font-family:'IBM Plex Mono',monospace; font-size:9px; fill:rgba(237,231,218,0.42);}
+.sigma-home .y-txt{font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:rgba(237,231,218,0.4);}
+.sigma-home .inst-controls{margin-top:16px;}
+.sigma-home .slider-row{display:flex; align-items:center; gap:16px;}
+.sigma-home .slider-row .cap{font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(237,231,218,0.4); letter-spacing:0.04em; min-width:26px;}
+.sigma-home input[type=range].age-slider{-webkit-appearance:none; appearance:none; width:100%; height:2px; background:rgba(245,241,232,0.22); border-radius:2px; outline:none; cursor:pointer;}
+.sigma-home input[type=range].age-slider::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%; background:var(--bronze-light); border:3px solid var(--teal-deep); box-shadow:0 0 0 1px var(--bronze-light); cursor:grab;}
+.sigma-home input[type=range].age-slider::-webkit-slider-thumb:active{cursor:grabbing;}
+.sigma-home input[type=range].age-slider::-moz-range-thumb{width:20px; height:20px; border-radius:50%; background:var(--bronze-light); border:3px solid var(--teal-deep); cursor:grab;}
+.sigma-home .toggle-row{display:flex; justify-content:space-between; align-items:center; margin-top:22px; padding-top:20px; border-top:1px solid var(--line-light);}
+.sigma-home .toggle-label{font-size:13.5px; color:rgba(237,231,218,0.8);}
+.sigma-home .toggle-label span{font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(237,231,218,0.45); display:block; margin-top:3px; text-transform:uppercase; letter-spacing:0.05em;}
+.sigma-home .tgl{position:relative; width:52px; height:28px; background:rgba(245,241,232,0.15); border-radius:20px; cursor:pointer; transition:background .25s; flex-shrink:0; border:1px solid var(--line-light);}
+.sigma-home .tgl::after{content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--bone); transition:transform .25s;}
+.sigma-home .instrument.supported .tgl{background:var(--bronze);}
+.sigma-home .instrument.supported .tgl::after{transform:translateX(24px);}
+.sigma-home .inst-foot{font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(237,231,218,0.38); line-height:1.6; margin-top:18px; letter-spacing:0.02em;}
+@media(max-width:880px){.sigma-home .inst-grid{grid-template-columns:1fr; gap:40px;}
+.sigma-home .inst-copy p{max-width:100%;}}
+.sigma-home /* PHILOSOPHY BEAT */
+  .philo{padding:120px 0; text-align:center;}
+.sigma-home .philo .big{font-size:clamp(40px,6vw,80px); font-weight:300; line-height:1.02; letter-spacing:-0.03em; max-width:900px; margin:22px auto 26px;}
+.sigma-home .philo .big em{font-style:italic; color:var(--teal-mid);}
+.sigma-home .philo p{max-width:540px; margin:0 auto; font-size:17px; line-height:1.68; color:var(--ink-soft);}
+.sigma-home /* MECHANISM */
+  .mech{padding:0 0 112px;}
+.sigma-home .section-head{max-width:600px; margin-bottom:60px;}
+.sigma-home .section-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:20px; letter-spacing:-0.02em;}
+.sigma-home .section-head p{font-size:16.5px; color:var(--ink-soft); margin-top:18px; line-height:1.62;}
+.sigma-home .mech-row{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line);}
+.sigma-home .mech-card{padding:40px 34px 44px; border-right:1px solid var(--line); position:relative;}
+.sigma-home .mech-card:last-child{border-right:none;}
+.sigma-home .mech-card .idx{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--bronze); margin-bottom:60px; letter-spacing:0.06em; display:block;}
+.sigma-home .mech-card h3{font-size:23px; margin-bottom:14px; font-weight:400;}
+.sigma-home .mech-card p{font-size:14.5px; color:var(--ink-soft); line-height:1.62;}
+@media(max-width:880px){.sigma-home .mech-row{grid-template-columns:1fr;}
+.sigma-home .mech-card{border-right:none; border-bottom:1px solid var(--line);}
+.sigma-home .mech-card .idx{margin-bottom:22px;}}
+.sigma-home /* FORMULA */
+  .formula{background:var(--bone-light); border-top:1px solid var(--line); padding:112px 0;}
+.sigma-home .readout{background:var(--teal-deep); border-radius:6px; overflow:hidden; border:1px solid rgba(196,164,114,0.25);}
+.sigma-home .readout-top{display:flex; justify-content:space-between; align-items:center; padding:20px 30px; border-bottom:1px solid var(--line-light); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.07em; color:var(--bronze-light); text-transform:uppercase;}
+.sigma-home .readout-top .status{display:flex; align-items:center; gap:8px;}
+.sigma-home .readout-top .status .led{width:6px; height:6px; border-radius:50%; background:var(--bronze-light); box-shadow:0 0 7px var(--bronze-light);}
+.sigma-home .r-row{display:grid; grid-template-columns:2fr 1fr 0.7fr 1.5fr; gap:18px; align-items:center; padding:19px 30px; border-bottom:1px solid rgba(245,241,232,0.08);}
+.sigma-home .r-row:last-of-type{border-bottom:none;}
+.sigma-home .r-row .name{color:var(--bone); font-size:15px; font-weight:500;}
+.sigma-home .r-row .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze-light); font-size:14px;}
+.sigma-home .r-row .dv{font-family:'IBM Plex Mono',monospace; color:rgba(237,231,218,0.45); font-size:13px;}
+.sigma-home .r-row .note{color:rgba(237,231,218,0.6); font-size:13px; line-height:1.5;}
+.sigma-home .r-row.head{padding:14px 30px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(237,231,218,0.4); border-bottom:1px solid var(--line-light);}
+.sigma-home .readout-foot{padding:18px 30px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:rgba(237,231,218,0.42); line-height:1.6;}
+@media(max-width:700px){.sigma-home .r-row{grid-template-columns:1fr; gap:4px; padding:16px 22px;}
+.sigma-home .r-row.head{display:none;}
+.sigma-home .r-row .dose::before{content:'Per serving — '; color:rgba(237,231,218,0.4);}}
+.sigma-home /* MISSION BEAT */
+  .mission{padding:112px 0; border-top:1px solid var(--line);}
+.sigma-home .mission-inner{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+.sigma-home .mission .loc{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bronze); display:flex; align-items:center; gap:9px; margin-bottom:22px;}
+.sigma-home .mission .loc::before{content:'●'; font-size:7px;}
+.sigma-home .mission h2{font-size:clamp(30px,3.6vw,44px); font-weight:300; line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px;}
+.sigma-home .mission p{font-size:16px; color:var(--ink-soft); line-height:1.66; margin-bottom:16px; max-width:460px;}
+.sigma-home .cert-card{background:var(--teal-deep); border-radius:6px; padding:34px; color:var(--bone); border:1px solid rgba(196,164,114,0.25);}
+.sigma-home .cert-card .cert-top{display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--line-light); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze-light);}
+.sigma-home .cert-row{display:flex; justify-content:space-between; align-items:center; padding:12px 0; font-size:14px;}
+.sigma-home .cert-row .k{color:rgba(237,231,218,0.6);}
+.sigma-home .cert-row .v{font-family:'IBM Plex Mono',monospace; color:var(--bone); font-size:13.5px;}
+.sigma-home .cert-row .v.pass{color:#8FD6A6;}
+.sigma-home .cert-seal{margin-top:22px; padding-top:20px; border-top:1px solid var(--line-light); display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:rgba(237,231,218,0.5); letter-spacing:0.04em;}
+.sigma-home .cert-seal .ring{width:34px; height:34px; border-radius:50%; border:1.5px solid var(--bronze-light); display:flex; align-items:center; justify-content:center; color:var(--bronze-light); font-size:14px;}
+@media(max-width:880px){.sigma-home .mission-inner{grid-template-columns:1fr; gap:40px;}}
+.sigma-home /* REVIEWS */
+  .reviews{padding:112px 0; background:var(--bone-light); border-top:1px solid var(--line);}
+.sigma-home .rev-topline{text-align:center; margin-bottom:56px;}
+.sigma-home .rev-topline .big-n{font-family:'Fraunces',serif; font-size:clamp(44px,6vw,72px); font-weight:300; color:var(--ink); letter-spacing:-0.02em; line-height:1;}
+.sigma-home .rev-topline p{font-size:15px; color:var(--ink-soft); margin-top:12px;}
+.sigma-home .rev-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+.sigma-home .rev-card{background:var(--bone-card); border:1px solid var(--line); border-radius:5px; padding:34px 30px; display:flex; flex-direction:column;}
+.sigma-home .rev-card .stars{color:var(--bronze); font-size:12px; letter-spacing:3px; margin-bottom:18px;}
+.sigma-home .rev-card p{font-size:15px; line-height:1.66; color:var(--ink); margin-bottom:22px; flex:1;}
+.sigma-home .rev-card .who{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--teal-mid); text-transform:uppercase; letter-spacing:0.04em;}
+@media(max-width:880px){.sigma-home .rev-grid{grid-template-columns:1fr;}}
+.sigma-home /* PRICING */
+  .pricing{background:var(--teal-deep); color:var(--bone); padding:112px 0;}
+.sigma-home .pricing .section-head{margin-left:auto; margin-right:auto; text-align:center; max-width:560px;}
+.sigma-home .pricing .section-head h2{color:var(--bone);}
+.sigma-home .pricing .section-head p{color:rgba(237,231,218,0.6);}
+.sigma-home .pricing .eyebrow{color:var(--bronze-light);}
+.sigma-home .pricing .eyebrow::before{color:var(--bronze-light);}
+.sigma-home .price-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px; max-width:820px; margin:0 auto;}
+.sigma-home .price-card{border:1px solid var(--line-light); border-radius:6px; padding:40px 34px; display:flex; flex-direction:column; background:rgba(255,255,255,0.02);}
+.sigma-home .price-card.featured{border-color:var(--bronze); background:rgba(196,164,114,0.06); position:relative;}
+.sigma-home .price-card.featured::before{content:'Most Popular'; position:absolute; top:-12px; left:34px; background:var(--bronze); color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; padding:5px 13px; border-radius:2px; letter-spacing:0.05em; text-transform:uppercase;}
+.sigma-home .price-card h3{font-size:20px; color:var(--bone); margin-bottom:6px; font-weight:400;}
+.sigma-home .price-card .sub{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:rgba(237,231,218,0.5); margin-bottom:26px; letter-spacing:0.03em; text-transform:uppercase;}
+.sigma-home .price-card .amount{display:flex; align-items:baseline; gap:9px; margin-bottom:28px;}
+.sigma-home .price-card .amount .num{font-family:'Fraunces',serif; font-size:46px; color:var(--bone); font-weight:300;}
+.sigma-home .price-card .amount .per{font-size:13px; color:rgba(237,231,218,0.5);}
+.sigma-home .price-card ul{display:flex; flex-direction:column; gap:13px; margin-bottom:32px; flex:1;}
+.sigma-home .price-card li{font-size:14px; color:rgba(237,231,218,0.78); display:flex; gap:11px;}
+.sigma-home .price-card li::before{content:'—'; color:var(--bronze-light);}
+.sigma-home .price-card .buy{text-align:center; padding:15px; border-radius:2px; font-size:14px; font-weight:500; transition:all .2s;}
+.sigma-home .buy.solid{background:var(--bronze); color:var(--ink);}
+.sigma-home .buy.solid:hover{background:var(--bronze-light);}
+.sigma-home .buy.hollow{border:1px solid rgba(237,231,218,0.25); color:var(--bone);}
+.sigma-home .buy.hollow:hover{border-color:var(--bone);}
+@media(max-width:760px){.sigma-home .price-grid{grid-template-columns:1fr;}}
+.sigma-home /* FAQ */
+  .faq{padding:112px 0;}
+.sigma-home .faq-wrap{max-width:820px; margin:0 auto;}
+.sigma-home .faq-item{border-bottom:1px solid var(--line); padding:24px 0;}
+.sigma-home .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Fraunces',serif; font-size:19px; font-weight:400; gap:20px;}
+.sigma-home .faq-q .plus{font-family:'IBM Plex Mono',monospace; color:var(--bronze); font-size:20px; transition:transform .25s; flex-shrink:0;}
+.sigma-home .faq-item.open .plus{transform:rotate(45deg);}
+.sigma-home .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease, padding-top .3s ease; font-size:14.5px; color:var(--ink-soft); line-height:1.68;}
+.sigma-home .faq-item.open .faq-a{max-height:240px; padding-top:14px;}
+.sigma-home /* CLOSING */
+  .closing{background:var(--bone-light); border-top:1px solid var(--line); padding:120px 0; text-align:center;}
+.sigma-home .closing h2{font-size:clamp(36px,5vw,62px); font-weight:300; line-height:1.05; letter-spacing:-0.025em; max-width:760px; margin:0 auto 20px;}
+.sigma-home .closing h2 em{font-style:italic; color:var(--teal-mid);}
+.sigma-home .closing p{color:var(--ink-soft); font-size:16.5px; margin-bottom:36px;}
+.sigma-home /* FOOTER */
+  footer{background:var(--ink); color:rgba(237,231,218,0.7); padding:64px 0 34px;}
+.sigma-home .foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:44px; margin-bottom:52px;}
+.sigma-home .foot-brand .sigma{font-family:'Fraunces',serif; font-size:22px; color:var(--bone);}
+.sigma-home .foot-brand p{max-width:280px; font-size:14px; line-height:1.6; margin-top:14px; color:rgba(237,231,218,0.55);}
+.sigma-home .foot-col h4{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--bronze-light); margin-bottom:16px; font-weight:500;}
+.sigma-home .foot-col a{display:block; font-size:14px; color:rgba(237,231,218,0.6); margin-bottom:11px; transition:color .2s;}
+.sigma-home .foot-col a:hover{color:var(--bone);}
+.sigma-home .foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding-top:26px; border-top:1px solid var(--line-light); font-size:12px; color:rgba(237,231,218,0.4); line-height:1.5;}
+.sigma-home .foot-bottom .disc{max-width:600px;}
+@media(max-width:880px){.sigma-home .foot-grid{grid-template-columns:1fr 1fr;}}
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="sigma">σ</span> Sigma Formulas</div>
+    <div class="nav-links">
+      <a href="#instrument">Science</a>
+      <a href="#formula">The Formula</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a href="#pricing" class="nav-cta">Shop NMN–01</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="reveal">
+      <span class="eyebrow">NMN–01 · NAD⁺ Precursor</span>
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <p class="lede">{{ section.settings.hero_text }}</p>
+      <div class="btn-row">
+        <a href="#pricing" class="btn-primary">Shop NMN–01</a>
+        <a href="#instrument" class="btn-ghost">See your NAD⁺ decline</a>
+      </div>
+      <div class="hero-meta">
+        <div class="stat"><span class="n">99.2%<sup>°</sup></span><span class="l">Verified purity</span></div>
+        <div class="stat"><span class="n">120</span><span class="l">Capsules · 60 days</span></div>
+        <div class="stat"><span class="n">0</span><span class="l">Proprietary blends</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <span class="spec-tag t1"><span class="rule"></span>Batch SF–NMN–0225<span class="val">3rd-party tested ✓</span></span>
+      <span class="spec-tag t2"><span class="rule"></span>Form<span class="val">Vegan HPMC caps</span></span>
+      {%- if section.settings.hero_image -%}
+        {{ section.settings.hero_image | image_url: width: 800 | image_tag: alt: section.settings.hero_image.alt, loading: "eager" }}
+      {%- else -%}
+        {{ "product-1" | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+<!-- THESIS -->
+<div class="thesis">
+  <div class="thesis-inner">
+    <h2 class="reveal">Aging starts in your cells.</h2>
+    <div class="meta reveal">
+      <span>Third-Party Tested</span>
+      <span>Vegan · Non-GMO</span>
+      <span>Fully Disclosed</span>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNATURE: INTERACTIVE INSTRUMENT -->
+<section class="instrument-sec" id="instrument">
+  <div class="wrap inst-grid">
+    <div class="inst-copy reveal">
+      <span class="eyebrow">Interactive · NAD⁺ Model</span>
+      <h2>See what time takes from <em>your cells.</em></h2>
+      <p>NAD⁺ powers energy, repairs DNA, and keeps cells resilient — and it falls as you age. Drag to your age. Then switch on NMN–01 and watch what a precursor gives back.</p>
+      <div class="hint"><span class="arrow">→</span> Drag the slider · toggle NMN–01</div>
+    </div>
+
+    <div class="reveal">
+      <div class="instrument" id="inst">
+        <div class="inst-head">
+          <span>σ // NAD⁺ Lifespan Instrument</span>
+          <span class="live"><span class="led"></span> Modeling</span>
+        </div>
+
+        <div class="inst-readouts">
+          <div class="ro-block age"><div class="ro-label">Age</div><div class="ro-val" id="roAge">45</div></div>
+          <div class="ro-block nat"><div class="ro-label">NAD⁺ level</div><div class="ro-val"><span id="roNat">57</span>%</div></div>
+          <div class="ro-block sup"><div class="ro-label">With NMN–01</div><div class="ro-val"><span id="roSup">76</span>%</div></div>
+          <div class="ro-block delta"><div class="ro-label">Restored</div><div class="ro-val" id="roDelta">+19 pts</div></div>
+        </div>
+
+        <div class="inst-chart">
+          <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive chart of NAD+ level versus age">
+            <!-- y gridlines -->
+            <line class="grid-line" x1="56" y1="40" x2="600" y2="40"/>
+            <line class="grid-line" x1="56" y1="95" x2="600" y2="95"/>
+            <line class="grid-line" x1="56" y1="150" x2="600" y2="150"/>
+            <line class="grid-line" x1="56" y1="205" x2="600" y2="205"/>
+            <line class="axis-base" x1="56" y1="255" x2="600" y2="255"/>
+            <!-- y labels -->
+            <text class="y-txt" x="30" y="43">100</text>
+            <text class="y-txt" x="34" y="153">55</text>
+            <text class="y-txt" x="38" y="258">20</text>
+            <!-- fill between curves -->
+            <path class="fill-gap" id="fillGap" d=""/>
+            <!-- curves -->
+            <path class="curve-nat" id="curveNat" d=""/>
+            <path class="curve-sup" id="curveSup" d=""/>
+            <!-- scan line + dots (positioned by JS) -->
+            <line class="scan-line" id="scan" x1="300" y1="40" x2="300" y2="255"/>
+            <circle class="dot-sup" id="dotSup" cx="300" cy="120" r="5"/>
+            <circle class="dot-nat" id="dotNat" cx="300" cy="150" r="5"/>
+            <!-- x axis labels -->
+            <text class="axis-txt" x="52" y="275">20</text>
+            <text class="axis-txt" x="200" y="275">40</text>
+            <text class="axis-txt" x="350" y="275">60</text>
+            <text class="axis-txt" x="500" y="275">80</text>
+            <text class="axis-txt" x="556" y="275">AGE</text>
+          </svg>
+        </div>
+
+        <div class="inst-controls">
+          <div class="slider-row">
+            <span class="cap">20</span>
+            <input type="range" min="20" max="80" value="45" step="1" class="age-slider" id="ageSlider" aria-label="Select age">
+            <span class="cap">80</span>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-label">NMN–01 support <span>See NAD⁺ with a precursor</span></div>
+            <div class="tgl" id="tgl" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle NMN-01 support"></div>
+          </div>
+          <div class="inst-foot">Illustrative model based on published NAD⁺ decline data. Not a clinical result — individual levels and response vary.*</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philo">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content:center;">The Bigger Picture</span>
+    <div class="big reveal">You are 30 trillion cells. Every one runs on <em>the same molecule.</em></div>
+    <p class="reveal">That molecule is NAD⁺. Keep it topped up, and you support the machinery behind energy, repair, and resilience — in every cell, at once. NMN–01 exists for exactly one job: to give it back.</p>
+  </div>
+</section>
+
+<!-- MECHANISM -->
+<section class="mech">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>From capsule to cell, in three conversions.</h2>
+    </div>
+    <div class="mech-row reveal">
+      <div class="mech-card">
+        <span class="idx">01 / INGEST</span>
+        <h3>NMN enters circulation</h3>
+        <p>Nicotinamide Mononucleotide is absorbed and transported into cells, where it serves as a direct building block for NAD⁺.</p>
+      </div>
+      <div class="mech-card">
+        <span class="idx">02 / CONVERT</span>
+        <h3>NAD⁺ is synthesized</h3>
+        <p>Cells convert NMN into NAD⁺, replenishing the coenzyme required for mitochondrial energy production and DNA repair.</p>
+      </div>
+      <div class="mech-card">
+        <span class="idx">03 / ACTIVATE</span>
+        <h3>Sirtuins engage</h3>
+        <p>Restored NAD⁺ availability supports sirtuin activity — proteins tied to cellular resilience and healthy-aging pathways.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULA -->
+<section class="formula" id="formula">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Formula</span>
+      <h2>Every capsule, on the record.</h2>
+      <p>No proprietary blends. No hidden fillers. Every ingredient is dosed to published research levels and disclosed in full — read it like a lab printout, not ad copy.</p>
+    </div>
+    <div class="readout reveal">
+      <div class="readout-top">
+        <span>Sigma Formulas // Supplement Facts — NMN–01</span>
+        <span class="status"><span class="led"></span> Verified Batch</span>
+      </div>
+      <div class="r-row head"><span>Ingredient</span><span>Dose / Serving</span><span>% DV</span><span>Function</span></div>
+      <div class="r-row"><span class="name">Nicotinamide Mononucleotide (NMN)</span><span class="dose">[XXX] mg</span><span class="dv">†</span><span class="note">Direct NAD⁺ precursor</span></div>
+      <div class="r-row"><span class="name">Trans-Resveratrol</span><span class="dose">[XXX] mg</span><span class="dv">†</span><span class="note">Sirtuin activation support</span></div>
+      <div class="r-row"><span class="name">TMG (Trimethylglycine)</span><span class="dose">[XXX] mg</span><span class="dv">†</span><span class="note">Methylation balance</span></div>
+      <div class="r-row"><span class="name">Vegan Capsule Shell (HPMC)</span><span class="dose">—</span><span class="dv">—</span><span class="note">Plant-based delivery</span></div>
+      <div class="readout-foot">† Daily Value not established. Replace [XXX] with your verified label doses from your Certificate of Analysis before publishing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="wrap mission-inner">
+    <div class="reveal">
+      <div class="loc">Every batch · Independent lab</div>
+      <h2>A claim is only as good as its proof.</h2>
+      <p>Anyone can print "99% pure" on a label. We publish the receipt. Every production batch of NMN–01 is sent to an independent, third-party lab and tested for purity, potency, and contaminants before a single bottle ships.</p>
+      <p>If it doesn't pass, it doesn't leave. Your Certificate of Analysis is available on request — because trust should be verifiable, not assumed.</p>
+    </div>
+    <div class="reveal">
+      <div class="cert-card">
+        <div class="cert-top"><span>Certificate of Analysis</span><span>SF–NMN–0225</span></div>
+        <div class="cert-row"><span class="k">NMN Purity</span><span class="v">99.2%</span></div>
+        <div class="cert-row"><span class="k">Identity (HPLC)</span><span class="v pass">PASS ✓</span></div>
+        <div class="cert-row"><span class="k">Heavy Metals</span><span class="v pass">PASS ✓</span></div>
+        <div class="cert-row"><span class="k">Microbial</span><span class="v pass">PASS ✓</span></div>
+        <div class="cert-row"><span class="k">Label Accuracy</span><span class="v pass">PASS ✓</span></div>
+        <div class="cert-seal">
+          <div class="ring">σ</div>
+          <div>Verified &amp; released — figures shown are illustrative.<br>Replace with your live CoA before launch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="rev-topline reveal">
+      <div class="big-n">[XX,XXX]+</div>
+      <p>bottles shipped · placeholder — replace with your real number before launch</p>
+    </div>
+    <div class="rev-grid reveal">
+      <div class="rev-card">
+        <div class="stars">★★★★★</div>
+        <p>"The 3pm slump just isn't there anymore. Three months in, and it's the easiest habit I've kept all year."</p>
+        <div class="who">— Placeholder · Verified Buyer</div>
+      </div>
+      <div class="rev-card">
+        <div class="stars">★★★★★</div>
+        <p>"First NMN brand I've found that discloses full doses instead of hiding behind a proprietary blend. That's why I stayed."</p>
+        <div class="who">— Placeholder · Verified Buyer</div>
+      </div>
+      <div class="rev-card">
+        <div class="stars">★★★★★</div>
+        <p>"Recovery after training feels noticeably faster. Clean formula, no jitters, and I actually look forward to taking it."</p>
+        <div class="who">— Placeholder · Verified Buyer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get Started</span>
+      <h2>Choose how you take it.</h2>
+      <p>Pause, skip, or cancel any subscription anytime from your account.</p>
+    </div>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <h3>One-Time</h3>
+        <div class="sub">120 caps · 60-day supply</div>
+        <div class="amount"><span class="num">$XX</span><span class="per">one time</span></div>
+        <ul>
+          <li>Full-dose, disclosed formula</li>
+          <li>Third-party lab tested</li>
+          <li>Free US shipping over $60</li>
+        </ul>
+        <a href="#" class="buy hollow">Add to Cart</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Subscribe &amp; Save</h3>
+        <div class="sub">Every 60 days · cancel anytime</div>
+        <div class="amount"><span class="num">$XX</span><span class="per">/ mo · 15% off</span></div>
+        <ul>
+          <li>Everything in One-Time, plus:</li>
+          <li>Never run out — priority restock</li>
+          <li>Locked-in subscriber pricing</li>
+          <li>Early access to new formulas</li>
+        </ul>
+        <a href="#" class="buy solid">Subscribe &amp; Save 15%</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap faq-wrap">
+    <div class="section-head reveal" style="margin-bottom:40px;">
+      <span class="eyebrow">Questions</span>
+      <h2>Before you start.</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is NMN, and why not just take NAD⁺? <span class="plus">+</span></div>
+        <div class="faq-a">NAD⁺ is poorly absorbed when taken orally. NMN (Nicotinamide Mononucleotide) is a direct precursor your body readily converts into NAD⁺ — which is why it's the preferred delivery route.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long until I notice a difference? <span class="plus">+</span></div>
+        <div class="faq-a">Most people take NMN–01 daily for 4–8 weeks before evaluating effects, since replenishing cellular NAD⁺ is a gradual process. Consistency matters more than any single dose.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is it third-party tested? <span class="plus">+</span></div>
+        <div class="faq-a">Yes. Every batch is tested by an independent lab for purity and potency before release. Certificates of Analysis are available on request.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I cancel my subscription? <span class="plus">+</span></div>
+        <div class="faq-a">Anytime — no fees, no minimum commitment. Manage, pause, or cancel directly from your account dashboard.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <h2 class="reveal">Give your cells back what <em>time takes away.</em></h2>
+    <p class="reveal">NMN–01 · 120 capsules · a 60-day supply.</p>
+    <div class="reveal"><a href="#pricing" class="btn-primary">Shop NMN–01</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="sigma">σ Sigma Formulas</span>
+        <p>Precision-dosed, third-party tested longevity formulas. No proprietary blends, ever.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <a href="#">NMN–01</a><a href="#">Subscriptions</a><a href="#">Bundles</a>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <a href="#">The Science</a><a href="#">Lab Reports</a><a href="#">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#">About</a><a href="#">Contact</a><a href="#">Shipping &amp; Returns</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sigma Formulas. All rights reserved.</span>
+      <span class="disc">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---- Interactive NAD+ instrument ----
+  (function(){
+    const AGE_MIN=20, AGE_MAX=80;
+    // plot geometry (must match SVG viewBox 620x300)
+    const X0=56, X1=600, Y_TOP=40, Y_BOT=255;   // y_top=100%, y_bot=20%
+    const PCT_HI=100, PCT_LO=20;
+    const x = age => X0 + (age-AGE_MIN)/(AGE_MAX-AGE_MIN)*(X1-X0);
+    const y = pct => Y_TOP + (PCT_HI-pct)/(PCT_HI-PCT_LO)*(Y_BOT-Y_TOP);
+    // NAD+ natural decline model (% of age-20 peak)
+    const nat = age => 28 + 72*Math.exp(-0.045*(age-AGE_MIN));
+    // supported: precursor recovers ~45% of the lost ground (illustrative)
+    const sup = age => { const n=nat(age); return n + (100-n)*0.45; };
+
+    // build smooth paths by sampling
+    function buildPath(fn){
+      let d="";
+      for(let a=AGE_MIN; a<=AGE_MAX; a+=1){
+        d += (a===AGE_MIN?"M":"L") + x(a).toFixed(1) + "," + y(fn(a)).toFixed(1) + " ";
+      }
+      return d.trim();
+    }
+    const dNat=buildPath(nat), dSup=buildPath(sup);
+    document.getElementById('curveNat').setAttribute('d', dNat);
+    document.getElementById('curveSup').setAttribute('d', dSup);
+    // fill between sup and nat
+    let dFill="M";
+    for(let a=AGE_MIN;a<=AGE_MAX;a+=1){ dFill += x(a).toFixed(1)+","+y(sup(a)).toFixed(1)+" L"; }
+    for(let a=AGE_MAX;a>=AGE_MIN;a-=1){ dFill += x(a).toFixed(1)+","+y(nat(a)).toFixed(1)+" L"; }
+    dFill = dFill.replace(/ L$/,"") + " Z";
+    document.getElementById('fillGap').setAttribute('d', dFill);
+
+    const slider=document.getElementById('ageSlider');
+    const inst=document.getElementById('inst');
+    const tgl=document.getElementById('tgl');
+    const elAge=document.getElementById('roAge'), elNat=document.getElementById('roNat'),
+          elSup=document.getElementById('roSup'), elDelta=document.getElementById('roDelta');
+    const scan=document.getElementById('scan'), dotNat=document.getElementById('dotNat'), dotSup=document.getElementById('dotSup');
+
+    function render(){
+      const age=+slider.value;
+      const n=nat(age), s=sup(age);
+      const px=x(age);
+      elAge.textContent=age;
+      elNat.textContent=Math.round(n);
+      elSup.textContent=Math.round(s);
+      elDelta.textContent="+"+Math.round(s-n)+" pts";
+      scan.setAttribute('x1',px); scan.setAttribute('x2',px);
+      dotNat.setAttribute('cx',px); dotNat.setAttribute('cy',y(n));
+      dotSup.setAttribute('cx',px); dotSup.setAttribute('cy',y(s));
+    }
+    function toggle(){
+      const on=inst.classList.toggle('supported');
+      tgl.setAttribute('aria-checked', on?'true':'false');
+    }
+    slider.addEventListener('input', render);
+    tgl.addEventListener('click', toggle);
+    tgl.addEventListener('keydown', e=>{ if(e.key===' '||e.key==='Enter'){e.preventDefault(); toggle();} });
+    render();
+  })();
+</script>
+</div>
+
+{% schema %}
+{
+  "name": "Sigma Homepage",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Product image (transparent PNG/WebP works best)"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "The molecule your cells run on, replenished."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_text",
+      "label": "Hero paragraph",
+      "default": "NMN-01 restores NAD+ - the coenzyme behind cellular energy, DNA repair, and healthy aging - at doses you can verify, batch by batch."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sigma Homepage"
+    }
+  ]
+}
+{% endschema %}
