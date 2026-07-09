@@ -10,9 +10,10 @@
 .sigma-faq-sec .wrap{max-width:1000px;margin:0 auto;padding:0 40px}
 .sigma-faq-sec .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);display:inline-flex;align-items:center;gap:11px}
 .sigma-faq-sec .eyebrow::before{content:'●';font-size:7px;transform:translateY(-1px)}
-.sigma-faq-sec .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.sigma-faq-sec .reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.sigma-faq-sec .reveal{opacity:1;transform:none;transition:none}
+.sigma-faq-sec .reveal{opacity:1;transform:none}
+.sigma-faq-sec.js-anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.sigma-faq-sec.js-anim .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.sigma-faq-sec .reveal, .sigma-faq-sec.js-anim .reveal{opacity:1;transform:none;transition:none}
 .sigma-faq-sec{scroll-behavior:auto}}
 .sigma-faq-sec .hero{padding:104px 0 56px;text-align:center;border-bottom:1px solid var(--line)}
 .sigma-faq-sec .hero h1{font-size:clamp(40px,5.4vw,72px);line-height:1.02;font-weight:300;letter-spacing:-.028em;margin:24px auto 22px;max-width:800px}
@@ -123,9 +124,18 @@
 <div class="disc"><div class="wrap">*These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</div></div>
 
 <script>
+function initSigma(){
+  var root=document.querySelector('.sigma-faq-sec');
+  if(!root||root.dataset.sigmaInit) return;
+  root.dataset.sigmaInit='1';
+  root.classList.add('js-anim');
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+root.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.querySelectorAll('.q-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+}
+initSigma();
+document.addEventListener('DOMContentLoaded', initSigma);
+document.addEventListener('shopify:section:load', initSigma);
 </script>
 </div>
 

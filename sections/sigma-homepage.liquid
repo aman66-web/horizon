@@ -18,9 +18,10 @@
 .sigma-home sup{font-size:0.55em; vertical-align:super; color:var(--bronze); font-family:'IBM Plex Mono',monospace;}
 .sigma-home .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px;}
 .sigma-home .eyebrow::before{content:'●'; font-size:7px; color:var(--bronze); transform:translateY(-1px);}
-.sigma-home .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
-.sigma-home .reveal.in{opacity:1; transform:none;}
-@media (prefers-reduced-motion: reduce){.sigma-home .reveal{opacity:1; transform:none; transition:none;}
+.sigma-home .reveal{opacity:1; transform:none;}
+.sigma-home.js-anim .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+.sigma-home.js-anim .reveal.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){.sigma-home .reveal, .sigma-home.js-anim .reveal{opacity:1; transform:none; transition:none;}
 .sigma-home{scroll-behavior:auto;}}
 .sigma-home nav{position:sticky; top:0; z-index:100; background:rgba(237,231,218,0.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line);}
 .sigma-home .nav-inner{max-width:1200px; margin:0 auto; padding:20px 40px; display:flex; align-items:center; justify-content:space-between;}
@@ -538,11 +539,16 @@
 </section>
 
 <script>
+function initSigma(){
+  var root=document.querySelector('.sigma-home');
+  if(!root||root.dataset.sigmaInit) return;
+  root.dataset.sigmaInit='1';
+  root.classList.add('js-anim');
 // reveal on scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:0.14});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  root.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   // ---- Interactive NAD+ instrument ----
   (function(){
@@ -603,6 +609,10 @@
     tgl.addEventListener('keydown', e=>{ if(e.key===' '||e.key==='Enter'){e.preventDefault(); toggle();} });
     render();
   })();
+}
+initSigma();
+document.addEventListener('DOMContentLoaded', initSigma);
+document.addEventListener('shopify:section:load', initSigma);
 </script>
 </div>
 
