@@ -162,7 +162,6 @@
   <div class="wrap buy-grid">
     <div class="gallery reveal">
       <div class="gal-main">
-        <span class="gal-badge">Batch SF–NMN–0225</span>
         {%- if prod and prod.featured_image -%}{{ prod.featured_image | image_url: width: 900 | image_tag: alt: prod.title, loading: "eager" }}{%- elsif section.settings.fallback_image -%}{{ section.settings.fallback_image | image_url: width: 900 | image_tag: alt: "NMN-01", loading: "eager" }}{%- else -%}{{ "product-1" | placeholder_svg_tag }}{%- endif -%}
       </div>
       <div class="gal-thumbs">
@@ -176,10 +175,6 @@
     <div class="pd reveal">
       <div class="sku">NMN–01</div>
       <h1>{% if prod %}{{ prod.title }}{% else %}{{ section.settings.fallback_title }}{% endif %}</h1>
-      <div class="rating">
-        <span class="stars">★★★★★</span>
-        <span class="count">[XXX] Reviews</span>
-      </div>
       <p class="desc">{{ section.settings.product_desc }}</p>
 
       <div class="plans" id="plans">
@@ -229,9 +224,9 @@
           <div class="acc-q">Ingredients <span class="plus">+</span></div>
           <div class="acc-a">
             <ul>
-              <li>Nicotinamide Mononucleotide (NMN) — [XXX] mg</li>
-              <li>Trans-Resveratrol — [XXX] mg</li>
-              <li>TMG (Trimethylglycine) — [XXX] mg</li>
+              <li>Nicotinamide Mononucleotide (NMN) — Disclosed on label</li>
+              <li>Trans-Resveratrol — Disclosed on label</li>
+              <li>TMG (Trimethylglycine) — Disclosed on label</li>
               <li>Vegan capsule shell (HPMC). Nothing else.</li>
             </ul>
           </div>
@@ -289,21 +284,21 @@
         <div class="layer on" data-band="b1">
           <div class="top">
             <div class="nm"><span class="sw" style="background:#C4A472"></span>Nicotinamide Mononucleotide</div>
-            <div class="dose">[XXX] mg</div>
+            <div class="dose"></div>
           </div>
           <div class="fn">The direct precursor your cells convert into NAD⁺ — the coenzyme behind energy production and DNA repair.</div>
         </div>
         <div class="layer" data-band="b2">
           <div class="top">
             <div class="nm"><span class="sw" style="background:#8FD6A6"></span>Trans-Resveratrol</div>
-            <div class="dose">[XXX] mg</div>
+            <div class="dose"></div>
           </div>
           <div class="fn">A polyphenol studied for its role in supporting sirtuin activity — proteins linked to cellular resilience.</div>
         </div>
         <div class="layer" data-band="b3">
           <div class="top">
             <div class="nm"><span class="sw" style="background:#D9E5E1"></span>TMG (Trimethylglycine)</div>
-            <div class="dose">[XXX] mg</div>
+            <div class="dose"></div>
           </div>
           <div class="fn">A methyl donor included to support healthy methylation balance alongside NMN intake.</div>
         </div>
@@ -315,7 +310,6 @@
           <div class="fn">A plant-based capsule. No gelatin, no binders, no fillers, no flow agents.</div>
         </div>
       </div>
-      <div class="anat-foot">Illustrative cross-section. Replace [XXX] with your verified Certificate of Analysis doses before publishing.*</div>
     </div>
 
     <div class="cap-stage reveal">
@@ -403,19 +397,11 @@
       <p>Every batch of NMN–01 is screened as a finished formula — not just at the ingredient level.</p>
     </div>
     <div class="badges reveal">
-      <div class="badge"><div class="ring">✓</div><span>Purity<br>Verified</span></div>
-      <div class="badge"><div class="ring">✓</div><span>Heavy Metals<br>Screened</span></div>
-      <div class="badge"><div class="ring">✓</div><span>Microbial<br>Tested</span></div>
-      <div class="badge"><div class="ring">✓</div><span>Label<br>Accuracy</span></div>
       <div class="badge"><div class="ring">✓</div><span>Vegan<br>Certified</span></div>
       <div class="badge"><div class="ring">✓</div><span>Non<br>GMO</span></div>
       <div class="badge"><div class="ring">✓</div><span>No<br>Binders</span></div>
       <div class="badge"><div class="ring">✓</div><span>No<br>Fillers</span></div>
-      <div class="badge"><div class="ring">✓</div><span>Gluten<br>Tested</span></div>
       <div class="badge"><div class="ring">✓</div><span>Third<br>Party</span></div>
-    </div>
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:26px;line-height:1.6;">
-      Only claim a badge you can evidence with your Certificate of Analysis. Remove any that don't apply to your product.
     </div>
   </div>
 </section>

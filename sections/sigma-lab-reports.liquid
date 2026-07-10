@@ -124,82 +124,12 @@
   </div>
 </section>
 
-<!-- BATCH LOOKUP -->
-<section class="lookup">
-  <div class="wrap lu-in">
-    <div class="reveal">
-      <span class="eyebrow">Batch Lookup</span>
-      <h2>Find your jar's report.</h2>
-      <p>Your batch number is printed on the base of every NMN–01 jar. Enter it to pull the Certificate of Analysis for the exact batch in your hand.</p>
-    </div>
-    <div class="reveal">
-      <div class="lu-box">
-        <div class="lu-label">Enter batch number</div>
-        <div class="lu-row">
-          <input id="batchIn" type="text" placeholder="SF–NMN–0225" aria-label="Batch number">
-          <button id="batchGo">Look up</button>
-        </div>
-        <div class="lu-hint">Format: SF–NMN–XXXX · Found on the base of your jar</div>
-        <div class="lu-out" id="batchOut"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BATCH LIST -->
+<!-- REPORTS STATUS -->
 <section class="batches">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">The Archive</span>
-      <h2>Every batch we've ever shipped.</h2>
-      <p>Nothing removed, nothing hidden. If a batch failed, it never left the facility — and we'd tell you here.</p>
-    </div>
-
-    <div class="reveal">
-      <!-- BATCH 1 -->
-      <div class="coa open">
-        <div class="coa-head">
-          <div><span class="lbl">Batch</span><span class="bn">SF–NMN–0225</span></div>
-          <div><span class="lbl">Released</span><span class="val">[Month YYYY]</span></div>
-          <div><span class="lbl">Lab</span><span class="val">[Independent Lab Name]</span></div>
-          <div><span class="st"><span class="dot"></span>Released</span></div>
-          <div class="chev">+</div>
-        </div>
-        <div class="coa-body"><div class="coa-inner">
-          <div class="assay hd"><span>Assay</span><span>Result</span><span>Specification</span><span>Status</span></div>
-          <div class="assay"><span class="a-n">NMN identity &amp; purity (HPLC)</span><span class="a-v">[XX.X]%</span><span class="a-s">≥ [XX]%</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Trans-resveratrol content</span><span class="a-v">[XXX] mg</span><span class="a-s">± 10% label</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Lead / Arsenic / Cadmium / Mercury</span><span class="a-v">&lt; LOQ</span><span class="a-s">USP limits</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Total aerobic microbial count</span><span class="a-v">[X] CFU/g</span><span class="a-s">&lt; 3000 CFU/g</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Label accuracy</span><span class="a-v">Confirmed</span><span class="a-s">Matches CoA</span><span class="a-p">PASS</span></div>
-          <div class="dl">
-            <a href="#" class="solid">Download full CoA (PDF)</a>
-            <a href="#">View lab accreditation</a>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- BATCH 2 -->
-      <div class="coa">
-        <div class="coa-head">
-          <div><span class="lbl">Batch</span><span class="bn">SF–NMN–0124</span></div>
-          <div><span class="lbl">Released</span><span class="val">[Month YYYY]</span></div>
-          <div><span class="lbl">Lab</span><span class="val">[Independent Lab Name]</span></div>
-          <div><span class="st"><span class="dot"></span>Released</span></div>
-          <div class="chev">+</div>
-        </div>
-        <div class="coa-body"><div class="coa-inner">
-          <div class="assay hd"><span>Assay</span><span>Result</span><span>Specification</span><span>Status</span></div>
-          <div class="assay"><span class="a-n">NMN identity &amp; purity (HPLC)</span><span class="a-v">[XX.X]%</span><span class="a-s">≥ [XX]%</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Heavy metals panel</span><span class="a-v">&lt; LOQ</span><span class="a-s">USP limits</span><span class="a-p">PASS</span></div>
-          <div class="assay"><span class="a-n">Microbial screening</span><span class="a-v">[X] CFU/g</span><span class="a-s">&lt; 3000 CFU/g</span><span class="a-p">PASS</span></div>
-          <div class="dl"><a href="#" class="solid">Download full CoA (PDF)</a></div>
-        </div></div>
-      </div>
-    </div>
-
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:26px;line-height:1.7" class="reveal">
-      Placeholder data. Replace every bracketed value with figures from your real Certificate of Analysis, and link the actual PDF files, before publishing this page.
+      <h2>Reports publish with our first batch</h2>
+      <p>Every production batch is third-party tested. Certificates of Analysis will be published here, in full, as each batch is released.</p>
     </div>
   </div>
 </section>
@@ -266,26 +196,6 @@ function initSigma(){
   root.classList.add('js-anim');
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
 root.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-document.querySelectorAll('.coa-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
-
-const inp=document.getElementById('batchIn'), out=document.getElementById('batchOut');
-document.getElementById('batchGo').addEventListener('click',()=>{
-  const v=inp.value.trim().toUpperCase().replace(/[–—]/g,'-');
-  out.classList.add('show');
-  if(!v){ out.textContent='Enter a batch number to continue.'; return; }
-  const found=[...document.querySelectorAll('.coa .bn')].find(b=>b.textContent.trim().toUpperCase().replace(/[–—]/g,'-')===v);
-  if(found){
-    out.textContent='✓ Batch found — opening report below.';
-    const card=found.closest('.coa');
-    document.querySelectorAll('.coa').forEach(c=>c.classList.remove('open'));
-    card.classList.add('open');
-    card.scrollIntoView({behavior:'smooth',block:'center'});
-  } else {
-    out.textContent='No batch matching '+v+'. Check the base of your jar, or contact us.';
-  }
-});
-inp.addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('batchGo').click(); });
 }
 initSigma();
 document.addEventListener('DOMContentLoaded', initSigma);
