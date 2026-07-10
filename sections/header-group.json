@@ -125,19 +125,10 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
-    },
-    "sigma_homepage_HYLtMm": {
-      "type": "sigma-homepage",
-      "name": "Sigma Homepage",
-      "settings": {
-        "hero_heading": "The molecule your cells run on, replenished.",
-        "hero_text": "NMN-01 restores NAD+ - the coenzyme behind cellular energy, DNA repair, and healthy aging - at doses you can verify, batch by batch."
-      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "header_section",
-    "sigma_homepage_HYLtMm"
+    "header_section"
   ]
 }
