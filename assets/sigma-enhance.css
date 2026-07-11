@@ -1,0 +1,168 @@
+/* ============================================================
+   Sigma — site-wide richness layer
+   Adds depth, warmth and motion on top of the flat editorial base.
+   Scoped to the six .sigma-* section wrappers so it never leaks
+   into the theme editor or admin chrome.
+   Doubled wrapper classes (e.g. .sigma-home.sigma-home) raise
+   specificity just enough to win over each section's inline
+   <style> block for the handful of overridden properties.
+   ============================================================ */
+
+/* ---- 1. Atmospheric page background --------------------------------- */
+/* Soft teal + bronze glows and a whisper of grain replace the flat
+   single-tone bone fill. Anchored to the viewport so every scroll
+   position keeps a little depth. */
+.sigma-home.sigma-home,
+.sigma-pdp.sigma-pdp,
+.sigma-about-sec.sigma-about-sec,
+.sigma-science-sec.sigma-science-sec,
+.sigma-faq-sec.sigma-faq-sec,
+.sigma-lab-sec.sigma-lab-sec {
+  background-color: #EDE7DA;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
+    radial-gradient(1100px 640px at 82% -6%, rgba(59,124,119,0.16), transparent 62%),
+    radial-gradient(880px 560px at 4% 14%, rgba(196,164,114,0.14), transparent 58%),
+    radial-gradient(1000px 720px at 96% 88%, rgba(13,61,62,0.10), transparent 60%),
+    radial-gradient(760px 560px at 8% 96%, rgba(166,132,78,0.08), transparent 60%);
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+}
+
+/* ---- 2. Elevation + hover for detached cards / panels --------------- */
+.sigma-home .rev-card,
+.sigma-home .price-card,
+.sigma-home .cert-card,
+.sigma-home .readout,
+.sigma-home .instrument,
+.sigma-pdp .bene-card,
+.sigma-pdp .plan,
+.sigma-pdp .gal-main,
+.sigma-pdp .ctable,
+.sigma-pdp .cta,
+.sigma-about-sec .sc,
+.sigma-science-sec .ev,
+.sigma-science-sec .honest,
+.sigma-faq-sec .help,
+.sigma-lab-sec .coa,
+.sigma-lab-sec .wcard,
+.sigma-lab-sec .lu-box,
+.sigma-lab-sec .hbox {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.35) inset,
+    0 20px 44px -26px rgba(13,61,62,0.42),
+    0 6px 16px -10px rgba(23,48,45,0.16);
+  transition:
+    transform .34s cubic-bezier(.2,.7,.2,1),
+    box-shadow .34s cubic-bezier(.2,.7,.2,1),
+    border-color .34s ease;
+  will-change: transform;
+}
+
+.sigma-home .rev-card:hover,
+.sigma-home .price-card:hover,
+.sigma-home .cert-card:hover,
+.sigma-pdp .bene-card:hover,
+.sigma-pdp .plan:hover,
+.sigma-about-sec .sc:hover,
+.sigma-science-sec .ev:hover,
+.sigma-science-sec .honest:hover,
+.sigma-faq-sec .help:hover,
+.sigma-lab-sec .wcard:hover,
+.sigma-lab-sec .lu-box:hover,
+.sigma-lab-sec .coa:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.4) inset,
+    0 34px 60px -28px rgba(13,61,62,0.52),
+    0 10px 24px -12px rgba(23,48,45,0.22);
+  border-color: rgba(166,132,78,0.55);
+}
+
+/* Mechanism cards are grid dividers, not detached tiles — warm the
+   surface on hover instead of lifting them. */
+.sigma-home .mech-card {
+  transition: background-color .3s ease;
+}
+.sigma-home .mech-card:hover {
+  background-color: rgba(196,164,114,0.07);
+}
+
+/* ---- 3. Button depth ------------------------------------------------ */
+.sigma-home .btn-primary,
+.sigma-pdp .btn,
+.sigma-about-sec .btn,
+.sigma-science-sec .btn,
+.sigma-lab-sec .btn {
+  box-shadow: 0 12px 26px -14px rgba(13,61,62,0.55);
+  transition: transform .22s ease, box-shadow .22s ease, background-color .22s ease;
+}
+.sigma-home .btn-primary:hover,
+.sigma-pdp .btn:hover,
+.sigma-about-sec .btn:hover,
+.sigma-science-sec .btn:hover,
+.sigma-lab-sec .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -14px rgba(13,61,62,0.62);
+}
+
+/* Primary CTA gets a warm sheen sweep on hover */
+.sigma-home .btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.sigma-home .btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(196,164,114,0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.sigma-home .btn-primary:hover::after {
+  transform: translateX(120%);
+}
+
+/* ---- 4. Living accents — pulsing dots & LEDs ------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sigmaPulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+  }
+  .sigma-home .eyebrow::before,
+  .sigma-pdp .eyebrow::before,
+  .sigma-about-sec .eyebrow::before,
+  .sigma-science-sec .eyebrow::before,
+  .sigma-faq-sec .eyebrow::before,
+  .sigma-lab-sec .eyebrow::before,
+  .sigma-home .led,
+  .sigma-pdp .led,
+  .sigma-lab-sec .led {
+    animation: sigmaPulse 2.6s ease-in-out infinite;
+  }
+}
+
+/* ---- 5. Hero moment: spotlight behind the product ------------------- */
+.sigma-home .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 78%;
+  height: 78%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(196,164,114,0.30), rgba(59,124,119,0.14) 42%, transparent 68%);
+  filter: blur(14px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---- 6. Warm the plain light bands so they aren't dead-flat --------- */
+.sigma-home.sigma-home .thesis,
+.sigma-home.sigma-home .formula,
+.sigma-home.sigma-home .reviews,
+.sigma-home.sigma-home .closing,
+.sigma-about-sec.sigma-about-sec .manifesto {
+  background-image:
+    radial-gradient(680px 300px at 12% 0%, rgba(196,164,114,0.10), transparent 65%),
+    radial-gradient(760px 340px at 90% 100%, rgba(59,124,119,0.10), transparent 65%);
+}
