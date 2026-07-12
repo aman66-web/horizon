@@ -1,0 +1,315 @@
+{%- comment -%}
+  Sigma NMN+ product story — full-width, edge-to-edge bands (Seed-style).
+  Content moved out of the product description field into a proper theme section.
+  All copy preserved verbatim. Bands break out of the theme container via the
+  100vw + margin-inline calc technique; content is constrained to ~1200px.
+{%- endcomment -%}
+
+<div class="sigma-nmn">
+<style>
+  .sigma-nmn{--cream:#F7F5EC;--white:#ffffff;--ink:#1B2921;--ink-soft:#4C5A4C;--ink-faint:#5C6E5C;--green:#2c4a2e;--green-2:#47614B;--green-3:#8BA283;--line:#DDD9C9;--dark:#1B2921;--dark-fg:#F6F4EA;--dark-soft:#cdd8c8;--dark-faint:#a8bfa0;font-family:inherit;color:var(--ink);line-height:1.6;}
+  .sigma-nmn *{box-sizing:border-box;}
+  /* full-bleed band: break out of the theme's content container, edge to edge */
+  .sigma-nmn .snmn-band{width:100vw;margin-inline-start:calc(50% - 50vw);}
+  .sigma-nmn .snmn-inner{max-width:1200px;margin-inline:auto;padding:72px 32px;}
+  .sigma-nmn .cream{background:var(--cream);color:var(--ink);}
+  .sigma-nmn .dark{background:var(--dark);color:var(--dark-fg);}
+  .sigma-nmn h2{font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.16;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink);}
+  .sigma-nmn .dark h2{color:var(--dark-fg);}
+  .sigma-nmn p{margin:0 0 10px;}
+  .sigma-nmn sup{font-size:.66em;line-height:0;}
+  .sigma-nmn .lede{color:var(--ink-faint);margin:0 0 26px;font-size:.98rem;}
+  .sigma-nmn .dark .lede{color:var(--dark-soft);}
+  /* ---- benefits strip ---- */
+  .sigma-nmn .snmn-benefits-title{font-weight:700;margin:0 0 14px;}
+  .sigma-nmn .snmn-checks{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:760px;}
+  .sigma-nmn .snmn-checks li{display:flex;gap:12px;align-items:flex-start;}
+  .sigma-nmn .snmn-checks .ck{color:var(--green);font-weight:700;flex:none;}
+  /* ---- 4 benefit tiles ---- */
+  .sigma-nmn .snmn-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .sigma-nmn .snmn-ico{width:46px;height:46px;border:1.5px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .sigma-nmn .snmn-ico svg{width:22px;height:22px;stroke:var(--green);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .sigma-nmn .snmn-tiles h3{font-size:1rem;font-weight:700;margin:0 0 4px;}
+  .sigma-nmn .snmn-tiles p{margin:0;font-size:.92rem;color:var(--ink-soft);}
+  /* ---- split (dark science + standards) ---- */
+  .sigma-nmn .snmn-split{display:flex;flex-wrap:wrap;gap:32px;align-items:center;}
+  .sigma-nmn .snmn-split .col-main{flex:1 1 320px;min-width:260px;}
+  .sigma-nmn .snmn-split .col-side{flex:1 1 230px;min-width:200px;}
+  .sigma-nmn .snmn-capfig{display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .sigma-nmn .snmn-capfig svg{width:64px;height:auto;}
+  .sigma-nmn .snmn-capfig .cap-name{margin:0 0 2px;font-weight:700;font-size:.95rem;color:var(--dark-fg);text-align:center;}
+  .sigma-nmn .snmn-capfig .cap-sub{margin:0;font-size:.85rem;color:var(--dark-faint);text-align:center;}
+  /* ---- timeline ---- */
+  .sigma-nmn .snmn-timeline{border-inline-start:2px solid var(--green);padding-inline-start:24px;max-width:680px;display:grid;gap:22px;}
+  .sigma-nmn .snmn-step{position:relative;}
+  .sigma-nmn .snmn-step .dot{position:absolute;inset-inline-start:-30px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--green);}
+  .sigma-nmn .snmn-step.s2 .dot{background:var(--green-2);}
+  .sigma-nmn .snmn-step.s3 .dot{background:var(--green-3);}
+  .sigma-nmn .snmn-step .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px;}
+  .sigma-nmn .snmn-chip{background:var(--dark);color:var(--dark-fg);border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:700;}
+  .sigma-nmn .snmn-step.s2 .snmn-chip{background:var(--green-2);}
+  .sigma-nmn .snmn-step.s3 .snmn-chip{background:var(--green-3);color:var(--ink);}
+  .sigma-nmn .snmn-step ul{margin:0;padding-inline-start:18px;color:var(--ink-soft);font-size:.95rem;}
+  .sigma-nmn .snmn-step ul .fine{font-size:.9em;color:var(--ink-faint);}
+  /* ---- ingredient disclosure ---- */
+  .sigma-nmn .snmn-disc-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin:0 0 14px;}
+  .sigma-nmn .snmn-disc-head p{margin:0;font-size:.9rem;color:var(--ink-faint);}
+  .sigma-nmn details.snmn-acc{border-top:1px solid var(--line);padding:14px 0;}
+  .sigma-nmn details.snmn-acc + details.snmn-acc{border-bottom:1px solid var(--line);}
+  .sigma-nmn details.snmn-acc summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;font-weight:700;list-style:none;}
+  .sigma-nmn details.snmn-acc summary::-webkit-details-marker{display:none;}
+  .sigma-nmn details.snmn-acc summary .pm{color:var(--green);}
+  .sigma-nmn details.snmn-acc[open] summary .pm{transform:rotate(45deg);}
+  .sigma-nmn details.snmn-acc p{margin:10px 0 0;font-size:.93rem;color:var(--ink-soft);}
+  .sigma-nmn .snmn-pills{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0;}
+  .sigma-nmn .snmn-pill{border:1.5px solid var(--green);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:600;color:var(--green);}
+  /* ---- comparison table ---- */
+  .sigma-nmn .snmn-cmp{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;}
+  .sigma-nmn .snmn-cmp h2{flex:0 1 240px;min-width:180px;margin:0;}
+  .sigma-nmn .snmn-table{flex:1 1 360px;min-width:0;background:rgba(246,244,234,.06);border:1px solid rgba(246,244,234,.15);border-radius:16px;padding:8px 22px 16px;}
+  .sigma-nmn .snmn-trow{display:flex;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(246,244,234,.12);font-size:.92rem;}
+  .sigma-nmn .snmn-trow:last-child{border-bottom:none;}
+  .sigma-nmn .snmn-trow.head{font-size:.8rem;color:var(--dark-faint);padding:12px 0;}
+  .sigma-nmn .snmn-trow .feat{flex:1;}
+  .sigma-nmn .snmn-trow .col{flex:0 0 74px;text-align:center;}
+  .sigma-nmn .snmn-trow.head .col.us{border:1px solid var(--dark-faint);border-radius:999px;padding:2px 0;}
+  .sigma-nmn .snmn-yes,.sigma-nmn .snmn-no{display:inline-block;width:11px;height:11px;border-radius:50%;}
+  .sigma-nmn .snmn-yes{background:var(--green-3);}
+  .sigma-nmn .snmn-no{border:1.5px solid rgba(246,244,234,.45);}
+  .sigma-nmn .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .sigma-nmn .snmn-note{margin:16px 0 0;font-size:.78rem;color:var(--dark-faint);}
+  /* ---- simply delivered cards ---- */
+  .sigma-nmn .snmn-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .sigma-nmn .snmn-card{background:var(--white);border-radius:16px;padding:24px;}
+  .sigma-nmn .snmn-card h3{font-weight:700;margin:0 0 4px;font-size:1rem;}
+  .sigma-nmn .snmn-card .sub{margin:0 0 12px;font-size:.9rem;color:var(--ink-faint);}
+  .sigma-nmn .snmn-kv{border-top:1px solid var(--line);padding:10px 0;display:flex;justify-content:space-between;gap:10px;font-size:.93rem;}
+  .sigma-nmn .snmn-kv .k{font-weight:600;}
+  .sigma-nmn .snmn-kv .v{color:var(--ink-faint);}
+  /* ---- standards cards ---- */
+  .sigma-nmn .snmn-std{display:flex;flex-wrap:wrap;gap:12px;flex:2 1 340px;min-width:240px;}
+  .sigma-nmn .snmn-std .card{flex:1 1 150px;background:var(--white);border-radius:16px;padding:18px;font-size:.88rem;color:var(--green);font-weight:600;text-align:center;display:flex;align-items:center;justify-content:center;}
+  /* ---- FDA disclaimer ---- */
+  .sigma-nmn .snmn-fda{max-width:1200px;margin-inline:auto;padding:26px 32px;font-size:.8rem;color:var(--ink-faint);font-style:italic;}
+  /* ---- responsive ---- */
+  @media (max-width:980px){
+    .sigma-nmn .snmn-tiles{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    .sigma-nmn .snmn-inner{padding:52px 20px;}
+    .sigma-nmn .snmn-tiles,.sigma-nmn .snmn-cards{grid-template-columns:1fr;}
+    .sigma-nmn .snmn-std .card{flex:1 1 100%;}
+  }
+</style>
+
+  {%- comment -%} Benefits strip {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <p class="snmn-benefits-title">Benefits*</p>
+      <ul class="snmn-checks">
+        <li><span class="ck" aria-hidden="true">✓</span>Supports your body's NAD<sup>+</sup> — a coenzyme central to cellular energy.*</li>
+        <li><span class="ck" aria-hidden="true">✓</span>Every ingredient disclosed in full — no proprietary blends.</li>
+        <li><span class="ck" aria-hidden="true">✓</span>Dosed to the levels used in published NMN research.</li>
+        <li><span class="ck" aria-hidden="true">✓</span>No hidden fillers — nothing you can't see on the label.</li>
+      </ul>
+    </div>
+  </section>
+
+  {%- comment -%} 4 benefit tiles {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <div class="snmn-tiles">
+        <div class="snmn-tile">
+          <span class="snmn-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="16" x2="13" y2="16"/></svg></span>
+          <h3>Full Disclosure</h3>
+          <p>Every milligram on the label. No proprietary blends, ever.</p>
+        </div>
+        <div class="snmn-tile">
+          <span class="snmn-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="4" y1="14" x2="20" y2="14"/><circle cx="15" cy="14" r="3" fill="var(--green)"/></svg></span>
+          <h3>Research-Level Dosing</h3>
+          <p>Matched to the doses used in published NMN studies.</p>
+        </div>
+        <div class="snmn-tile">
+          <span class="snmn-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5 a7 7 0 0 1 7 7"/></svg></span>
+          <h3>NAD<sup>+</sup> Precursor</h3>
+          <p>NMN is a direct precursor your body can convert to NAD<sup>+</sup>.*</p>
+        </div>
+        <div class="snmn-tile">
+          <span class="snmn-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5 l2.5 2.5 l4.5 -5"/></svg></span>
+          <h3>A Simple Ritual</h3>
+          <p>Two capsules a day. One bottle, one month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Dark science band {%- endcomment -%}
+  <section class="snmn-band dark">
+    <div class="snmn-inner">
+      <div class="snmn-split">
+        <div class="col-main">
+          <h2>Unlike some NMN products, NMN+ hides nothing.</h2>
+          <p>Some NMN products use proprietary blends — labels that name the ingredients but hide the doses.</p>
+          <p>NMN+ is the opposite: one formula, fully disclosed, dosed to the levels used in published research. The label <em>is</em> the formula.</p>
+        </div>
+        <div class="col-side snmn-capfig">
+          <svg viewBox="0 0 64 128" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="31" ry="31" fill="#2f4a34" stroke="#47614b" stroke-width="1.5"/><rect x="1" y="64" width="62" height="62" rx="6" ry="6" fill="#F6F4EA" stroke="#47614b" stroke-width="1.5"/><line x1="1" y1="64" x2="63" y2="64" stroke="#47614b" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
+          <div>
+            <p class="cap-name">β-Nicotinamide Mononucleotide</p>
+            <p class="cap-sub">The active NAD<sup>+</sup> precursor — the full dose, disclosed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Timeline {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <h2>Longevity is a practice.*</h2>
+      <p class="lede">NAD<sup>+</sup> isn't a quick fix — NMN+ is built for the long run.</p>
+      <div class="snmn-timeline">
+        <div class="snmn-step s1">
+          <span class="dot" aria-hidden="true"></span>
+          <p class="hd"><span class="snmn-chip">Month 1</span><strong>The ritual takes hold</strong></p>
+          <ul>
+            <li>Two capsules a day becomes routine</li>
+            <li>NMN is a precursor your body can use in the NAD<sup>+</sup> pathway*</li>
+          </ul>
+        </div>
+        <div class="snmn-step s2">
+          <span class="dot" aria-hidden="true"></span>
+          <p class="hd"><span class="snmn-chip">The research</span><strong>NAD<sup>+</sup> and NMN</strong></p>
+          <ul>
+            <li>In published human studies, supplemental NMN has been reported to raise blood NAD<sup>+</sup> levels*</li>
+            <li class="fine">Those are studies of NMN generally — not of this product; individual results are not established</li>
+          </ul>
+        </div>
+        <div class="snmn-step s3">
+          <span class="dot" aria-hidden="true"></span>
+          <p class="hd"><span class="snmn-chip">The long game</span><strong>Consistency over intensity</strong></p>
+          <ul>
+            <li>Longevity is a practice of consistency — one month at a time</li>
+            <li>Keep the same simple ritual; let the routine do the work</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Ingredient disclosure {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <div class="snmn-disc-head">
+        <h2>A label with nothing to hide</h2>
+        <p>60 capsules · 30-day supply</p>
+      </div>
+      <details class="snmn-acc">
+        <summary>β-Nicotinamide Mononucleotide (NMN)<span class="pm" aria-hidden="true">+</span></summary>
+        <p>A direct precursor to NAD<sup>+</sup> (nicotinamide adenine dinucleotide), a coenzyme found in every living cell and central to energy metabolism. NAD<sup>+</sup> levels decline with age — NMN is among the studied approaches to supporting them.* Dosed to published research levels, with the full amount on the label.</p>
+      </details>
+      <details class="snmn-acc">
+        <summary>Nothing else<span class="pm" aria-hidden="true">+</span></summary>
+        <p>No proprietary blends. No hidden fillers. No undisclosed excipients. If it isn't on the label, it isn't in the capsule.</p>
+      </details>
+      <div class="snmn-pills">
+        <span class="snmn-pill">Full label disclosure</span>
+        <span class="snmn-pill">No proprietary blends</span>
+        <span class="snmn-pill">No hidden fillers</span>
+        <span class="snmn-pill">Research-level dose</span>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Comparison table {%- endcomment -%}
+  <section class="snmn-band dark">
+    <div class="snmn-inner">
+      <div class="snmn-cmp">
+        <h2>How NMN+ compares:</h2>
+        <div class="snmn-table">
+          <div class="snmn-trow head">
+            <span class="feat"></span>
+            <span class="col us">NMN+</span>
+            <span class="col">Others</span>
+          </div>
+          <div class="snmn-trow">
+            <span class="feat">Every ingredient fully disclosed</span>
+            <span class="col"><span class="snmn-yes" aria-hidden="true"></span><span class="sr">Yes</span></span>
+            <span class="col"><span class="snmn-no" aria-hidden="true"></span><span class="sr">Not always</span></span>
+          </div>
+          <div class="snmn-trow">
+            <span class="feat">Dosed to published research levels</span>
+            <span class="col"><span class="snmn-yes" aria-hidden="true"></span><span class="sr">Yes</span></span>
+            <span class="col"><span class="snmn-no" aria-hidden="true"></span><span class="sr">Not always</span></span>
+          </div>
+          <div class="snmn-trow">
+            <span class="feat">No hidden fillers</span>
+            <span class="col"><span class="snmn-yes" aria-hidden="true"></span><span class="sr">Yes</span></span>
+            <span class="col"><span class="snmn-no" aria-hidden="true"></span><span class="sr">Not always</span></span>
+          </div>
+          <div class="snmn-trow">
+            <span class="feat">Honest one-month supply</span>
+            <span class="col"><span class="snmn-yes" aria-hidden="true"></span><span class="sr">Yes</span></span>
+            <span class="col"><span class="snmn-no" aria-hidden="true"></span><span class="sr">Varies</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="snmn-note">Some NMN products use proprietary blends or do not disclose full doses; always compare labels.</p>
+    </div>
+  </section>
+
+  {%- comment -%} Simply delivered {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <h2>Simply delivered.</h2>
+      <div class="snmn-cards">
+        <div class="snmn-card">
+          <h3>What arrives</h3>
+          <p class="sub">One bottle. One month. No clutter.</p>
+          <div class="snmn-kv"><span class="k">NMN+ Daily Longevity</span><span class="v">60 capsules</span></div>
+          <div class="snmn-kv"><span class="k">Supply</span><span class="v">30 days</span></div>
+          <div class="snmn-kv"><span class="k">Label</span><span class="v">Fully disclosed</span></div>
+        </div>
+        <div class="snmn-card">
+          <h3>The daily ritual</h3>
+          <p class="sub">Consistency beats intensity.</p>
+          <div class="snmn-kv"><span class="k">How much</span><span class="v">2 capsules daily</span></div>
+          <div class="snmn-kv"><span class="k">The habit</span><span class="v">Same time each day</span></div>
+          <div class="snmn-kv"><span class="k">One bottle</span><span class="v">One month</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Standards band {%- endcomment -%}
+  <section class="snmn-band cream">
+    <div class="snmn-inner">
+      <div class="snmn-split">
+        <div class="col-main">
+          <h2>A higher standard of disclosure.</h2>
+          <p>What's <em>not</em> hidden in your supplement matters as much as what's in it.</p>
+        </div>
+        <div class="snmn-std">
+          <div class="card">Formulated without proprietary blends</div>
+          <div class="card">Dosed to published research levels</div>
+          <div class="card">The label is the formula</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} FDA disclaimer {%- endcomment -%}
+  <p class="snmn-fda">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+
+</div>
+
+{% schema %}
+{
+  "name": "NMN+ Product Story",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    { "name": "NMN+ Product Story" }
+  ]
+}
+{% endschema %}
