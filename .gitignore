@@ -5,3 +5,6 @@
 
 # Node
 node_modules/
+
+# Local Shopify tooling (reads secrets from .env; keep out of the repo)
+scripts/
