@@ -231,6 +231,31 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "text_sigma_hero": {
+              "type": "text",
+              "name": "NMN+ hero details",
+              "settings": {
+                "text": "<p><strong>60 capsules · 1-month supply, delivered monthly.</strong> Pause or cancel anytime.</p><p>Free US shipping over $60.</p><p><strong>Benefits*</strong></p><ul><li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li><li>Every ingredient disclosed in full — no proprietary blends.</li><li>Dosed to the levels used in published NMN research.</li><li>No hidden fillers — nothing you can’t see on the label.</li></ul><p><a href=\"/pages/science\">Read the science</a> · <a href=\"#nmn-formula\">View the full formula</a></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -238,7 +263,8 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "text_aEtTtq",
+            "text_sigma_hero"
           ]
         },
         "disclosures": {
