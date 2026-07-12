@@ -9,8 +9,8 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 4,
-            "large_first_image": false,
+            "image_gap": 12,
+            "large_first_image": true,
             "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
@@ -19,7 +19,7 @@
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
-            "media_radius": 0,
+            "media_radius": 20,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -98,11 +98,11 @@
                   "type": "text",
                   "name": "t:names.title",
                   "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "text": "<h1><span class=\"nmn-pill\">NMN+</span> Daily Longevity</h1>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h3",
+                    "type_preset": "h2",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -123,9 +123,9 @@
                   "type": "price",
                   "settings": {
                     "show_sale_price_first": true,
-                    "show_installments": true,
-                    "show_tax_info": true,
-                    "type_preset": "paragraph",
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "h5",
                     "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-body--family)",
@@ -139,25 +139,38 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "text_aEtTtq": {
+                  "type": "text",
+                  "name": "Product description",
+                  "settings": {
+                    "text": "{{ closest.product.description }}",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-primary--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_xpVMaM",
+                "text_aEtTtq",
                 "price_tVjtKg"
               ]
-            },
-            "divider_VJhene": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color3 }}",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
             },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
@@ -207,11 +220,11 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
+            "text_sigma_hero": {
               "type": "text",
-              "name": "Product description",
+              "name": "NMN+ hero details",
               "settings": {
-                "text": "{{ closest.product.description }}",
+                "text": "<details class=\"nmn-acc\" open><summary>Benefits*</summary><ul><li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li><li>Every ingredient disclosed in full — no proprietary blends.</li><li>Dosed to the levels used in published NMN research.</li><li>No hidden fillers — nothing you can’t see on the label.</li></ul></details><details class=\"nmn-acc\"><summary>Ingredients</summary><ul><li>β-Nicotinamide Mononucleotide (NMN) — 500 mg</li><li>Trans-Resveratrol — 150 mg</li><li>Quercetin — 100 mg</li><li>Vitamin B6 (as Pyridoxal-5-Phosphate) — 20 mg</li><li>Vitamin B12 (as Methylcobalamin) — 400 mcg</li><li>Folate (as L-Methylfolate) — 400 mcg DFE</li><li>Black Pepper Extract (BioPerine) — 5 mg</li><li>Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule).</li></ul></details><p class=\"nmn-links\"><a href=\"/pages/science\">Read the science</a> · <a href=\"#nmn-formula\">View the full formula</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -232,11 +245,36 @@
               },
               "blocks": {}
             },
-            "text_sigma_hero": {
+            "text_terms": {
               "type": "text",
-              "name": "NMN+ hero details",
+              "name": "Terms",
               "settings": {
-                "text": "<p><strong>60 capsules · 1-month supply, delivered monthly.</strong> Pause or cancel anytime.</p><p>Free US shipping over $60.</p><p><strong>Benefits*</strong></p><ul><li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li><li>Every ingredient disclosed in full — no proprietary blends.</li><li>Dosed to the levels used in published NMN research.</li><li>No hidden fillers — nothing you can’t see on the label.</li></ul><p><a href=\"/pages/science\">Read the science</a> · <a href=\"#nmn-formula\">View the full formula</a></p>",
+                "text": "<p><strong>60 capsules · 1-month supply, delivered monthly.</strong><br>Pause or cancel anytime.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_reassure": {
+              "type": "text",
+              "name": "Reassurance",
+              "settings": {
+                "text": "<p class=\"nmn-reassure\">Free US shipping over $60.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -260,10 +298,10 @@
           },
           "block_order": [
             "group_icgrde",
-            "divider_VJhene",
+            "text_terms",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq",
+            "text_reassure",
             "text_sigma_hero"
           ]
         },
@@ -286,7 +324,8 @@
         "limit_details_width": false,
         "gap": 48,
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "background_color": "#F7F5EC"
       }
     },
     "product_recommendations_qggXJq": {

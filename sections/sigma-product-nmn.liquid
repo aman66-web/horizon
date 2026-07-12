@@ -107,18 +107,6 @@
   .sigma-nmn .snmn-faq details.snmn-acc:last-of-type{border-bottom:1px solid var(--line);}
   /* ---- FDA disclaimer ---- */
   .sigma-nmn .snmn-fda{max-width:1200px;margin-inline:auto;padding:26px 32px;font-size:.8rem;color:var(--ink-faint);font-style:italic;}
-  /* ---- 4.9 sticky CTA (fixed bottom, JS-revealed; page works without it) ---- */
-  .sigma-nmn .snmn-sentinel{display:block;height:1px;}
-  .sigma-nmn .snmn-sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--dark);color:var(--dark-fg);padding:10px 20px calc(10px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .35s ease;box-shadow:0 -6px 24px rgba(13,20,15,.25);}
-  .sigma-nmn .snmn-sticky.show{transform:none;}
-  .sigma-nmn .snmn-sticky-in{max-width:1200px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-  .sigma-nmn .snmn-sticky-name{display:flex;align-items:center;gap:12px;min-width:0;}
-  .sigma-nmn .snmn-sticky-name img{width:40px;height:40px;object-fit:contain;border-radius:8px;background:var(--cream);flex:none;}
-  .sigma-nmn .snmn-sticky-name .t{font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .sigma-nmn .snmn-sticky-name .p{color:var(--dark-faint);font-size:.9rem;flex:none;}
-  .sigma-nmn .snmn-sticky form{margin:0;}
-  .sigma-nmn .snmn-cta{background:var(--dark-fg);color:var(--ink);font-weight:700;font-size:.95rem;border:none;border-radius:999px;padding:12px 30px;cursor:pointer;text-decoration:none;display:inline-block;}
-  .sigma-nmn .snmn-cta[disabled]{opacity:.55;cursor:default;}
   /* ---- responsive ---- */
   @media (max-width:980px){
     .sigma-nmn .snmn-tiles{grid-template-columns:repeat(2,1fr);}
@@ -128,11 +116,36 @@
     .sigma-nmn .snmn-inner{padding:52px 20px;}
     .sigma-nmn .snmn-tiles{grid-template-columns:1fr;}
     .sigma-nmn .snmn-std .card{flex:1 1 100%;}
-    .sigma-nmn .snmn-sticky-name .p{display:none;}
   }
-</style>
 
-<span class="snmn-sentinel" aria-hidden="true"></span>
+  /* === Hero overrides (Seed-style buy box) ==================================
+     This section only renders on the product.nmn template, so these rules
+     affect only the NMN+ product page. They restyle Horizon's buy-box:
+     single full-width pill CTA, no quantity/express-checkout clutter,
+     eyebrow pill on the title, bordered benefit/ingredient accordions,
+     and a matching pill button on Horizon's native sticky add-to-cart bar. */
+  .content-for-layout .buy-buttons-block .quantity-selector-wrapper,
+  .content-for-layout .buy-buttons-block .accelerated-checkout-block{display:none;}
+  /* scoped to the buy box + sticky bar so recommendation-card quick-add buttons keep theme styling */
+  .content-for-layout .buy-buttons-block .add-to-cart-button,
+  .content-for-layout .sticky-add-to-cart__button.add-to-cart-button{border-radius:999px;background:#1B2921;color:#F6F4EA;font-weight:700;}
+  .content-for-layout .buy-buttons-block .add-to-cart-button:hover,
+  .content-for-layout .sticky-add-to-cart__button.add-to-cart-button:hover{background:#2c4a2e;}
+  @media (min-width:750px){
+    .content-for-layout .sticky-add-to-cart__button.add-to-cart-button{width:auto;padding-inline:28px;}
+  }
+  .nmn-pill{display:inline-block;border:1.5px solid #1B2921;border-radius:999px;padding:.06em .55em;font-size:.5em;font-weight:600;vertical-align:middle;letter-spacing:.02em;margin-inline-end:.35em;}
+  .nmn-reassure{text-align:center;font-size:.85rem;color:#5C6E5C;margin:0;}
+  details.nmn-acc{border-top:1px solid #DDD9C9;padding:14px 0;}
+  details.nmn-acc:last-of-type{border-bottom:1px solid #DDD9C9;}
+  details.nmn-acc summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;font-weight:700;list-style:none;}
+  details.nmn-acc summary::-webkit-details-marker{display:none;}
+  details.nmn-acc summary::after{content:"+";color:#2c4a2e;font-weight:700;}
+  details.nmn-acc[open] summary::after{content:"−";}
+  details.nmn-acc ul{margin:10px 0 0;padding-inline-start:20px;color:#4C5A4C;font-size:.95rem;display:grid;gap:6px;}
+  .nmn-links{margin:14px 0 0;font-size:.95rem;}
+  .nmn-links a{color:#1B2921;}
+</style>
 
 {%- comment -%} 4.2 — Benefit tiles {%- endcomment -%}
 <section class="snmn-band cream">
@@ -376,56 +389,10 @@
 
 {%- comment -%} FDA disclaimer {%- endcomment -%}
 <p class="snmn-fda">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
-<span class="snmn-sentinel snmn-sentinel-end" aria-hidden="true"></span>
 
-{%- comment -%} 4.9 — Sticky CTA (fixed bottom; JS slides it in after the hero) {%- endcomment -%}
-{%- if section.settings.show_sticky -%}
-<div class="snmn-sticky" role="region" aria-label="Quick purchase">
-  <div class="snmn-sticky-in">
-    <div class="snmn-sticky-name">
-      {%- if product.featured_image -%}
-        <img src="{{ product.featured_image | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy">
-      {%- endif -%}
-      <span class="t">{{ product.title | default: 'NMN+ Daily Longevity' }}</span>
-      <span class="p">{% if product %}{{ product.price | money }}{% else %}$34.99{% endif %}</span>
-    </div>
-    {%- if product -%}
-      {%- form 'product', product -%}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" class="snmn-cta"{% unless product.available %} disabled{% endunless %}>{% if product.available %}Start Now{% else %}Sold Out{% endif %}</button>
-      {%- endform -%}
-    {%- else -%}
-      <a href="/products/nmn-01" class="snmn-cta">Start Now</a>
-    {%- endif -%}
-  </div>
-</div>
-{%- endif -%}
-
-<script>
-function initSigmaNmn(){
-  document.querySelectorAll('.sigma-nmn').forEach(function(root){
-    if(root.dataset.sigmaInit) return;
-    root.dataset.sigmaInit='1';
-    var bar=root.querySelector('.snmn-sticky');
-    var top=root.querySelector('.snmn-sentinel');
-    var end=root.querySelector('.snmn-sentinel-end');
-    if(!bar||!top||!('IntersectionObserver' in window)) return;
-    var pastTop=false, nearEnd=false;
-    function update(){ bar.classList.toggle('show', pastTop && !nearEnd); }
-    new IntersectionObserver(function(es){
-      pastTop = es[es.length-1].boundingClientRect.top < 0; update();
-    },{threshold:0}).observe(top);
-    if(end){
-      new IntersectionObserver(function(es){
-        nearEnd = es[es.length-1].isIntersecting; update();
-      },{threshold:0}).observe(end);
-    }
-  });
-}
-initSigmaNmn();
-document.addEventListener('DOMContentLoaded', initSigmaNmn);
-document.addEventListener('shopify:section:load', initSigmaNmn);
-</script>
+{%- comment -%} 4.9 — Sticky CTA: provided natively by Horizon's product-information
+    section (enable_sticky_add_to_cart, on by default). It syncs variant, price,
+    and availability; the hero-override CSS above pills its button to match. {%- endcomment -%}
 
 </div>
 
@@ -433,14 +400,7 @@ document.addEventListener('shopify:section:load', initSigmaNmn);
 {
   "name": "NMN+ Product Story",
   "tag": "section",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_sticky",
-      "label": "Show sticky buy bar",
-      "default": true
-    }
-  ],
+  "settings": [],
   "presets": [
     { "name": "NMN+ Product Story" }
   ]
