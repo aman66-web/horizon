@@ -83,12 +83,17 @@
 .sigma-pdp .thumb:hover{border-color:var(--teal-mid);}
 .sigma-pdp .thumb.active{border-color:var(--teal-deep); box-shadow:0 0 0 1px var(--teal-deep);}
 .sigma-pdp .buybox{position:sticky; top:20px;}
-.sigma-pdp .buybox .sku{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.14em; color:var(--bronze); text-transform:uppercase;}
-.sigma-pdp .buybox h1{font-size:clamp(34px,4.2vw,52px); line-height:1.02; font-weight:300; letter-spacing:-0.025em; margin:14px 0 14px;}
-.sigma-pdp .buybox .pitch{font-size:17px; line-height:1.6; color:var(--ink-soft); margin-bottom:24px; max-width:430px;}
-.sigma-pdp .buybox .price-row{display:flex; align-items:baseline; gap:12px; padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid var(--line);}
-.sigma-pdp .buybox .price{font-family:'Fraunces',serif; font-size:34px; font-weight:400;}
-.sigma-pdp .buybox .price-note{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint);}
+.sigma-pdp .title-row{display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
+.sigma-pdp .pill-badge{font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--teal-deep); border:1.5px solid var(--teal-deep); border-radius:100px; padding:5px 15px; white-space:nowrap;}
+.sigma-pdp .buybox h1{font-family:'Inter',sans-serif; font-size:clamp(30px,4.6vw,45px); line-height:1.04; font-weight:600; letter-spacing:-0.02em; color:var(--teal-deep); margin:0;}
+.sigma-pdp .rating{display:flex; align-items:center; gap:12px; margin-top:16px;}
+.sigma-pdp .rating .stars{color:var(--teal-deep); font-size:18px; letter-spacing:3px; line-height:1;}
+.sigma-pdp .rating .rcount{font-size:15px; color:var(--teal-deep); font-weight:500; text-decoration:underline; text-underline-offset:3px;}
+.sigma-pdp .buybox .desc{font-size:17px; line-height:1.5; color:var(--teal-deep); margin-top:22px; max-width:470px;}
+.sigma-pdp .buybox .price-row{display:flex; align-items:center; gap:14px; margin-top:26px;}
+.sigma-pdp .buybox .price{font-family:'Inter',sans-serif; font-size:33px; font-weight:600; color:var(--teal-deep); letter-spacing:-0.01em;}
+.sigma-pdp .buybox .bestseller{background:#C9E88C; color:#1B3B24; font-family:'Inter',sans-serif; font-size:14px; font-weight:500; border-radius:100px; padding:6px 16px;}
+.sigma-pdp .buybox .subline{font-size:15px; line-height:1.5; color:var(--ink-soft); margin-top:14px; margin-bottom:26px;}
 .sigma-pdp form.nmn-form{margin:0;}
 .sigma-pdp product-form-component,.sigma-pdp add-to-cart-component{display:block;}
 .sigma-pdp .product-form-text__error{display:block; margin-bottom:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#b23c3c;}
@@ -247,7 +252,6 @@
     <!-- LEFT: product gallery (front glow → hand → spill → capsule → marble) -->
     <div class="gallery reveal">
       <div class="gal-main">
-        <span class="gal-badge">NMN+</span>
         <img id="galMain" src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="eager" width="1100" height="1100">
       </div>
       <div class="gal-thumbs">
@@ -271,14 +275,23 @@
 
     <!-- RIGHT: sticky buy box -->
     <div class="buybox reveal">
-      <div class="sku">NMN+ · NAD⁺ Precursor</div>
-      <h1>{% if has_product %}{{ product.title }}{% else %}NMN+ Daily Longevity{% endif %}</h1>
-      <p class="pitch">Seven disclosed actives. Every dose on the label.</p>
+      <div class="title-row">
+        <span class="pill-badge">NMN+</span>
+        <h1>{% if has_product %}{{ product.title | remove_first: 'NMN+' | strip }}{% else %}Daily Longevity{% endif %}</h1>
+      </div>
+
+      <div class="rating" id="nmn-reviews">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <a href="#nmn-reviews" class="rcount">1473 Reviews</a>
+      </div>
+
+      <p class="desc">A daily NAD⁺ precursor — seven fully disclosed actives, each dosed to the levels used in published research, with every ingredient printed on the label.*</p>
 
       <div class="price-row">
         <span class="price">{% if has_product %}{{ product.price | money }}{% else %}$34.99{% endif %}</span>
-        <span class="price-note">60 capsules · 1-month supply</span>
+        <span class="bestseller">Bestseller</span>
       </div>
+      <p class="subline">60 capsules · a 1-month supply, delivered monthly. Pause or cancel anytime.</p>
 
       {%- if has_product -%}
         <product-form-component
