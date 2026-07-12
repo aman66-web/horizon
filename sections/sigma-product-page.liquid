@@ -162,7 +162,7 @@
   <div class="wrap buy-grid">
     <div class="gallery reveal">
       <div class="gal-main">
-        {%- if prod and prod.featured_image -%}{{ prod.featured_image | image_url: width: 900 | image_tag: alt: prod.title, loading: "eager" }}{%- elsif section.settings.fallback_image -%}{{ section.settings.fallback_image | image_url: width: 900 | image_tag: alt: "NMN-01", loading: "eager" }}{%- else -%}{{ "product-1" | placeholder_svg_tag }}{%- endif -%}
+        {%- if prod and prod.featured_image -%}{{ prod.featured_image | image_url: width: 900 | image_tag: alt: prod.title, loading: "eager" }}{%- elsif section.settings.fallback_image -%}{{ section.settings.fallback_image | image_url: width: 900 | image_tag: alt: "NMN+", loading: "eager" }}{%- else -%}{{ "product-1" | placeholder_svg_tag }}{%- endif -%}
       </div>
       <div class="gal-thumbs">
         <div class="thumb active">Product</div>
@@ -173,26 +173,26 @@
     </div>
 
     <div class="pd reveal">
-      <div class="sku">NMN–01</div>
+      <div class="sku">NMN+</div>
       <h1>{% if prod %}{{ prod.title }}{% else %}{{ section.settings.fallback_title }}{% endif %}</h1>
       <p class="desc">{{ section.settings.product_desc }}</p>
 
       <div class="plans" id="plans">
-        <div class="plan sel" data-price="XX" data-label="Every 30 days">
+        <div class="plan sel" data-price="34.99" data-label="Delivered monthly">
           <div class="radio"></div>
           <div class="body">
-            <div class="t">Subscribe &amp; Save <span class="tag">Save 15%</span></div>
-            <div class="s">60 capsules · delivered every 30 days · cancel anytime</div>
+            <div class="t">Subscribe &amp; Save</div>
+            <div class="s">60 capsules · delivered monthly · cancel anytime</div>
           </div>
-          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div><div class="unit">/ month</div></div>
+          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$34.99{% endif %}</div><div class="unit">/ month</div></div>
         </div>
-        <div class="plan" data-price="XX" data-label="One-time">
+        <div class="plan" data-price="34.99" data-label="One-time">
           <div class="radio"></div>
           <div class="body">
             <div class="t">One-Time Purchase</div>
             <div class="s">60 capsules · 1-month supply</div>
           </div>
-          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div><div class="unit">once</div></div>
+          <div class="p"><div class="now">{% if prod %}{{ prod.price | money }}{% else %}$34.99{% endif %}</div><div class="unit">once</div></div>
         </div>
       </div>
 
@@ -248,7 +248,7 @@
 <section class="bene">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Why NMN–01</span>
+      <span class="eyebrow">Why NMN+</span>
       <h2>Four things we refuse to compromise on.</h2>
     </div>
     <div class="bene-grid reveal">
@@ -282,7 +282,7 @@
     <div class="reveal">
       <span class="eyebrow">Capsule Anatomy</span>
       <h2>Open the capsule. <em>Nothing to hide.</em></h2>
-      <p class="lead">Most supplements ask you to trust a label. We'd rather show you the inside. Every NMN–01 capsule holds seven disclosed ingredients — inside a plant-based shell. Tap each to see what it does.</p>
+      <p class="lead">Most supplements ask you to trust a label. We'd rather show you the inside. Every NMN+ capsule holds seven disclosed ingredients — inside a plant-based shell. Tap each to see what it does.</p>
 
       <div class="layers" id="layers">
         <div class="layer on" data-band="b1">
@@ -345,7 +345,7 @@
     </div>
 
     <div class="cap-stage reveal">
-      <svg viewBox="0 0 300 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross-section of an NMN-01 capsule showing its contents">
+      <svg viewBox="0 0 300 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross-section of an NMN+ capsule showing its contents">
         <defs>
           <linearGradient id="shellG" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#2E6F6B"/><stop offset="45%" stop-color="#4E9A92"/><stop offset="100%" stop-color="#1E5250"/>
@@ -383,11 +383,11 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The Difference</span>
-      <h2>How NMN–01 compares.</h2>
+      <h2>How NMN+ compares.</h2>
       <p>A fair comparison against how NMN supplements are commonly sold. Verify any claim against our Certificate of Analysis.</p>
     </div>
     <div class="ctable reveal">
-      <div class="crow head"><div>Standard</div><div class="us">NMN–01</div><div>Typical NMN</div></div>
+      <div class="crow head"><div>Standard</div><div class="us">NMN+</div><div>Typical NMN</div></div>
       <div class="crow"><div class="feat">Every ingredient dose disclosed</div><div class="us">✓</div><div class="them">Often blended</div></div>
       <div class="crow"><div class="feat">Third-party tested every batch</div><div class="us">✓</div><div class="them">Sometimes</div></div>
       <div class="crow"><div class="feat">Certificate of Analysis on request</div><div class="us">✓</div><div class="them">Rare</div></div>
@@ -402,7 +402,7 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Testing</span>
       <h2>What's not in it matters too.</h2>
-      <p>Every batch of NMN–01 is screened as a finished formula — not just at the ingredient level.</p>
+      <p>Every batch of NMN+ is screened as a finished formula — not just at the ingredient level.</p>
     </div>
     <div class="badges reveal">
       <div class="badge"><div class="ring">✓</div><span>Vegan<br>Certified</span></div>
@@ -422,7 +422,7 @@
     <div class="accord reveal" style="margin-top:0;">
       <div class="acc-item">
         <div class="acc-q">When will I feel something? <span class="plus">+</span></div>
-        <div class="acc-a">NAD⁺ replenishment is gradual. Most people take NMN–01 daily for 4–8 weeks before evaluating effects. Consistency matters far more than any single dose, and individual response varies.</div>
+        <div class="acc-a">NAD⁺ replenishment is gradual. Most people take NMN+ daily for 4–8 weeks before evaluating effects. Consistency matters far more than any single dose, and individual response varies.</div>
       </div>
       <div class="acc-item">
         <div class="acc-q">Why NMN instead of NAD⁺ directly? <span class="plus">+</span></div>
@@ -430,7 +430,7 @@
       </div>
       <div class="acc-item">
         <div class="acc-q">Can I see the lab report? <span class="plus">+</span></div>
-        <div class="acc-a">Yes. Certificates of Analysis are available on request for any batch — the batch number is printed on your jar.</div>
+        <div class="acc-a">Yes. Certificates of Analysis are published on our Lab Reports page for each batch once testing is complete.</div>
       </div>
       <div class="acc-item">
         <div class="acc-q">Can I cancel my subscription? <span class="plus">+</span></div>
@@ -447,12 +447,12 @@
   <div class="sticky-in">
     <div class="l">
       <div>
-        <div class="nm">NMN–01 Daily Longevity</div>
-        <div class="sub" id="stickySub">Subscribe &amp; Save · every 30 days</div>
+        <div class="nm">NMN+ Daily Longevity</div>
+        <div class="sub" id="stickySub">Subscribe &amp; Save · delivered monthly</div>
       </div>
     </div>
     <div class="r">
-      <div class="pr">{% if prod %}{{ prod.price | money }}{% else %}$XX{% endif %}</div>
+      <div class="pr">{% if prod %}{{ prod.price | money }}{% else %}$34.99{% endif %}</div>
       <button class="btn">Add to Cart</button>
     </div>
   </div>
@@ -475,7 +475,7 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.tar
   plans.forEach(p=>p.addEventListener('click',()=>{
     plans.forEach(x=>x.classList.remove('sel'));
     p.classList.add('sel');
-    stickySub.textContent = p.querySelector('.t').textContent.trim().replace(/Save 15%/,'').trim() + ' · ' + p.dataset.label;
+    stickySub.textContent = p.querySelector('.t').textContent.trim() + ' · ' + p.dataset.label;
   }));
 
   // capsule anatomy
