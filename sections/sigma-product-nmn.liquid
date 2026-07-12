@@ -74,6 +74,9 @@
 .sigma-pdp .buybox .price{font-family:'Fraunces',serif; font-size:34px; font-weight:400;}
 .sigma-pdp .buybox .price-note{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint);}
 .sigma-pdp form.nmn-form{margin:0;}
+.sigma-pdp product-form-component,.sigma-pdp add-to-cart-component{display:block;}
+.sigma-pdp .product-form-text__error{display:block; margin-bottom:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#b23c3c;}
+.sigma-pdp .product-form-text__error.hidden{display:none;}
 .sigma-pdp .cta{display:block; width:100%; text-align:center; background:var(--ink); color:var(--bone); padding:18px; border-radius:100px; font-size:15px; font-weight:500; font-family:'Inter',sans-serif; border:none; cursor:pointer; transition:background .2s, transform .2s;}
 .sigma-pdp .cta:hover{background:var(--teal-deep); transform:translateY(-1px);}
 .sigma-pdp .cta:disabled{background:var(--ink-faint); cursor:not-allowed; transform:none;}
@@ -253,12 +256,25 @@
       </div>
 
       {%- if has_product -%}
-        {%- form 'product', product, class: 'nmn-form' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <button type="submit" name="add" class="cta"{% unless product.available %} disabled{% endunless %}>
-            {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
-          </button>
-        {%- endform -%}
+        <product-form-component
+          id="nmn-pf-hero"
+          data-section-id="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+          data-product-url="{{ product.url }}"
+          on:submit="/handleSubmit"
+          data-quantity-default="1"
+        >
+          <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+          {%- form 'product', product, id: 'nmn-atc-hero', data-type: 'add-to-cart-form', class: 'nmn-form' -%}
+            <input type="hidden" name="id" ref="variantId" value="{{ product.selected_or_first_available_variant.id }}">
+            <span class="product-form-text__error hidden" ref="addToCartTextError"></span>
+            <add-to-cart-component ref="addToCartButtonContainer" data-add-to-cart-animation="false">
+              <button type="submit" name="add" class="cta" ref="addToCartButton" on:click="/handleClick"{% unless product.available %} disabled{% endunless %}>
+                {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
+              </button>
+            </add-to-cart-component>
+          {%- endform -%}
+        </product-form-component>
       {%- else -%}
         <button type="button" class="cta">Add to Cart</button>
       {%- endif -%}
@@ -514,12 +530,25 @@
     <h2>Give your cells back what <em>time takes away.</em></h2>
     <p>NMN+ · 60 capsules · a 1-month supply.</p>
     {%- if has_product -%}
-      {%- form 'product', product, class: 'nmn-form' -%}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="cta"{% unless product.available %} disabled{% endunless %}>
-          {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
-        </button>
-      {%- endform -%}
+      <product-form-component
+        id="nmn-pf-closing"
+        data-section-id="{{ section.id }}"
+        data-product-id="{{ product.id }}"
+        data-product-url="{{ product.url }}"
+        on:submit="/handleSubmit"
+        data-quantity-default="1"
+      >
+        <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+        {%- form 'product', product, id: 'nmn-atc-closing', data-type: 'add-to-cart-form', class: 'nmn-form' -%}
+          <input type="hidden" name="id" ref="variantId" value="{{ product.selected_or_first_available_variant.id }}">
+          <span class="product-form-text__error hidden" ref="addToCartTextError"></span>
+          <add-to-cart-component ref="addToCartButtonContainer" data-add-to-cart-animation="false">
+            <button type="submit" name="add" class="cta" ref="addToCartButton" on:click="/handleClick"{% unless product.available %} disabled{% endunless %}>
+              {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
+            </button>
+          </add-to-cart-component>
+        {%- endform -%}
+      </product-form-component>
     {%- else -%}
       <a href="#nmn-top" class="cta">Add to Cart</a>
     {%- endif -%}
