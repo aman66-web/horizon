@@ -3,7 +3,8 @@
   Renders on the product.nmn template as the ONLY section, so it owns the
   whole page: a two-column hero (gallery + sticky buy box with a working
   add-to-cart form using the live product) followed by full-bleed
-  alternating cream (#F7F5EC) / deep-green (#1B2921) bands.
+  alternating cream (#F7F5EC) / deep-green (#1B2921) bands, with real
+  product imagery woven through nearly every band (Seed-style).
 
   Design system reused from sections/sigma-homepage.liquid:
   Fraunces (headings, 300), Inter (body), IBM Plex Mono (labels);
@@ -54,12 +55,27 @@
 .sigma-pdp .sec-head p{font-size:16.5px; color:var(--ink-soft); margin-top:16px; line-height:1.62;}
 .sigma-pdp .band.green .sec-head p{color:var(--dark-soft);}
 
+/* ---------- image + text bands (Seed-style) ---------- */
+.sigma-pdp .imgband{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+.sigma-pdp .imgband.rev .media{order:2;}                 /* image on the RIGHT on desktop */
+.sigma-pdp .media{border-radius:16px; overflow:hidden; box-shadow:0 26px 54px -26px rgba(13,61,62,0.55); background:var(--cream);}
+.sigma-pdp .media img{display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; max-width:100%;}
+.sigma-pdp .imgband .copy h2{font-size:clamp(28px,3.6vw,46px); font-weight:300; line-height:1.08; letter-spacing:-0.02em; margin:16px 0 18px;}
+.sigma-pdp .imgband .copy h2 em{font-style:italic; color:var(--bronze-light);}
+.sigma-pdp .band.cream .imgband .copy h2 em{color:var(--teal-mid);}
+.sigma-pdp .imgband .copy p{font-size:16.5px; line-height:1.68; margin-bottom:14px;}
+.sigma-pdp .band.green .imgband .copy p{color:var(--dark-soft);}
+.sigma-pdp .band.cream .imgband .copy p{color:var(--ink-soft);}
+@media(max-width:880px){
+  .sigma-pdp .imgband{grid-template-columns:1fr; gap:30px;}
+  .sigma-pdp .imgband.rev .media{order:0;}                /* image FIRST on mobile */
+}
+
 /* ---------- HERO ---------- */
 .sigma-pdp .hero{padding:52px 0 78px;}
 .sigma-pdp .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:start;}
 .sigma-pdp .gal-main{background:var(--cream); border:1px solid var(--line); border-radius:16px; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;}
 .sigma-pdp .gal-main img{width:100%; height:100%; object-fit:cover;}
-.sigma-pdp .gal-main .placeholder-svg{width:62%; opacity:.5;}
 .sigma-pdp .gal-badge{position:absolute; top:18px; left:18px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--line); padding:6px 11px; border-radius:100px; background:rgba(255,255,255,0.6);}
 .sigma-pdp .gal-thumbs{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:12px;}
 .sigma-pdp .thumb{aspect-ratio:1/1; background:var(--cream); border:1px solid var(--line); border-radius:9px; overflow:hidden; cursor:pointer; padding:0; transition:border-color .2s, box-shadow .2s;}
@@ -80,6 +96,9 @@
 .sigma-pdp .cta{display:block; width:100%; text-align:center; background:var(--ink); color:var(--bone); padding:18px; border-radius:100px; font-size:15px; font-weight:500; font-family:'Inter',sans-serif; border:none; cursor:pointer; transition:background .2s, transform .2s;}
 .sigma-pdp .cta:hover{background:var(--teal-deep); transform:translateY(-1px);}
 .sigma-pdp .cta:disabled{background:var(--ink-faint); cursor:not-allowed; transform:none;}
+.sigma-pdp .trust{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+.sigma-pdp .tb{flex:1 1 calc(50% - 4px); display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); border:1px solid var(--line); border-radius:100px; padding:9px 13px;}
+.sigma-pdp .tb .d{flex-shrink:0; width:15px; height:15px; border-radius:50%; border:1.5px solid var(--teal-mid); color:var(--teal-mid); display:flex; align-items:center; justify-content:center; font-size:9px;}
 .sigma-pdp .guarantee{text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); margin-top:14px; letter-spacing:0.03em;}
 .sigma-pdp .checks{list-style:none; margin-top:30px; padding-top:26px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:14px;}
 .sigma-pdp .checks .h{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bronze);}
@@ -101,38 +120,29 @@
 @media(max-width:980px){.sigma-pdp .bene-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.sigma-pdp .bene-grid{grid-template-columns:1fr;}}
 
-/* ---------- SPLIT (explainer + standards) ---------- */
-.sigma-pdp .split{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;}
-.sigma-pdp .split h2{font-size:clamp(30px,3.8vw,48px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; margin-bottom:20px;}
-.sigma-pdp .split h2 em{font-style:italic; color:var(--bronze-light);}
-.sigma-pdp .band.cream .split h2 em{color:var(--teal-mid);}
-.sigma-pdp .split p{font-size:16.5px; line-height:1.68; margin-bottom:14px;}
-.sigma-pdp .band.green .split p{color:var(--dark-soft);}
-.sigma-pdp .band.cream .split p{color:var(--ink-soft);}
-.sigma-pdp .capfig{display:flex; flex-direction:column; align-items:center; gap:16px;}
-.sigma-pdp .capfig svg{width:72px; height:auto;}
-.sigma-pdp .capfig .cap-name{font-weight:500; font-size:15px; color:var(--dark-fg); text-align:center;}
-.sigma-pdp .capfig .cap-sub{font-size:13px; color:var(--dark-faint); text-align:center; margin-top:3px;}
-@media(max-width:880px){.sigma-pdp .split{grid-template-columns:1fr; gap:34px;}}
+/* ---------- MECHANISM (green) — capsule image + vertical steps ---------- */
+.sigma-pdp .mech-band{border-top:1px solid var(--line-light);}
+.sigma-pdp .capsule-anim-slot{min-height:0;}   /* reserved for future capsule animation */
+.sigma-pdp .mech-list{display:flex; flex-direction:column; gap:26px;}
+.sigma-pdp .mech-item{display:flex; gap:20px; align-items:flex-start;}
+.sigma-pdp .mech-item .n{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; color:var(--bronze-light); white-space:nowrap; min-width:96px; padding-top:5px;}
+.sigma-pdp .mech-item h3{font-size:20px; font-weight:400; margin-bottom:7px; color:var(--dark-fg);}
+.sigma-pdp .mech-item p{font-size:14.5px; line-height:1.62; color:var(--dark-soft);}
 
-/* ---------- TIMELINE (horizontal steps) ---------- */
-.sigma-pdp .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; border-top:1px solid var(--line);}
-.sigma-pdp .step{padding:34px 28px 8px; border-right:1px solid var(--line);}
-.sigma-pdp .step:last-child{border-right:none;}
-.sigma-pdp .step .chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze); border:1px solid var(--line); border-radius:100px; padding:5px 12px; margin-bottom:22px;}
-.sigma-pdp .step h3{font-size:20px; font-weight:400; margin-bottom:14px;}
-.sigma-pdp .step ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
-.sigma-pdp .step li{font-size:14.5px; color:var(--ink-soft); line-height:1.55; display:flex; gap:10px;}
-.sigma-pdp .step li::before{content:'—'; color:var(--bronze); flex-shrink:0;}
-.sigma-pdp .step li.fine{color:var(--ink-faint); font-size:13px;}
-@media(max-width:760px){.sigma-pdp .steps{grid-template-columns:1fr;}
-  .sigma-pdp .step{border-right:none; border-bottom:1px solid var(--line); padding-bottom:28px;}
-  .sigma-pdp .step .chip{margin-bottom:16px;}}
+/* ---------- TIMELINE (cream) — marble image + vertical steps ---------- */
+.sigma-pdp .tl-list{display:flex; flex-direction:column; gap:22px; margin-top:26px;}
+.sigma-pdp .tl-item .chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze); border:1px solid var(--line); border-radius:100px; padding:5px 12px; margin-bottom:12px;}
+.sigma-pdp .tl-item h3{font-size:19px; font-weight:400; margin-bottom:8px;}
+.sigma-pdp .tl-item ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+.sigma-pdp .tl-item li{font-size:14.5px; color:var(--ink-soft); line-height:1.55; display:flex; gap:10px;}
+.sigma-pdp .tl-item li::before{content:'—'; color:var(--bronze); flex-shrink:0;}
+.sigma-pdp .tl-item li.fine{color:var(--ink-faint); font-size:13px;}
 
-/* ---------- FORMULA READOUT (green) ---------- */
-.sigma-pdp .facts{display:grid; grid-template-columns:0.7fr 1.3fr; gap:48px; align-items:start; margin-top:8px;}
-.sigma-pdp .fx-ill{display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; position:sticky; top:30px;}
-.sigma-pdp .fx-ill svg{width:120px; height:auto;}
+/* ---------- FORMULA READOUT (green) — bottle image beside the list ---------- */
+.sigma-pdp .facts{display:grid; grid-template-columns:1.3fr 0.7fr; gap:48px; align-items:start; margin-top:8px;}
+.sigma-pdp .fx-ill{display:flex; flex-direction:column; gap:14px; text-align:center; position:sticky; top:30px;}
+.sigma-pdp .fx-media{border-radius:16px; overflow:hidden; box-shadow:0 26px 54px -26px rgba(0,0,0,0.55);}
+.sigma-pdp .fx-media img{display:block; width:100%; aspect-ratio:4/5; object-fit:cover; max-width:100%;}
 .sigma-pdp .fx-ill .cap-name{font-family:'Fraunces',serif; font-size:18px; color:var(--dark-fg);}
 .sigma-pdp .fx-ill .cap-sub{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--bronze-light); margin-top:4px;}
 .sigma-pdp .readout{border:1px solid rgba(196,164,114,0.25); border-radius:8px; overflow:hidden; background:rgba(0,0,0,0.16);}
@@ -171,20 +181,29 @@
 @media(max-width:700px){.sigma-pdp .crow{grid-template-columns:1.6fr 0.7fr 0.7fr;}
   .sigma-pdp .crow>div{padding:13px 12px; font-size:13px;}}
 
-/* ---------- SIMPLY DELIVERED (green cards) ---------- */
+/* ---------- SIMPLY DELIVERED (green) — hand image beside cards ---------- */
+.sigma-pdp .deliver .dcards{grid-template-columns:1fr; gap:14px;}
+.sigma-pdp .deliver .sec-head{margin-bottom:24px;}
 .sigma-pdp .dcards{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-.sigma-pdp .dcard{border:1px solid var(--line-light); border-radius:12px; padding:30px 26px; background:rgba(255,255,255,0.02);}
+.sigma-pdp .dcard{border:1px solid var(--line-light); border-radius:12px; padding:26px 24px; background:rgba(255,255,255,0.02);}
 .sigma-pdp .dcard h3{font-size:18px; font-weight:400; margin-bottom:6px;}
 .sigma-pdp .dcard .sub{font-size:13.5px; color:var(--dark-faint); margin-bottom:16px;}
 .sigma-pdp .kv{display:flex; justify-content:space-between; gap:12px; padding:11px 0; border-top:1px solid var(--line-light); font-size:13.5px;}
 .sigma-pdp .kv .k{color:var(--dark-fg);}
 .sigma-pdp .kv .v{color:var(--dark-soft); text-align:right; font-family:'IBM Plex Mono',monospace; font-size:12.5px;}
-@media(max-width:760px){.sigma-pdp .dcards{grid-template-columns:1fr;}}
 
-/* ---------- STANDARDS (cream, split) ---------- */
+/* ---------- STANDARDS (cream) — split, faded bottle in background ---------- */
+.sigma-pdp .std-band{position:relative; overflow:hidden;}
+.sigma-pdp .std-bg{position:absolute; right:-30px; top:50%; transform:translateY(-50%); width:360px; max-width:38%; opacity:0.08; pointer-events:none; user-select:none;}
+.sigma-pdp .split{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; position:relative;}
+.sigma-pdp .split h2{font-size:clamp(30px,3.8vw,48px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; margin-bottom:20px;}
+.sigma-pdp .split h2 em{font-style:italic; color:var(--teal-mid);}
+.sigma-pdp .split p{font-size:16.5px; line-height:1.68; color:var(--ink-soft);}
 .sigma-pdp .std-cards{display:flex; flex-wrap:wrap; gap:12px;}
 .sigma-pdp .std-cards .card{flex:1 1 100%; background:var(--cream-card); border:1px solid var(--line); border-radius:10px; padding:20px 22px; font-size:14.5px; color:var(--teal-deep); display:flex; align-items:center; gap:12px;}
 .sigma-pdp .std-cards .card .ring{flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--teal-mid); color:var(--teal-mid); display:flex; align-items:center; justify-content:center; font-size:12px;}
+@media(max-width:880px){.sigma-pdp .split{grid-template-columns:1fr; gap:34px;}
+  .sigma-pdp .std-bg{display:none;}}
 
 /* ---------- FAQ (green accordion) ---------- */
 .sigma-pdp .faq{max-width:820px; margin:0 auto;}
@@ -211,37 +230,43 @@
   if product and product.id
     assign has_product = true
   endif
+
+  assign cdn = 'https://cdn.shopify.com/s/files/1/0816/0287/1534/files/'
+  assign img_bottle_plain = cdn | append: 'NMN2_86516883-9db8-4011-bfd8-05cf8166aceb.png'
+  assign img_glow = cdn | append: 'Generated_Image_July_12_2026_-_4_32PM_7dabcd09-2061-42be-a859-35162a2a45fb.jpg'
+  assign img_hand = cdn | append: 'Generated_Image_July_12_2026_-_4_44PM_278c3c5a-b9e9-4dcf-9a1e-de608628d256.jpg'
+  assign img_marble = cdn | append: 'Generated_Image_July_12_2026_-_4_48PM_f4e2df73-4307-470c-b9cf-a855918b7ea5.jpg'
+  assign img_spill = cdn | append: 'Generated_Image_July_12_2026_-_5_14PM_ae87c2c1-d17a-4ff2-a148-f7e6f8da17bc.jpg'
+  assign img_capsule = cdn | append: 'capsule-hero-clean_1c4f6903-61eb-4b67-954a-40dfe5264abb.png'
 -%}
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="nmn-top">
   <div class="wrap hero-grid">
 
-    <!-- LEFT: product gallery -->
+    <!-- LEFT: product gallery (front glow → hand → spill → capsule → marble) -->
     <div class="gallery reveal">
       <div class="gal-main">
-        <span class="gal-badge">NMN–01</span>
-        {%- if has_product and product.images.size > 0 -%}
-          <img id="galMain"
-               src="{{ product.featured_image | default: product.images.first | image_url: width: 1100 }}"
-               alt="{{ product.featured_image.alt | default: product.title | escape }}"
-               loading="eager" width="1100" height="1100">
-        {%- else -%}
-          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- endif -%}
+        <span class="gal-badge">NMN+</span>
+        <img id="galMain" src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="eager" width="1100" height="1100">
       </div>
-
-      {%- if has_product and product.images.size > 1 -%}
-        <div class="gal-thumbs">
-          {%- for image in product.images limit: 5 -%}
-            <button type="button" class="thumb{% if forloop.first %} active{% endif %}"
-                    data-full="{{ image | image_url: width: 1100 }}"
-                    aria-label="Show product image {{ forloop.index }}">
-              <img src="{{ image | image_url: width: 240 }}" alt="{{ image.alt | escape }}" loading="lazy" width="240" height="240">
-            </button>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+      <div class="gal-thumbs">
+        <button type="button" class="thumb active" data-full="{{ img_glow }}?width=1100" aria-label="NMN+ bottle with a warm glow">
+          <img src="{{ img_glow }}?width=240" alt="NMN+ bottle with a warm glow" loading="lazy" width="240" height="240">
+        </button>
+        <button type="button" class="thumb" data-full="{{ img_hand }}?width=1100" aria-label="Hand holding the NMN+ bottle">
+          <img src="{{ img_hand }}?width=240" alt="Hand holding the NMN+ bottle" loading="lazy" width="240" height="240">
+        </button>
+        <button type="button" class="thumb" data-full="{{ img_spill }}?width=1100" aria-label="NMN+ capsules spilling from the bottle">
+          <img src="{{ img_spill }}?width=240" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="240" height="240">
+        </button>
+        <button type="button" class="thumb" data-full="{{ img_capsule }}?width=1100" aria-label="A single NMN+ capsule on a dark background">
+          <img src="{{ img_capsule }}?width=240" alt="A single NMN+ capsule on a dark background" loading="lazy" width="240" height="240">
+        </button>
+        <button type="button" class="thumb" data-full="{{ img_marble }}?width=1100" aria-label="NMN+ on a sunlit marble counter with a glass of water">
+          <img src="{{ img_marble }}?width=240" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="240" height="240">
+        </button>
+      </div>
     </div>
 
     <!-- RIGHT: sticky buy box -->
@@ -278,7 +303,14 @@
       {%- else -%}
         <button type="button" class="cta">Add to Cart</button>
       {%- endif -%}
-      <div class="guarantee">Free US shipping over $60 · Pause or cancel anytime</div>
+
+      <div class="trust">
+        <div class="tb"><span class="d">✓</span>Third-Party Tested</div>
+        <div class="tb"><span class="d">✓</span>Vegan HPMC</div>
+        <div class="tb"><span class="d">✓</span>Non-GMO</div>
+        <div class="tb"><span class="d">✓</span>No Fillers</div>
+      </div>
+      <div class="guarantee">Free US shipping over $60 · Cancel anytime</div>
 
       <ul class="checks">
         <li class="hl"><span class="h">Benefits<sup>*</sup></span></li>
@@ -324,63 +356,104 @@
   </div>
 </section>
 
-<!-- ============ 4.3 DISCLOSURE EXPLAINER (green) ============ -->
+<!-- ============ 4.3 DISCLOSURE EXPLAINER (green) — SPILL image left ============ -->
 <section class="band green">
-  <div class="wrap split reveal">
-    <div>
+  <div class="wrap imgband reveal">
+    <div class="media">
+      <img src="{{ img_spill }}?width=900" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="900" height="1125">
+    </div>
+    <div class="copy">
       <span class="eyebrow">The Difference</span>
-      <h2 style="margin-top:18px;">Unlike some <em>NMN products</em>, NMN+ hides nothing.</h2>
+      <h2>Unlike some <em>NMN products</em>, NMN+ hides nothing.</h2>
       <p>Some NMN products use proprietary blends — labels that name the ingredients but hide the doses.</p>
       <p>NMN+ is the opposite: one formula, fully disclosed, with NMN dosed to the levels used in published research. The label <em>is</em> the formula.</p>
     </div>
-    <div class="capfig">
-      <svg viewBox="0 0 64 128" aria-hidden="true"><rect x="1" y="1" width="62" height="62" rx="31" ry="31" fill="#2f4a34" stroke="#47614b" stroke-width="1.5"/><rect x="1" y="64" width="62" height="62" rx="6" ry="6" fill="#F6F4EA" stroke="#47614b" stroke-width="1.5"/><line x1="1" y1="64" x2="63" y2="64" stroke="#47614b" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
-      <div>
-        <p class="cap-name">β-Nicotinamide Mononucleotide</p>
-        <p class="cap-sub">The active NAD⁺ precursor — the full dose, disclosed</p>
+  </div>
+</section>
+
+<!-- ============ MECHANISM (green) — SINGLE CAPSULE image right + animation slot ============ -->
+<section class="band green mech-band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>From capsule to cell, in three conversions.</h2>
+    </div>
+
+    <!-- CAPSULE ANIMATION SLOT -->
+    <div class="capsule-anim-slot" aria-hidden="true"><!-- drop capsule animation here later --></div>
+
+    <div class="imgband rev reveal">
+      <div class="media">
+        <img src="{{ img_capsule }}?width=900" alt="A single NMN+ capsule on a dark background" loading="lazy" width="900" height="1125">
+      </div>
+      <div class="mech-list">
+        <div class="mech-item">
+          <span class="n">01 / INGEST</span>
+          <div>
+            <h3>NMN enters circulation</h3>
+            <p>Nicotinamide Mononucleotide is absorbed and transported into cells, where it serves as a direct building block for NAD⁺.</p>
+          </div>
+        </div>
+        <div class="mech-item">
+          <span class="n">02 / CONVERT</span>
+          <div>
+            <h3>NAD⁺ is synthesized</h3>
+            <p>Cells convert NMN into NAD⁺, replenishing the coenzyme required for mitochondrial energy production and DNA repair.</p>
+          </div>
+        </div>
+        <div class="mech-item">
+          <span class="n">03 / ACTIVATE</span>
+          <div>
+            <h3>Sirtuins engage</h3>
+            <p>Restored NAD⁺ availability supports sirtuin activity — proteins tied to cellular resilience and healthy-aging pathways.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ TIMELINE (cream) ============ -->
+<!-- ============ TIMELINE (cream) — MARBLE image left ============ -->
 <section class="band cream">
-  <div class="wrap">
-    <div class="sec-head reveal">
+  <div class="wrap imgband reveal">
+    <div class="media">
+      <img src="{{ img_marble }}?width=900" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="900" height="1125">
+    </div>
+    <div class="copy">
       <span class="eyebrow">A practice, not a quick fix</span>
       <h2>Longevity is a practice.<sup>*</sup></h2>
       <p>NAD⁺ isn’t a quick fix — NMN+ is built for the long run.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step">
-        <span class="chip">Month 1</span>
-        <h3>The ritual takes hold</h3>
-        <ul>
-          <li>Two capsules a day becomes routine</li>
-          <li>NMN is a precursor your body can use in the NAD⁺ pathway*</li>
-        </ul>
-      </div>
-      <div class="step">
-        <span class="chip">The research</span>
-        <h3>NAD⁺ and NMN</h3>
-        <ul>
-          <li>In published human studies, supplemental NMN has been reported to raise blood NAD⁺ levels*</li>
-          <li class="fine">Those are studies of NMN generally — not of this product; individual results are not established</li>
-        </ul>
-      </div>
-      <div class="step">
-        <span class="chip">The long game</span>
-        <h3>Consistency over intensity</h3>
-        <ul>
-          <li>Longevity is a practice of consistency — one month at a time</li>
-          <li>Keep the same simple ritual; let the routine do the work</li>
-        </ul>
+      <div class="tl-list">
+        <div class="tl-item">
+          <span class="chip">Month 1</span>
+          <h3>The ritual takes hold</h3>
+          <ul>
+            <li>Two capsules a day becomes routine</li>
+            <li>NMN is a precursor your body can use in the NAD⁺ pathway*</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <span class="chip">The research</span>
+          <h3>NAD⁺ and NMN</h3>
+          <ul>
+            <li>In published human studies, supplemental NMN has been reported to raise blood NAD⁺ levels*</li>
+            <li class="fine">Those are studies of NMN generally — not of this product; individual results are not established</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <span class="chip">The long game</span>
+          <h3>Consistency over intensity</h3>
+          <ul>
+            <li>Longevity is a practice of consistency — one month at a time</li>
+            <li>Keep the same simple ritual; let the routine do the work</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 4.4 SUPPLEMENT FACTS (green) ============ -->
+<!-- ============ 4.4 SUPPLEMENT FACTS (green) — FRONT BOTTLE image right ============ -->
 <section class="band green" id="nmn-formula">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -389,24 +462,6 @@
       <p>Serving Size 2 capsules · Servings Per Container 30 · 60 capsules per bottle · 1-month supply.</p>
     </div>
     <div class="facts reveal">
-      <div class="fx-ill">
-        <svg viewBox="0 0 120 240" aria-hidden="true">
-          <rect x="2" y="2" width="116" height="116" rx="58" ry="58" fill="#2f4a34" stroke="#47614b" stroke-width="2"/>
-          <rect x="2" y="120" width="116" height="118" rx="12" ry="12" fill="#ffffff" stroke="#DDD9C9" stroke-width="2"/>
-          <line x1="2" y1="120" x2="118" y2="120" stroke="#47614b" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <circle cx="38" cy="150" r="8" fill="#C4A472"/>
-          <circle cx="66" cy="164" r="7" fill="#8FD6A6"/>
-          <circle cx="90" cy="146" r="6" fill="#E7C766"/>
-          <circle cx="46" cy="186" r="6" fill="#A9CBB6"/>
-          <circle cx="76" cy="196" r="5" fill="#D98CA6"/>
-          <circle cx="34" cy="214" r="5" fill="#9DBEE0"/>
-          <circle cx="86" cy="220" r="5" fill="#7A5230"/>
-        </svg>
-        <div>
-          <p class="cap-name">Seven actives. One vegan HPMC capsule.</p>
-          <p class="cap-sub">Every dose on the label.</p>
-        </div>
-      </div>
       <div class="readout">
         <div class="r-serve">Serving Size 2 capsules · Servings Per Container 30 · 60 capsules per bottle · 1-month supply</div>
         <div class="frow"><span class="nm">β-Nicotinamide Mononucleotide (NMN)<span class="note">A direct NAD⁺ precursor — studied for its role in cellular energy metabolism.</span></span><span class="amt">500 mg</span></div>
@@ -421,6 +476,15 @@
           <summary>About NMN <span class="pm" aria-hidden="true">+</span></summary>
           <p>A direct precursor to NAD⁺ (nicotinamide adenine dinucleotide), a coenzyme found in every living cell and central to energy metabolism. NAD⁺ levels decline with age — NMN is among the studied approaches to supporting them.* Dosed to published research levels, with the full amount on the label.</p>
         </details>
+      </div>
+      <div class="fx-ill">
+        <div class="fx-media">
+          <img src="{{ img_bottle_plain }}?width=700" alt="NMN+ Daily Longevity bottle, front view" loading="lazy" width="700" height="875">
+        </div>
+        <div>
+          <p class="cap-name">Seven actives. One vegan HPMC capsule.</p>
+          <p class="cap-sub">Every dose on the label.</p>
+        </div>
       </div>
     </div>
     <div class="pills reveal">
@@ -451,41 +515,47 @@
   </div>
 </section>
 
-<!-- ============ 4.6 SIMPLY DELIVERED (green) ============ -->
+<!-- ============ 4.6 SIMPLY DELIVERED (green) — HAND image left ============ -->
 <section class="band green">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Simply delivered</span>
-      <h2>Simply delivered.</h2>
+  <div class="wrap imgband deliver reveal">
+    <div class="media">
+      <img src="{{ img_hand }}?width=900" alt="Hand holding the NMN+ bottle" loading="lazy" width="900" height="1125">
     </div>
-    <div class="dcards reveal">
-      <div class="dcard">
-        <h3>What arrives</h3>
-        <p class="sub">One bottle. One month. No clutter.</p>
-        <div class="kv"><span class="k">NMN+ Daily Longevity</span><span class="v">60 capsules</span></div>
-        <div class="kv"><span class="k">Supply</span><span class="v">30 days</span></div>
-        <div class="kv"><span class="k">Label</span><span class="v">Fully disclosed</span></div>
+    <div>
+      <div class="sec-head">
+        <span class="eyebrow">Simply delivered</span>
+        <h2>Simply delivered.</h2>
       </div>
-      <div class="dcard">
-        <h3>The daily ritual</h3>
-        <p class="sub">Consistency beats intensity.</p>
-        <div class="kv"><span class="k">How much</span><span class="v">2 capsules daily</span></div>
-        <div class="kv"><span class="k">The habit</span><span class="v">Same time each day</span></div>
-        <div class="kv"><span class="k">One bottle</span><span class="v">One month</span></div>
-      </div>
-      <div class="dcard">
-        <h3>The subscription</h3>
-        <p class="sub">On your schedule.</p>
-        <div class="kv"><span class="k">Cadence</span><span class="v">Delivered monthly</span></div>
-        <div class="kv"><span class="k">Control</span><span class="v">Pause, skip, cancel anytime</span></div>
-        <div class="kv"><span class="k">Where</span><span class="v">Your account</span></div>
+      <div class="dcards">
+        <div class="dcard">
+          <h3>What arrives</h3>
+          <p class="sub">One bottle. One month. No clutter.</p>
+          <div class="kv"><span class="k">NMN+ Daily Longevity</span><span class="v">60 capsules</span></div>
+          <div class="kv"><span class="k">Supply</span><span class="v">30 days</span></div>
+          <div class="kv"><span class="k">Label</span><span class="v">Fully disclosed</span></div>
+        </div>
+        <div class="dcard">
+          <h3>The daily ritual</h3>
+          <p class="sub">Consistency beats intensity.</p>
+          <div class="kv"><span class="k">How much</span><span class="v">2 capsules daily</span></div>
+          <div class="kv"><span class="k">The habit</span><span class="v">Same time each day</span></div>
+          <div class="kv"><span class="k">One bottle</span><span class="v">One month</span></div>
+        </div>
+        <div class="dcard">
+          <h3>The subscription</h3>
+          <p class="sub">On your schedule.</p>
+          <div class="kv"><span class="k">Cadence</span><span class="v">Delivered monthly</span></div>
+          <div class="kv"><span class="k">Control</span><span class="v">Pause, skip, cancel anytime</span></div>
+          <div class="kv"><span class="k">Where</span><span class="v">Your account</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 4.7 STANDARDS (cream) ============ -->
-<section class="band cream" id="tested">
+<!-- ============ 4.7 STANDARDS (cream) — faded bottle in background ============ -->
+<section class="band cream std-band" id="tested">
+  <img class="std-bg" src="{{ img_glow }}?width=700" alt="" aria-hidden="true" loading="lazy">
   <div class="wrap split reveal">
     <div>
       <span class="eyebrow">Standards</span>
