@@ -1165,6 +1165,70 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+
+  /* ---- Sigma clean header (Seed-style): logo left, Get Started + menu on the right ---- */
+  #header-component .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d3d3e;
+    color: #ede7da;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1;
+    padding: 10px 22px;
+    border-radius: 100px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  #header-component .header-cta:hover {
+    background: #14514f;
+    color: #ede7da;
+  }
+
+  /* Drop the account + cart icons so only the CTA remains in the actions cluster */
+  #header-component .account-button,
+  #header-component header-actions :is(button, a):has(.header-actions__cart-icon) {
+    display: none !important;
+  }
+
+  #header-component header-actions {
+    gap: var(--gap-md);
+    align-items: center;
+  }
+
+  /* Mobile: logo left, Get Started, then the menu toggle on the far right */
+  @media screen and (max-width: 749px) {
+    #header-component .header__columns {
+      grid-template-columns: 1fr auto auto !important;
+      grid-template-areas: 'logo cta menu' !important;
+      column-gap: 12px !important;
+      padding-inline: 20px !important;
+      align-items: center;
+    }
+
+    #header-component .header-logo {
+      grid-area: logo !important;
+      justify-self: start !important;
+    }
+
+    #header-component header-actions {
+      grid-area: cta !important;
+      justify-self: end !important;
+    }
+
+    #header-component .header-drawer {
+      grid-area: menu !important;
+      justify-self: end !important;
+    }
+
+    #header-component .header-cta {
+      padding: 8px 18px;
+      font-size: 0.8125rem;
+    }
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}

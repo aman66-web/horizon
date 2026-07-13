@@ -63,6 +63,12 @@
   {% endif %}
   {{- block.shopify_attributes -}}
 >
+  <a
+    href="{{ routes.all_products_collection_url }}"
+    class="header-cta"
+    data-testid="header-cta"
+  >Get Started</a>
+
   {% if shop.customer_accounts_enabled %}
     {% liquid
       assign account_actions_style = ''
