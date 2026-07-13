@@ -123,6 +123,7 @@
 .sigma-pdp .gal-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:46px; height:46px; border-radius:50%; border:1px solid rgba(13,61,62,0.10); background:rgba(255,255,255,0.94); color:var(--teal-deep); font-size:26px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 5px 16px rgba(13,61,62,0.18); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); transition:background .2s, transform .15s, box-shadow .2s;}
 .sigma-pdp .gal-arrow:hover{background:#fff; box-shadow:0 6px 20px rgba(13,61,62,0.24);}
 .sigma-pdp .gal-arrow:active{transform:translateY(-50%) scale(0.9);}
+.sigma-pdp .gal-arrow.off{opacity:0; pointer-events:none;}
 .sigma-pdp .gal-arrow.prev{left:12px; padding-right:2px;}
 .sigma-pdp .gal-arrow.next{right:12px; padding-left:2px;}
 .sigma-pdp .slide{flex:0 0 calc(100% - 36px); scroll-snap-align:start; aspect-ratio:4/3; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--cream);}
@@ -945,13 +946,24 @@
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     },{threshold:0.12});
-    root.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    // Reveal everything in (or just below) the first screen immediately so the
+    // hero / buy box never loads blank; only animate sections further down.
+    root.querySelectorAll('.reveal').forEach(function(el){
+      if(el.getBoundingClientRect().top < window.innerHeight * 1.15){ el.classList.add('in'); }
+      else { io.observe(el); }
+    });
 
     // gallery swipe slider + dots
     var slider=root.querySelector('#galSlider');
     var dots=root.querySelectorAll('#galDots .dot');
     if(slider && dots.length){
       var step=function(){ var s=slider.querySelector('.slide'); return s ? s.getBoundingClientRect().width + 12 : slider.clientWidth; };
+      var prevBtn=root.querySelector('#galPrev'), nextBtn=root.querySelector('#galNext');
+      // prev arrow only appears after the first image; next arrow hides on the last.
+      var updateArrows=function(i){
+        if(prevBtn) prevBtn.classList.toggle('off', i<=0);
+        if(nextBtn) nextBtn.classList.toggle('off', i>=dots.length-1);
+      };
       var raf;
       slider.addEventListener('scroll', function(){
         if(raf) return;
@@ -960,6 +972,7 @@
           var i=Math.round(slider.scrollLeft / step());
           if(i<0) i=0; if(i>dots.length-1) i=dots.length-1;
           dots.forEach(function(d,idx){ d.classList.toggle('active', idx===i); });
+          updateArrows(i);
         });
       }, {passive:true});
       dots.forEach(function(d,idx){
@@ -967,12 +980,12 @@
       });
       var go=function(dir){
         var n=dots.length, cur=Math.round(slider.scrollLeft/step());
-        var next=(cur+dir+n)%n;
+        var next=Math.max(0, Math.min(n-1, cur+dir));
         slider.scrollTo({ left: next*step(), behavior:'smooth' });
       };
-      var prevBtn=root.querySelector('#galPrev'), nextBtn=root.querySelector('#galNext');
       if(prevBtn) prevBtn.addEventListener('click', function(){ go(-1); });
       if(nextBtn) nextBtn.addEventListener('click', function(){ go(1); });
+      updateArrows(0);
     }
 
     // frequency / subscription selector
