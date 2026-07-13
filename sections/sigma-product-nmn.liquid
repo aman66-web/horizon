@@ -78,6 +78,23 @@
 .sigma-pdp .sec-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:18px; letter-spacing:-0.02em;}
 .sigma-pdp .sec-head p{font-size:16.5px; color:var(--ink-soft); margin-top:16px; line-height:1.62;}
 .sigma-pdp .band.green .sec-head p{color:var(--dark-soft);}
+/* ---- readability on teal (green) bands: white-card text stays dark; on-band text goes light ---- */
+.sigma-pdp .band.green .bene-card h3,
+.sigma-pdp .band.green .howto h3{color:var(--teal-deep);}
+.sigma-pdp .band.green .howto p{color:var(--ink-soft);}
+.sigma-pdp .band.green .tl2-item li{color:var(--dark-soft);}
+.sigma-pdp .band.green .tl2-item li::before{color:var(--bronze-light);}
+.sigma-pdp .band.green .tl2-chip{background:var(--bronze); color:var(--ink);}
+.sigma-pdp .band.green .cnote{color:var(--dark-faint);}
+.sigma-pdp .band.green .std-cards .card{color:var(--teal-deep);}
+/* comparison table header cell is always on the dark head row */
+.sigma-pdp .crow.head .feat{color:var(--bone);}
+/* ---- readability on beige (cream) bands: text that was built for teal goes dark ---- */
+.sigma-pdp .band.cream .mech-item .n{color:var(--bronze);}
+.sigma-pdp .band.cream .mech-item h3{color:var(--ink);}
+.sigma-pdp .band.cream .mech-item p{color:var(--ink-soft);}
+.sigma-pdp .band.cream .tested-grid .t .ring{border-color:var(--bronze); color:var(--bronze);}
+.sigma-pdp .band.cream .tested-grid .t span{color:var(--ink-soft);}
 
 /* ---------- image + text bands (Seed-style) ---------- */
 .sigma-pdp .imgband{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
