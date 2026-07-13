@@ -116,11 +116,13 @@
 .sigma-pdp .gal-dots .dot.active{background:var(--teal-deep); width:22px;}
 .sigma-pdp .buybox{position:sticky; top:20px;}
 .sigma-pdp .title-row{display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
-.sigma-pdp .pill-badge{font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--teal-deep); border:1.5px solid var(--teal-deep); border-radius:100px; padding:5px 15px; white-space:nowrap;}
+.sigma-pdp .pill-badge{display:inline-flex; align-items:center; gap:7px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:#0D3D3E; background:#C9E88C; border:none; border-radius:100px; padding:7px 15px; white-space:nowrap;}
+.sigma-pdp .pill-badge svg{width:14px; height:14px; fill:currentColor; flex-shrink:0;}
 .sigma-pdp .product-head h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-size:clamp(36px,5.6vw,56px); line-height:1.0; font-weight:500; letter-spacing:-0.02em; color:var(--teal-deep); margin:0;}
-.sigma-pdp .rating{display:flex; align-items:center; gap:12px; margin-top:16px;}
+.sigma-pdp .rating{display:flex; flex-wrap:wrap; align-items:center; gap:5px 9px; margin-top:16px;}
 .sigma-pdp .rating .stars{color:var(--teal-deep); font-size:18px; letter-spacing:3px; line-height:1;}
-.sigma-pdp .rating .rcount{font-size:15px; color:var(--teal-deep); font-weight:500; text-decoration:underline; text-underline-offset:3px;}
+.sigma-pdp .rating .rcount{font-size:15px; color:var(--teal-deep); font-weight:600; text-decoration:underline; text-underline-offset:3px;}
+.sigma-pdp .rating .rtext{font-size:14px; color:var(--ink-soft); line-height:1.35;}
 .sigma-pdp .buybox .desc{font-size:17px; line-height:1.5; color:var(--teal-deep); margin-top:22px; max-width:470px;}
 .sigma-pdp .buybox .price-row{display:flex; align-items:center; gap:14px; margin-top:26px;}
 .sigma-pdp .buybox .price{font-family:'Inter',sans-serif; font-size:33px; font-weight:600; color:var(--teal-deep); letter-spacing:-0.01em;}
@@ -179,9 +181,10 @@
 .sigma-pdp .tab-ings .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze); white-space:nowrap;}
 .sigma-pdp .tab-note{font-size:12.5px; color:var(--ink-faint); line-height:1.6; padding-bottom:20px;}
 @media(max-width:880px){
-  .sigma-pdp .hero-grid{grid-template-columns:1fr; row-gap:22px;}
+  .sigma-pdp .hero-grid{grid-template-columns:1fr; row-gap:14px;}
   .sigma-pdp .product-head{margin-bottom:2px;}
   .sigma-pdp .buybox{position:static;}
+  .sigma-pdp .buybox .desc{margin-top:2px;}
   .sigma-pdp .gal-arrow{width:40px; height:40px; font-size:23px;}
   .sigma-pdp .gal-arrow.prev{left:8px;}
   .sigma-pdp .gal-arrow.next{right:8px;}
@@ -407,12 +410,13 @@
     <!-- TOP: product title + rating, above the gallery (AG1-style) -->
     <div class="product-head reveal">
       <div class="title-row">
-        <span class="pill-badge">NMN+</span>
+        <span class="pill-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 14 9 21 12 14 15 12 22 10 15 3 12 10 9z"/></svg>Best Seller</span>
         <h1>{% if has_product %}{{ product.title | remove_first: 'NMN+' | strip }}{% else %}Daily Longevity{% endif %}</h1>
       </div>
       <div class="rating" id="nmn-reviews">
         <span class="stars" aria-hidden="true">★★★★★</span>
-        <a href="#nmn-reviews" class="rcount">1473 Reviews</a>
+        <a href="#nmn-reviews" class="rcount">1473</a>
+        <span class="rtext">verified 5-star reviews for Sigma Formulas products</span>
       </div>
     </div>
 
