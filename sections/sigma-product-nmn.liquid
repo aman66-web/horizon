@@ -34,7 +34,7 @@
 .sigma-pdp sup{font-size:0.58em; vertical-align:super; color:var(--bronze); font-family:'IBM Plex Mono',monospace;}
 .sigma-pdp .wrap{max-width:1200px; margin:0 auto; padding:0 62px 0 40px;}
 @media(max-width:560px){.sigma-pdp .wrap{padding:0 54px 0 22px;}}
-.sigma-pdp .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bronze); display:inline-flex; flex-direction:column; align-items:flex-start; gap:13px;}
+.sigma-pdp .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bronze); display:inline-flex; flex-direction:column; align-items:center; gap:13px;}
 .sigma-pdp .eyebrow .eb-ico{width:46px; height:46px; border:1.5px solid currentColor; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;}
 .sigma-pdp .eyebrow .eb-ico svg{width:23px; height:23px; stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
 .sigma-pdp .sec-head.center .eyebrow{align-items:center;}
@@ -73,7 +73,7 @@
 @media (prefers-reduced-motion:reduce){.sigma-pdp .rail-fill{transition:height 0s;}}
 .sigma-pdp .band.green h2,.sigma-pdp .band.green h3,.sigma-pdp .band.green h4{color:var(--dark-fg);}
 .sigma-pdp .band.green .eyebrow{color:var(--bronze-light);}
-.sigma-pdp .sec-head{max-width:680px; margin-bottom:50px;}
+.sigma-pdp .sec-head{max-width:760px; margin-left:auto; margin-right:auto; margin-bottom:50px; text-align:center;}
 .sigma-pdp .sec-head.center{max-width:760px; margin-left:auto; margin-right:auto; text-align:center;}
 .sigma-pdp .sec-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:18px; letter-spacing:-0.02em;}
 .sigma-pdp .sec-head p{font-size:16.5px; color:var(--ink-soft); margin-top:16px; line-height:1.62;}
@@ -194,8 +194,8 @@
 
 /* ---------- BENEFIT TILES ---------- */
 .sigma-pdp .bene-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
-.sigma-pdp .bene-card{background:var(--cream-card); border:1px solid var(--line); border-radius:12px; padding:30px 24px;}
-.sigma-pdp .bene-card .ico{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--bronze); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+.sigma-pdp .bene-card{background:var(--cream-card); border:1px solid var(--line); border-radius:12px; padding:30px 24px; text-align:center;}
+.sigma-pdp .bene-card .ico{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--bronze); display:flex; align-items:center; justify-content:center; margin:0 auto 18px;}
 .sigma-pdp .bene-card .ico svg{width:22px; height:22px; stroke:var(--bronze); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
 .sigma-pdp .bene-card h3{font-size:18px; margin-bottom:8px; font-weight:400;}
 .sigma-pdp .bene-card p{font-size:14px; color:var(--ink-soft); line-height:1.6;}
@@ -282,7 +282,7 @@
 .sigma-pdp .split h2 em{font-style:italic; color:var(--teal-mid);}
 .sigma-pdp .split p{font-size:16.5px; line-height:1.68; color:var(--ink-soft);}
 .sigma-pdp .std-cards{display:flex; flex-wrap:wrap; gap:12px;}
-.sigma-pdp .std-cards .card{flex:1 1 100%; background:var(--cream-card); border:1px solid var(--line); border-radius:10px; padding:20px 22px; font-size:14.5px; color:var(--teal-deep); display:flex; align-items:center; gap:12px;}
+.sigma-pdp .std-cards .card{flex:1 1 100%; background:var(--cream-card); border:1px solid var(--line); border-radius:10px; padding:20px 22px; font-size:14.5px; color:var(--teal-deep); display:flex; align-items:center; justify-content:center; gap:12px;}
 .sigma-pdp .std-cards .card .ring{flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--teal-mid); color:var(--teal-mid); display:flex; align-items:center; justify-content:center; font-size:12px;}
 @media(max-width:880px){.sigma-pdp .split{grid-template-columns:1fr; gap:34px;}
   .sigma-pdp .std-bg{display:none;}}
@@ -313,7 +313,7 @@
 .sigma-pdp .band.green .lnk{color:var(--dark-fg);}
 .sigma-pdp .band.cream .lnk{color:var(--teal-deep);}
 /* text-only band helper (bands with images removed) */
-.sigma-pdp .text-block{max-width:760px;}
+.sigma-pdp .text-block{max-width:760px; margin-left:auto; margin-right:auto; text-align:center;}
 .sigma-pdp .text-block h2{font-size:clamp(30px,4vw,48px); font-weight:300; line-height:1.08; letter-spacing:-0.02em; margin:14px 0 18px;}
 .sigma-pdp .text-block h2 em{font-style:italic; color:var(--bronze-light);}
 .sigma-pdp .band.cream .text-block h2 em{color:var(--teal-mid);}
@@ -326,22 +326,22 @@
 .sigma-pdp .ca-head h2 em{font-style:italic; color:var(--bronze-light);}
 .sigma-pdp .ca-head p{font-size:16.5px; color:var(--dark-soft); line-height:1.68; margin-bottom:6px; max-width:460px;}
 .sigma-pdp .ca-points{display:grid; grid-template-columns:1fr 1fr; gap:36px; border-top:1px solid var(--line-light); padding-top:36px;}
+.sigma-pdp .ca-point{text-align:center;}
 .sigma-pdp .ca-point h3{font-family:'Fraunces',serif; font-size:22px; font-weight:400; color:var(--dark-fg); margin-bottom:10px;}
 .sigma-pdp .ca-point p{font-size:14.5px; color:var(--dark-soft); line-height:1.6;}
 @media(max-width:640px){.sigma-pdp .ca-points{grid-template-columns:1fr; gap:26px;}}
 /* facts, single column (bottle image removed) */
 .sigma-pdp .facts-single{max-width:860px;}
 /* how-to-use, text only */
-.sigma-pdp .howto.howto--text{grid-template-columns:1fr;}
+.sigma-pdp .howto.howto--text{grid-template-columns:1fr; text-align:center;}
 /* vertical timeline with time chips */
-.sigma-pdp .tl2{max-width:720px; border-left:2px solid var(--line); padding-left:30px; display:flex; flex-direction:column; gap:38px;}
+.sigma-pdp .tl2{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:38px; text-align:center;}
 .sigma-pdp .tl2-item{position:relative;}
-.sigma-pdp .tl2-item::before{content:''; position:absolute; left:-38px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--teal-deep);}
-.sigma-pdp .tl2-head{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:14px;}
+.sigma-pdp .tl2-head{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:14px;}
 .sigma-pdp .tl2-chip{background:var(--teal-deep); color:var(--bone); border-radius:100px; padding:6px 16px; font-size:13px; font-weight:600;}
 .sigma-pdp .tl2-head h3{font-size:20px; font-weight:400;}
-.sigma-pdp .tl2-item ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
-.sigma-pdp .tl2-item li{display:flex; gap:11px; font-size:15px; color:var(--ink-soft); line-height:1.5;}
+.sigma-pdp .tl2-item ul{list-style:none; display:flex; flex-direction:column; align-items:center; gap:8px;}
+.sigma-pdp .tl2-item li{display:flex; gap:11px; font-size:15px; color:var(--ink-soft); line-height:1.5; justify-content:center;}
 .sigma-pdp .tl2-item li::before{content:'•'; color:var(--teal-mid);}
 /* how-to-use card */
 .sigma-pdp .howto{display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:center; background:var(--cream-card); border:1px solid var(--line); border-radius:16px; padding:26px 28px; margin-top:44px;}
