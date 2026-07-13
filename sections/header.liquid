@@ -1207,29 +1207,26 @@
     align-items: center;
   }
 
-  /* Mobile: logo left, Get Started, then the menu toggle on the far right */
+  /* Mobile: logo pinned far left; Get Started + menu grouped together on the right */
   @media screen and (max-width: 749px) {
     #header-component .header__columns {
-      grid-template-columns: 1fr auto auto !important;
-      grid-template-areas: 'logo cta menu' !important;
-      column-gap: 12px !important;
-      padding-inline: 20px !important;
+      display: flex !important;
       align-items: center;
+      gap: 14px;
+      padding-inline: 20px !important;
     }
 
     #header-component .header-logo {
-      grid-area: logo !important;
-      justify-self: start !important;
+      order: 1;
+      margin-right: auto;
     }
 
     #header-component header-actions {
-      grid-area: cta !important;
-      justify-self: end !important;
+      order: 2;
     }
 
     #header-component .header-drawer {
-      grid-area: menu !important;
-      justify-self: end !important;
+      order: 3;
     }
 
     #header-component .header-cta {
