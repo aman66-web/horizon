@@ -264,6 +264,47 @@
 /* ---------- DISCLAIMER ---------- */
 .sigma-pdp .disclaimer{padding:36px 0 8px;}
 .sigma-pdp .disclaimer p{max-width:900px; margin:0 auto; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-faint); line-height:1.7;}
+
+/* ===== Added Seed-style sections (placeholder visuals for you to fill) ===== */
+.sigma-pdp .img-slot{display:flex; align-items:center; justify-content:center; aspect-ratio:1/1; border:1.5px dashed var(--line); border-radius:16px; background:var(--cream); color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; text-align:center; padding:22px; line-height:1.6;}
+.sigma-pdp .band.green .img-slot{background:rgba(255,255,255,0.03); border-color:var(--line-light); color:var(--dark-faint);}
+.sigma-pdp .lnk{display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; text-decoration:underline; text-underline-offset:4px; margin-top:8px;}
+.sigma-pdp .band.green .lnk{color:var(--dark-fg);}
+.sigma-pdp .band.cream .lnk{color:var(--teal-deep);}
+/* capsule-anatomy points */
+.sigma-pdp .point-list{display:flex; flex-direction:column; gap:22px; margin-top:28px;}
+.sigma-pdp .point .pt-t{font-family:'Fraunces',serif; font-size:19px; color:var(--dark-fg); margin-bottom:6px;}
+.sigma-pdp .point .pt-t::before{content:''; display:inline-block; width:26px; height:1px; background:var(--bronze-light); vertical-align:middle; margin-right:12px;}
+.sigma-pdp .point p{font-size:14.5px; color:var(--dark-soft); line-height:1.6;}
+/* vertical timeline with time chips */
+.sigma-pdp .tl2{max-width:720px; border-left:2px solid var(--line); padding-left:30px; display:flex; flex-direction:column; gap:38px;}
+.sigma-pdp .tl2-item{position:relative;}
+.sigma-pdp .tl2-item::before{content:''; position:absolute; left:-38px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--teal-deep);}
+.sigma-pdp .tl2-head{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:14px;}
+.sigma-pdp .tl2-chip{background:var(--teal-deep); color:var(--bone); border-radius:100px; padding:6px 16px; font-size:13px; font-weight:600;}
+.sigma-pdp .tl2-head h3{font-size:20px; font-weight:400;}
+.sigma-pdp .tl2-item ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+.sigma-pdp .tl2-item li{display:flex; gap:11px; font-size:15px; color:var(--ink-soft); line-height:1.5;}
+.sigma-pdp .tl2-item li::before{content:'•'; color:var(--teal-mid);}
+/* how-to-use card */
+.sigma-pdp .howto{display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:center; background:var(--cream-card); border:1px solid var(--line); border-radius:16px; padding:26px 28px; margin-top:44px;}
+.sigma-pdp .howto .img-slot{aspect-ratio:1/1; border-radius:12px;}
+.sigma-pdp .howto h3{font-size:18px; font-weight:600; color:var(--teal-deep); margin-bottom:8px;}
+.sigma-pdp .howto p{font-size:15px; color:var(--ink-soft); line-height:1.55;}
+@media(max-width:560px){.sigma-pdp .howto{grid-template-columns:84px 1fr; gap:18px; padding:20px;}}
+/* lifestyle image pair */
+.sigma-pdp .img-pair{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+@media(max-width:560px){.sigma-pdp .img-pair{grid-template-columns:1fr;}}
+/* big statement */
+.sigma-pdp .statement h2{font-size:clamp(34px,5.4vw,60px); font-weight:300; line-height:1.04; letter-spacing:-0.025em; max-width:780px;}
+.sigma-pdp .statement h2 em{font-style:italic; color:var(--bronze-light);}
+.sigma-pdp .statement .stmt-media{max-width:520px; margin:44px auto 0;}
+/* tested-for grid */
+.sigma-pdp .tested-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px 12px;}
+.sigma-pdp .tested-grid .t{display:flex; flex-direction:column; align-items:center; gap:11px; text-align:center;}
+.sigma-pdp .tested-grid .t .ring{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--bronze-light); color:var(--bronze-light); display:flex; align-items:center; justify-content:center; font-size:16px;}
+.sigma-pdp .tested-grid .t span{font-size:12.5px; color:var(--dark-soft); line-height:1.4;}
+@media(max-width:600px){.sigma-pdp .tested-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 
 {%- liquid
@@ -423,6 +464,31 @@
           </ul>
           <p class="tab-note">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule). Every dose is printed in full on the label.</p>
         </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPSULE ANATOMY (green) — between Benefits and Why NMN ============ -->
+<section class="band green mech-band">
+  <div class="wrap imgband rev reveal">
+    <div class="media">
+      <img src="{{ img_capsule }}?width=900" alt="A single NMN+ capsule on a dark background" loading="lazy" width="900" height="1125">
+    </div>
+    <div class="copy">
+      <span class="eyebrow">Inside the capsule</span>
+      <h2>One capsule. Seven actives. <em>Nothing hidden.</em></h2>
+      <p>Every NMN+ capsule is a plant-based (HPMC) shell holding seven fully disclosed actives — no proprietary blends, no fillers you can’t see on the label.</p>
+      <a href="#nmn-formula" class="lnk">View the full formula →</a>
+      <div class="point-list">
+        <div class="point">
+          <div class="pt-t">Vegan HPMC Shell</div>
+          <p>A plant-based capsule — no gelatin or animal-derived ingredients.</p>
+        </div>
+        <div class="point">
+          <div class="pt-t">Seven Disclosed Actives</div>
+          <p>NMN, trans-resveratrol, quercetin, and supporting B-vitamin cofactors — each dosed to published research levels.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -671,6 +737,93 @@
       <div class="card"><span class="ring">✓</span>Formulated without proprietary blends</div>
       <div class="card"><span class="ring">✓</span>NMN dosed to published research levels</div>
       <div class="card"><span class="ring">✓</span>The label is the formula</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIG STATEMENT (green) — placeholder centered visual ============ -->
+<section class="band green">
+  <div class="wrap">
+    <div class="statement reveal">
+      <span class="eyebrow">The formula</span>
+      <h2 style="margin-top:18px;">Seven disclosed actives for <em>one daily ritual.</em><sup>*</sup></h2>
+      <a href="#nmn-formula" class="lnk">View the full formula →</a>
+      <!-- IMAGE SLOT: centered product visual — replace this div with your image -->
+      <div class="img-slot stmt-media">Add centered product image</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TO EXPECT — timeline + how-to-use (cream) ============ -->
+<section class="band cream">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What to expect</span>
+      <h2>A gradual routine — the honest timeline.</h2>
+      <p>NAD⁺ replenishment is a slow process. This is how most people build the NMN+ habit — not a promise of results, which vary by individual.*</p>
+    </div>
+    <div class="tl2 reveal">
+      <div class="tl2-item">
+        <div class="tl2-head"><span class="tl2-chip">Week 1</span><h3>Start the daily ritual</h3></div>
+        <ul>
+          <li>Two capsules each morning, with or without food</li>
+          <li>Set a consistent time so it becomes automatic</li>
+        </ul>
+      </div>
+      <div class="tl2-item">
+        <div class="tl2-head"><span class="tl2-chip">Weeks 4–8</span><h3>Give it time to build</h3></div>
+        <ul>
+          <li>Most people take NMN+ daily for 4–8 weeks before evaluating how they feel</li>
+          <li>Consistency matters more than any single dose</li>
+        </ul>
+      </div>
+      <div class="tl2-item">
+        <div class="tl2-head"><span class="tl2-chip">Ongoing</span><h3>Keep it consistent</h3></div>
+        <ul>
+          <li>Longevity is a long game — a monthly subscription keeps you stocked</li>
+          <li>Pause, skip, or cancel anytime</li>
+        </ul>
+      </div>
+    </div>
+    <!-- IMAGE SLOT: how-to-use capsule visual — replace the .img-slot with your image -->
+    <div class="howto reveal">
+      <div class="img-slot">Add image</div>
+      <div>
+        <h3>How to Use</h3>
+        <p>Take 2 capsules daily, with or without food, day or night. Consistency matters more than timing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTED FOR (green) — verification grid ============ -->
+<section class="band green">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Tested &amp; verified</span>
+      <h2>What every batch is checked for.</h2>
+      <p>Each production batch of NMN+ is screened by an independent third-party lab before release.</p>
+    </div>
+    <div class="tested-grid reveal">
+      <div class="t"><span class="ring">✓</span><span>Third-Party Tested</span></div>
+      <div class="t"><span class="ring">✓</span><span>Heavy Metals Screened</span></div>
+      <div class="t"><span class="ring">✓</span><span>Microbials Screened</span></div>
+      <div class="t"><span class="ring">✓</span><span>Vegan HPMC</span></div>
+      <div class="t"><span class="ring">✓</span><span>Non-GMO</span></div>
+      <div class="t"><span class="ring">✓</span><span>Research-Level Doses</span></div>
+      <div class="t"><span class="ring">✓</span><span>No Proprietary Blends</span></div>
+      <div class="t"><span class="ring">✓</span><span>No Hidden Fillers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIFESTYLE IMAGE PAIR (cream) — placeholder visuals ============ -->
+<section class="band cream">
+  <div class="wrap">
+    <!-- IMAGE SLOT: two lifestyle images — replace each .img-slot with your image -->
+    <div class="img-pair reveal">
+      <div class="img-slot">Add lifestyle image</div>
+      <div class="img-slot">Add lifestyle image</div>
     </div>
   </div>
 </section>
