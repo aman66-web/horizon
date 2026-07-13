@@ -74,14 +74,14 @@
 /* ---------- HERO ---------- */
 .sigma-pdp .hero{padding:52px 0 78px;}
 .sigma-pdp .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:start;}
-.sigma-pdp .gal-main{background:var(--cream); border:1px solid var(--line); border-radius:16px; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;}
-.sigma-pdp .gal-main img{width:100%; height:100%; object-fit:cover;}
-.sigma-pdp .gal-badge{position:absolute; top:18px; left:18px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--line); padding:6px 11px; border-radius:100px; background:rgba(255,255,255,0.6);}
-.sigma-pdp .gal-thumbs{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:12px;}
-.sigma-pdp .thumb{aspect-ratio:1/1; background:var(--cream); border:1px solid var(--line); border-radius:9px; overflow:hidden; cursor:pointer; padding:0; transition:border-color .2s, box-shadow .2s;}
-.sigma-pdp .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-.sigma-pdp .thumb:hover{border-color:var(--teal-mid);}
-.sigma-pdp .thumb.active{border-color:var(--teal-deep); box-shadow:0 0 0 1px var(--teal-deep);}
+.sigma-pdp .gal-slider{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+.sigma-pdp .gal-slider::-webkit-scrollbar{display:none;}
+.sigma-pdp .slide{flex:0 0 calc(100% - 36px); scroll-snap-align:start; aspect-ratio:1/1; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--cream);}
+.sigma-pdp .slide:last-child{flex-basis:100%;}
+.sigma-pdp .slide img{width:100%; height:100%; object-fit:cover; display:block;}
+.sigma-pdp .gal-dots{display:flex; justify-content:center; gap:8px; margin-top:16px;}
+.sigma-pdp .gal-dots .dot{width:8px; height:8px; padding:0; border:none; border-radius:100px; background:var(--line); cursor:pointer; transition:background .25s, width .25s;}
+.sigma-pdp .gal-dots .dot.active{background:var(--teal-deep); width:22px;}
 .sigma-pdp .buybox{position:sticky; top:20px;}
 .sigma-pdp .title-row{display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
 .sigma-pdp .pill-badge{font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--teal-deep); border:1.5px solid var(--teal-deep); border-radius:100px; padding:5px 15px; white-space:nowrap;}
@@ -94,6 +94,28 @@
 .sigma-pdp .buybox .price{font-family:'Inter',sans-serif; font-size:33px; font-weight:600; color:var(--teal-deep); letter-spacing:-0.01em;}
 .sigma-pdp .buybox .bestseller{background:#C9E88C; color:#1B3B24; font-family:'Inter',sans-serif; font-size:14px; font-weight:500; border-radius:100px; padding:6px 16px;}
 .sigma-pdp .buybox .subline{font-size:15px; line-height:1.5; color:var(--ink-soft); margin-top:14px; margin-bottom:26px;}
+/* Frequency / subscription selector */
+.sigma-pdp .freq{margin:26px 0 22px;}
+.sigma-pdp .freq-label{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px;}
+.sigma-pdp .opt{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px; border:1.5px solid var(--line); border-radius:14px; padding:18px 20px; cursor:pointer; position:relative; background:var(--cream-card); transition:border-color .2s, background .2s;}
+.sigma-pdp .opt + .opt{margin-top:12px;}
+.sigma-pdp .opt.selected{border-color:var(--teal-deep); background:rgba(201,232,140,0.16);}
+.sigma-pdp .opt input{position:absolute; opacity:0; width:0; height:0; pointer-events:none;}
+.sigma-pdp .opt .radio{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--ink-faint); flex-shrink:0; position:relative;}
+.sigma-pdp .opt.selected .radio{border-color:var(--teal-deep);}
+.sigma-pdp .opt.selected .radio::after{content:''; position:absolute; inset:4px; border-radius:50%; background:var(--teal-deep);}
+.sigma-pdp .opt-main .opt-t{font-size:16px; font-weight:600; color:var(--teal-deep);}
+.sigma-pdp .opt-main .opt-s{font-size:13px; color:var(--ink-soft); margin-top:2px;}
+.sigma-pdp .opt-p{text-align:right;}
+.sigma-pdp .opt-p .now{font-size:17px; font-weight:600; color:var(--teal-deep);}
+.sigma-pdp .opt-p .now .mo{font-size:12px; font-weight:500; color:var(--ink-soft);}
+.sigma-pdp .opt-p .was{font-size:13px; color:var(--ink-faint); text-decoration:line-through;}
+.sigma-pdp .opt-p .perday{font-size:11px; color:var(--ink-faint); margin-top:2px;}
+.sigma-pdp .opt-benes{grid-column:1 / -1; display:none; flex-direction:column; gap:9px; margin-top:4px; padding-top:14px; border-top:1px solid var(--line);}
+.sigma-pdp .opt.selected .opt-benes{display:flex;}
+.sigma-pdp .opt-benes li{list-style:none; display:flex; gap:10px; align-items:center; font-size:13.5px; color:var(--teal-deep);}
+.sigma-pdp .opt-benes li::before{content:'✓'; color:var(--teal-mid); font-size:12px;}
+.sigma-pdp .save-pill{position:absolute; top:-10px; right:18px; background:#C9E88C; color:#1B3B24; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; border-radius:100px; padding:3px 11px;}
 .sigma-pdp form.nmn-form{margin:0;}
 .sigma-pdp product-form-component,.sigma-pdp add-to-cart-component{display:block;}
 .sigma-pdp .product-form-text__error{display:block; margin-bottom:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#b23c3c;}
@@ -243,33 +265,41 @@
   assign img_marble = cdn | append: 'Generated_Image_July_12_2026_-_4_48PM_f4e2df73-4307-470c-b9cf-a855918b7ea5.jpg'
   assign img_spill = cdn | append: 'Generated_Image_July_12_2026_-_5_14PM_ae87c2c1-d17a-4ff2-a148-f7e6f8da17bc.jpg'
   assign img_capsule = cdn | append: 'capsule-hero-clean_1c4f6903-61eb-4b67-954a-40dfe5264abb.png'
+
+  # Subscription selling plan (10% off / monthly), if one is configured on the product.
+  assign sub_plan_id = ''
+  for grp in product.selling_plan_groups
+    for sp in grp.selling_plans
+      assign sub_plan_id = sp.id
+      break
+    endfor
+    if sub_plan_id != blank
+      break
+    endif
+  endfor
+
+  assign sub_price = product.price | times: 0.9
 -%}
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="nmn-top">
   <div class="wrap hero-grid">
 
-    <!-- LEFT: product gallery (front glow → hand → spill → capsule → marble) -->
+    <!-- LEFT: product gallery — swipe-across slider (front glow → hand → spill → capsule → marble) -->
     <div class="gallery reveal">
-      <div class="gal-main">
-        <img id="galMain" src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="eager" width="1100" height="1100">
+      <div class="gal-slider" id="galSlider">
+        <div class="slide"><img src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="eager" width="1100" height="1100"></div>
+        <div class="slide"><img src="{{ img_hand }}?width=1100" alt="Hand holding the NMN+ bottle" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="{{ img_spill }}?width=1100" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="{{ img_capsule }}?width=1100" alt="A single NMN+ capsule on a dark background" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="{{ img_marble }}?width=1100" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="1100" height="1100"></div>
       </div>
-      <div class="gal-thumbs">
-        <button type="button" class="thumb active" data-full="{{ img_glow }}?width=1100" aria-label="NMN+ bottle with a warm glow">
-          <img src="{{ img_glow }}?width=240" alt="NMN+ bottle with a warm glow" loading="lazy" width="240" height="240">
-        </button>
-        <button type="button" class="thumb" data-full="{{ img_hand }}?width=1100" aria-label="Hand holding the NMN+ bottle">
-          <img src="{{ img_hand }}?width=240" alt="Hand holding the NMN+ bottle" loading="lazy" width="240" height="240">
-        </button>
-        <button type="button" class="thumb" data-full="{{ img_spill }}?width=1100" aria-label="NMN+ capsules spilling from the bottle">
-          <img src="{{ img_spill }}?width=240" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="240" height="240">
-        </button>
-        <button type="button" class="thumb" data-full="{{ img_capsule }}?width=1100" aria-label="A single NMN+ capsule on a dark background">
-          <img src="{{ img_capsule }}?width=240" alt="A single NMN+ capsule on a dark background" loading="lazy" width="240" height="240">
-        </button>
-        <button type="button" class="thumb" data-full="{{ img_marble }}?width=1100" aria-label="NMN+ on a sunlit marble counter with a glass of water">
-          <img src="{{ img_marble }}?width=240" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="240" height="240">
-        </button>
+      <div class="gal-dots" id="galDots">
+        <button type="button" class="dot active" aria-label="Go to image 1"></button>
+        <button type="button" class="dot" aria-label="Go to image 2"></button>
+        <button type="button" class="dot" aria-label="Go to image 3"></button>
+        <button type="button" class="dot" aria-label="Go to image 4"></button>
+        <button type="button" class="dot" aria-label="Go to image 5"></button>
       </div>
     </div>
 
@@ -287,11 +317,41 @@
 
       <p class="desc">A daily NAD⁺ precursor — seven fully disclosed actives, each dosed to the levels used in published research, with every ingredient printed on the label.*</p>
 
-      <div class="price-row">
-        <span class="price">{% if has_product %}{{ product.price | money }}{% else %}$34.99{% endif %}</span>
-        <span class="bestseller">Bestseller</span>
+      <div class="freq">
+        <div class="freq-label">Frequency</div>
+        <label class="opt selected" data-selling-plan="{{ sub_plan_id }}" data-price="{{ sub_price | money }}">
+          <input type="radio" name="nmn-freq" value="sub" checked>
+          <span class="radio"></span>
+          <div class="opt-main">
+            <div class="opt-t">Subscribe &amp; Save</div>
+            <div class="opt-s">Delivery every 30 days</div>
+          </div>
+          <div class="opt-p">
+            <div class="now">{{ sub_price | money }}<span class="mo">/mo</span></div>
+            <div class="was">{{ product.price | money }}</div>
+            <div class="perday">{{ sub_price | divided_by: 30.0 | money }} per day</div>
+          </div>
+          <ul class="opt-benes">
+            <li>Best price — save 10% on every order</li>
+            <li>Delivered every 30 days</li>
+            <li>Pause, skip, or cancel anytime</li>
+            <li>Never run out</li>
+          </ul>
+          <span class="save-pill">Save 10%</span>
+        </label>
+        <label class="opt" data-selling-plan="" data-price="{{ product.price | money }}">
+          <input type="radio" name="nmn-freq" value="once">
+          <span class="radio"></span>
+          <div class="opt-main">
+            <div class="opt-t">Buy Once</div>
+            <div class="opt-s">One-time purchase</div>
+          </div>
+          <div class="opt-p">
+            <div class="now">{{ product.price | money }}</div>
+            <div class="perday">{{ product.price | divided_by: 30.0 | money }} per day</div>
+          </div>
+        </label>
       </div>
-      <p class="subline">60 capsules · a 1-month supply, delivered monthly. Pause or cancel anytime.</p>
 
       {%- if has_product -%}
         <product-form-component
@@ -305,10 +365,11 @@
           <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
           {%- form 'product', product, id: 'nmn-atc-hero', data-type: 'add-to-cart-form', class: 'nmn-form' -%}
             <input type="hidden" name="id" ref="variantId" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="selling_plan" id="nmnSellingPlan" value="{{ sub_plan_id }}">
             <span class="product-form-text__error hidden" ref="addToCartTextError"></span>
             <add-to-cart-component ref="addToCartButtonContainer" data-add-to-cart-animation="false">
               <button type="submit" name="add" class="cta" ref="addToCartButton" on:click="/handleClick"{% unless product.available %} disabled{% endunless %}>
-                {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
+                {% if product.available %}Add to Cart — <span id="ctaPrice">{{ sub_price | money }}</span>{% else %}Sold Out{% endif %}
               </button>
             </add-to-cart-component>
           {%- endform -%}
@@ -658,16 +719,42 @@
     },{threshold:0.12});
     root.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-    var main=root.querySelector('#galMain');
-    root.querySelectorAll('.thumb').forEach(function(t){
-      t.addEventListener('click', function(){
-        if(!main) return;
-        var full=t.getAttribute('data-full');
-        if(full){ main.setAttribute('src', full); main.removeAttribute('srcset'); }
-        root.querySelectorAll('.thumb').forEach(function(x){ x.classList.remove('active'); });
-        t.classList.add('active');
+    // gallery swipe slider + dots
+    var slider=root.querySelector('#galSlider');
+    var dots=root.querySelectorAll('#galDots .dot');
+    if(slider && dots.length){
+      var step=function(){ var s=slider.querySelector('.slide'); return s ? s.getBoundingClientRect().width + 12 : slider.clientWidth; };
+      var raf;
+      slider.addEventListener('scroll', function(){
+        if(raf) return;
+        raf=requestAnimationFrame(function(){
+          raf=null;
+          var i=Math.round(slider.scrollLeft / step());
+          if(i<0) i=0; if(i>dots.length-1) i=dots.length-1;
+          dots.forEach(function(d,idx){ d.classList.toggle('active', idx===i); });
+        });
+      }, {passive:true});
+      dots.forEach(function(d,idx){
+        d.addEventListener('click', function(){ slider.scrollTo({ left: idx*step(), behavior:'smooth' }); });
       });
-    });
+    }
+
+    // frequency / subscription selector
+    var freq=root.querySelector('.freq');
+    if(freq){
+      var opts=freq.querySelectorAll('.opt');
+      var planInput=root.querySelector('#nmnSellingPlan');
+      var ctaPrice=root.querySelector('#ctaPrice');
+      opts.forEach(function(o){
+        o.addEventListener('click', function(){
+          opts.forEach(function(x){ x.classList.remove('selected'); var ri=x.querySelector('input'); if(ri) ri.checked=false; });
+          o.classList.add('selected');
+          var r=o.querySelector('input'); if(r) r.checked=true;
+          if(planInput) planInput.value = o.getAttribute('data-selling-plan') || '';
+          if(ctaPrice) ctaPrice.textContent = o.getAttribute('data-price') || '';
+        });
+      });
+    }
   }
   initPDP();
   document.addEventListener('DOMContentLoaded', initPDP);
