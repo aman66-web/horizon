@@ -132,6 +132,20 @@
 .sigma-pdp .checks li{display:flex; gap:12px; font-size:14.5px; line-height:1.5; color:var(--ink);}
 .sigma-pdp .checks li.hl{display:block;}
 .sigma-pdp .checks li .tick{flex-shrink:0; width:19px; height:19px; border-radius:50%; border:1.5px solid var(--teal-mid); color:var(--teal-mid); display:flex; align-items:center; justify-content:center; font-size:11px; margin-top:1px;}
+/* Buy-box accordion tabs (Benefits / Ingredients) */
+.sigma-pdp .acc-tabs{margin-top:28px; border-top:1px solid var(--line);}
+.sigma-pdp .tab{border-bottom:1px solid var(--line);}
+.sigma-pdp .tab summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:14px; padding:18px 0; font-size:16px; font-weight:600; color:var(--teal-deep);}
+.sigma-pdp .tab summary::-webkit-details-marker{display:none;}
+.sigma-pdp .tab summary .pm{font-family:'IBM Plex Mono',monospace; color:var(--teal-mid); font-size:20px; font-weight:400; transition:transform .22s;}
+.sigma-pdp .tab[open] summary .pm{transform:rotate(45deg);}
+.sigma-pdp .tab ul{list-style:none; padding:0 0 20px; display:flex; flex-direction:column; gap:11px;}
+.sigma-pdp .tab-benes li{display:flex; gap:11px; font-size:14px; color:var(--ink-soft); line-height:1.5;}
+.sigma-pdp .tab-benes li::before{content:'✓'; color:var(--teal-mid); flex-shrink:0;}
+.sigma-pdp .tab-ings li{display:flex; justify-content:space-between; gap:16px; font-size:14px; color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:10px;}
+.sigma-pdp .tab-ings li:last-child{border-bottom:none; padding-bottom:0;}
+.sigma-pdp .tab-ings .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze); white-space:nowrap;}
+.sigma-pdp .tab-note{font-size:12.5px; color:var(--ink-faint); line-height:1.6; padding-bottom:20px;}
 @media(max-width:880px){
   .sigma-pdp .hero-grid{grid-template-columns:1fr; gap:32px;}
   .sigma-pdp .buybox{position:static;}
@@ -386,13 +400,30 @@
       </div>
       <div class="guarantee">Free US shipping over $60 · Cancel anytime</div>
 
-      <ul class="checks">
-        <li class="hl"><span class="h">Benefits<sup>*</sup></span></li>
-        <li><span class="tick">✓</span>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li>
-        <li><span class="tick">✓</span>Every ingredient disclosed in full — no proprietary blends.</li>
-        <li><span class="tick">✓</span>Dosed to the levels used in published NMN research.</li>
-        <li><span class="tick">✓</span>No hidden fillers — nothing you can’t see on the label.</li>
-      </ul>
+      <div class="acc-tabs">
+        <details class="tab" open>
+          <summary>Benefits<sup>*</sup> <span class="pm" aria-hidden="true">+</span></summary>
+          <ul class="tab-benes">
+            <li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li>
+            <li>Every ingredient disclosed in full — no proprietary blends.</li>
+            <li>Dosed to the levels used in published NMN research.</li>
+            <li>No hidden fillers — nothing you can’t see on the label.</li>
+          </ul>
+        </details>
+        <details class="tab">
+          <summary>Ingredients <span class="pm" aria-hidden="true">+</span></summary>
+          <ul class="tab-ings">
+            <li><span>Nicotinamide Mononucleotide (NMN)</span><span class="dose">500 mg</span></li>
+            <li><span>Trans-Resveratrol</span><span class="dose">150 mg</span></li>
+            <li><span>Quercetin</span><span class="dose">100 mg</span></li>
+            <li><span>Vitamin B6 (as Pyridoxal-5-Phosphate)</span><span class="dose">20 mg</span></li>
+            <li><span>Vitamin B12 (as Methylcobalamin)</span><span class="dose">400 mcg</span></li>
+            <li><span>Folate (as L-Methylfolate)</span><span class="dose">400 mcg DFE</span></li>
+            <li><span>Black Pepper Extract (BioPerine)</span><span class="dose">5 mg</span></li>
+          </ul>
+          <p class="tab-note">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule). Every dose is printed in full on the label.</p>
+        </details>
+      </div>
     </div>
   </div>
 </section>
