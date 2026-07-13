@@ -176,9 +176,11 @@
 .sigma-pdp .tab ul{list-style:none; padding:0 0 20px; display:flex; flex-direction:column; gap:11px;}
 .sigma-pdp .tab-benes li{display:flex; gap:11px; font-size:14px; color:var(--ink-soft); line-height:1.5;}
 .sigma-pdp .tab-benes li::before{content:'✓'; color:var(--teal-mid); flex-shrink:0;}
-.sigma-pdp .tab-ings li{display:flex; justify-content:space-between; gap:16px; font-size:14px; color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:10px;}
+.sigma-pdp .tab-ings li{display:flex; align-items:baseline; gap:12px; font-size:14px; color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:10px;}
 .sigma-pdp .tab-ings li:last-child{border-bottom:none; padding-bottom:0;}
-.sigma-pdp .tab-ings .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze); white-space:nowrap;}
+.sigma-pdp .tab-ings .nm{flex:1; line-height:1.4;}
+.sigma-pdp .tab-ings .pur{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--bronze); opacity:0.72; white-space:nowrap;}
+.sigma-pdp .tab-ings .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze); text-align:right;}
 .sigma-pdp .tab-note{font-size:12.5px; color:var(--ink-faint); line-height:1.6; padding-bottom:20px;}
 @media(max-width:880px){
   .sigma-pdp .hero-grid{grid-template-columns:1fr; row-gap:14px;}
@@ -518,8 +520,8 @@
       <div class="guarantee">Free US shipping over $60 · Cancel anytime</div>
 
       <div class="acc-tabs">
-        <details class="tab" open>
-          <summary>Benefits<sup>*</sup> <span class="pm" aria-hidden="true">+</span></summary>
+        <details class="tab">
+          <summary>Benefits <span class="pm" aria-hidden="true">+</span></summary>
           <ul class="tab-benes">
             <li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li>
             <li>Every ingredient disclosed in full — no proprietary blends.</li>
@@ -530,13 +532,13 @@
         <details class="tab">
           <summary>Ingredients <span class="pm" aria-hidden="true">+</span></summary>
           <ul class="tab-ings">
-            <li><span>Nicotinamide Mononucleotide (NMN)</span><span class="dose">500 mg</span></li>
-            <li><span>Trans-Resveratrol</span><span class="dose">150 mg</span></li>
-            <li><span>Quercetin</span><span class="dose">100 mg</span></li>
-            <li><span>Vitamin B6 (as Pyridoxal-5-Phosphate)</span><span class="dose">20 mg</span></li>
-            <li><span>Vitamin B12 (as Methylcobalamin)</span><span class="dose">400 mcg</span></li>
-            <li><span>Folate (as L-Methylfolate)</span><span class="dose">400 mcg DFE</span></li>
-            <li><span>Black Pepper Extract (BioPerine)</span><span class="dose">5 mg</span></li>
+            <li><span class="nm">Beta-Nicotinamide Mononucleotide (NMN), UTHEVER®</span><span class="pur">99%</span><span class="dose">500 mg</span></li>
+            <li><span class="nm">Trans-Resveratrol (from Polygonum cuspidatum / knotweed root extract)</span><span class="pur">99%</span><span class="dose">150 mg</span></li>
+            <li><span class="nm">Vitamin B6 (P-5-P, pyridoxal-5′-phosphate)</span><span class="dose">20 mg</span></li>
+            <li><span class="nm">Vitamin B12 (methylcobalamin)</span><span class="pur">99%</span><span class="dose">400 mcg (0.4 mg)</span></li>
+            <li><span class="nm">Quercetin</span><span class="dose">100 mg</span></li>
+            <li><span class="nm">Methylated folate (L-5-MTHF)</span><span class="dose">400 mcg DFE (0.236 mg)</span></li>
+            <li><span class="nm">BioPerine® black pepper extract (standardized to 95% piperine)</span><span class="pur">95%</span><span class="dose">5 mg</span></li>
           </ul>
           <p class="tab-note">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule). Every dose is printed in full on the label.</p>
         </details>
