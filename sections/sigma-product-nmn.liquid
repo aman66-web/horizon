@@ -3,7 +3,7 @@
   Renders on the product.nmn template as the ONLY section, so it owns the
   whole page: a two-column hero (gallery + sticky buy box with a working
   add-to-cart form using the live product) followed by full-bleed
-  alternating cream (#F7F5EC) / deep-teal (#0D3D3E) bands, with real
+  alternating bone (#EDE7DA) / deep-teal (#0D3D3E) bands, with real
   product imagery woven through nearly every band (Seed-style).
 
   Design system reused from sections/sigma-homepage.liquid:
@@ -19,7 +19,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 .sigma-pdp{
-  --bone:#EDE7DA; --cream:#F7F5EC; --cream-card:#ffffff;
+  --bone:#EDE7DA; --cream:#EDE7DA; --cream-card:#ffffff;
   --ink:#17302D; --ink-soft:rgba(23,48,45,0.66); --ink-faint:rgba(23,48,45,0.42);
   --teal-deep:#0D3D3E; --teal:#14514F; --teal-mid:#3B7C77; --teal-frost:#D9E5E1;
   --green-band:#0D3D3E;
@@ -988,7 +988,7 @@
         for(var b=0;b<bands.length;b++){ var r=bands[b].getBoundingClientRect(); if(r.top<=y && r.bottom>=y) return bands[b]; }
         return null;
       }
-      function bandColor(b){ return !b ? '#F7F5EC' : (b.classList.contains('green') ? '#0D3D3E' : (b.classList.contains('hero') ? '#EDE7DA' : '#F7F5EC')); }
+      function bandColor(b){ return (b && b.classList.contains('green')) ? '#0D3D3E' : '#EDE7DA'; }
       // build a gradient so each part of the line contrasts the band it crosses
       function segGrad(topY, botY, dim){
         var h=botY-topY; if(h<=1) return null;
