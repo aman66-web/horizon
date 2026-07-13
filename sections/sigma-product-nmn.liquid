@@ -32,7 +32,8 @@
 .sigma-pdp h1,.sigma-pdp h2,.sigma-pdp h3,.sigma-pdp h4{font-family:'Fraunces',serif; font-weight:400; letter-spacing:-0.015em; color:var(--ink);}
 .sigma-pdp a{color:inherit; text-decoration:none;}
 .sigma-pdp sup{font-size:0.58em; vertical-align:super; color:var(--bronze); font-family:'IBM Plex Mono',monospace;}
-.sigma-pdp .wrap{max-width:1200px; margin:0 auto; padding:0 40px;}
+.sigma-pdp .wrap{max-width:1200px; margin:0 auto; padding:0 66px 0 40px;}
+@media(max-width:560px){.sigma-pdp .wrap{padding:0 58px 0 22px;}}
 .sigma-pdp .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px;}
 .sigma-pdp .eyebrow::before{content:'●'; font-size:7px; transform:translateY(-1px);}
 .sigma-pdp .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
@@ -50,19 +51,16 @@
 .sigma-pdp .band.green{background:var(--green-band); color:var(--dark-fg);}
 .sigma-pdp .band.green + .band.green{border-top:1px solid var(--line-light);}
 
-/* ---------- left scroll-progress rail ---------- */
-.sigma-pdp .pdp-rail{position:fixed; left:12px; top:50%; transform:translateY(-50%); z-index:40; height:min(440px,66vh); display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; padding:14px 0;}
-.sigma-pdp .pdp-rail::before{content:''; position:absolute; left:-3px; top:0; bottom:0; width:32px; background:rgba(247,245,236,0.62); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(23,48,45,0.08); border-radius:100px; z-index:-1;}
-.sigma-pdp .rail-track{position:absolute; left:12px; top:22px; bottom:22px; width:2px; background:rgba(23,48,45,0.18); border-radius:2px;}
-.sigma-pdp .rail-fill{position:absolute; left:12px; top:22px; width:2px; height:0; background:var(--teal-deep); border-radius:2px; transition:height .55s cubic-bezier(.4,0,.2,1);}
-.sigma-pdp .rail-node{position:relative; z-index:1; display:flex; align-items:center; gap:10px; background:none; border:none; padding:0; cursor:pointer;}
-.sigma-pdp .rail-node .rn{width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(23,48,45,0.28); background:#fff; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:12px; display:flex; align-items:center; justify-content:center; transition:transform .3s, background .3s, color .3s, border-color .3s, box-shadow .3s;}
-.sigma-pdp .rail-node .rl{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-deep); background:#fff; padding:4px 9px; border-radius:100px; white-space:nowrap; box-shadow:0 3px 12px rgba(13,61,62,0.14); opacity:0; transform:translateX(-6px); transition:opacity .3s, transform .3s; pointer-events:none;}
-.sigma-pdp .rail-node.is-active .rn{background:var(--teal-deep); border-color:var(--teal-deep); color:#fff; transform:scale(1.14); box-shadow:0 0 0 5px rgba(13,61,62,0.12);}
-.sigma-pdp .rail-node.is-active .rl{opacity:1; transform:none;}
-@media (hover:hover){.sigma-pdp .rail-node:hover .rl{opacity:1; transform:none;}}
-@media (max-width:900px){.sigma-pdp .rail-node .rl{display:none;}}
-@media (max-width:560px){.sigma-pdp .pdp-rail{left:7px; height:62vh; padding:10px 0;} .sigma-pdp .rail-node .rn{width:22px; height:22px; font-size:11px;} .sigma-pdp .rail-track,.sigma-pdp .rail-fill{left:10px;} .sigma-pdp .pdp-rail::before{width:28px; left:-3px;}}
+/* ---------- right scroll-progress rail ---------- */
+.sigma-pdp .pdp-rail{position:fixed; right:18px; top:50%; transform:translateY(-50%); z-index:40; height:min(470px,72vh); display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:16px 0;}
+.sigma-pdp .rail-track{position:absolute; left:50%; transform:translateX(-50%); top:28px; bottom:28px; width:2px; background:rgba(23,48,45,0.20); border-radius:2px;}
+.sigma-pdp .rail-fill{position:absolute; left:50%; transform:translateX(-50%); top:28px; width:2px; height:0; background:var(--teal-deep); border-radius:2px; transition:height .55s cubic-bezier(.4,0,.2,1);}
+.sigma-pdp .rail-node{position:relative; z-index:1; display:flex; justify-content:center; align-items:center; background:none; border:none; padding:0; cursor:pointer;}
+.sigma-pdp .rail-node .rn{width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(23,48,45,0.28); background:#fff; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:12px; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 5px rgba(13,61,62,0.14); transition:transform .3s, color .3s, border-color .3s, box-shadow .3s;}
+.sigma-pdp .rail-node .rl{position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:6px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.03em; text-transform:uppercase; color:var(--teal-deep); white-space:nowrap; text-align:center; transition:color .3s;}
+.sigma-pdp .rail-node.is-active .rn{border-color:var(--teal-deep); border-width:2px; color:var(--teal-deep); transform:scale(1.16); box-shadow:0 0 0 5px rgba(13,61,62,0.10), 0 2px 9px rgba(13,61,62,0.22);}
+.sigma-pdp .rail-node.is-active .rl{color:var(--teal-deep); font-weight:600;}
+@media (max-width:560px){.sigma-pdp .pdp-rail{right:12px; height:68vh; padding:12px 0;} .sigma-pdp .rail-node .rn{width:23px; height:23px; font-size:11px;} .sigma-pdp .rail-node .rl{font-size:8px;}}
 @media (prefers-reduced-motion:reduce){.sigma-pdp .rail-fill{transition:none;}}
 .sigma-pdp .band.green h2,.sigma-pdp .band.green h3,.sigma-pdp .band.green h4{color:var(--dark-fg);}
 .sigma-pdp .band.green .eyebrow{color:var(--bronze-light);}
@@ -373,12 +371,12 @@
 <nav class="pdp-rail" id="pdpRail" aria-label="Section progress">
   <span class="rail-track" aria-hidden="true"></span>
   <span class="rail-fill" id="railFill" aria-hidden="true"></span>
-  <button class="rail-node is-active" type="button" data-target="nmn-top" aria-label="Our product"><span class="rn">1</span><span class="rl">Our Product</span></button>
+  <button class="rail-node is-active" type="button" data-target="nmn-top" aria-label="Our product"><span class="rn">1</span><span class="rl">Product</span></button>
   <button class="rail-node" type="button" data-target="why-nmn" aria-label="Why NMN+"><span class="rn">2</span><span class="rl">Why NMN+</span></button>
-  <button class="rail-node" type="button" data-target="how-it-works" aria-label="The science"><span class="rn">3</span><span class="rl">The Science</span></button>
-  <button class="rail-node" type="button" data-target="nmn-formula" aria-label="The formula"><span class="rn">4</span><span class="rl">The Formula</span></button>
+  <button class="rail-node" type="button" data-target="how-it-works" aria-label="The science"><span class="rn">3</span><span class="rl">Science</span></button>
+  <button class="rail-node" type="button" data-target="nmn-formula" aria-label="The formula"><span class="rn">4</span><span class="rl">Formula</span></button>
   <button class="rail-node" type="button" data-target="tested" aria-label="Lab tested"><span class="rn">5</span><span class="rl">Lab-Tested</span></button>
-  <button class="rail-node" type="button" data-target="what-to-expect" aria-label="The ritual"><span class="rn">6</span><span class="rl">The Ritual</span></button>
+  <button class="rail-node" type="button" data-target="what-to-expect" aria-label="The ritual"><span class="rn">6</span><span class="rl">Ritual</span></button>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -959,7 +957,7 @@
         nodes.forEach(function(n,i){ n.classList.toggle('is-active', i===idx); });
         if(railFill && nodes[idx]){
           var n=nodes[idx];
-          railFill.style.height = Math.max(0, (n.offsetTop + n.offsetHeight/2) - 22) + 'px';
+          railFill.style.height = Math.max(0, (n.offsetTop + n.offsetHeight/2) - 28) + 'px';
         }
       }
       var ticking=false;
