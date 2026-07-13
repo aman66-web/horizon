@@ -247,10 +247,13 @@
 .sigma-pdp .fx-ill .cap-sub{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--bronze-light); margin-top:4px;}
 .sigma-pdp .readout{border:1px solid rgba(196,164,114,0.25); border-radius:8px; overflow:hidden; background:rgba(0,0,0,0.16);}
 .sigma-pdp .r-serve{padding:16px 26px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--dark-faint); border-bottom:1px solid var(--line-light); line-height:1.6;}
-.sigma-pdp .frow{display:flex; justify-content:space-between; align-items:baseline; gap:18px; padding:16px 26px; border-bottom:1px solid rgba(245,241,232,0.08);}
+.sigma-pdp .frow{display:grid; grid-template-columns:auto 1fr auto; align-items:start; gap:16px; padding:16px 26px; border-bottom:1px solid rgba(245,241,232,0.08);}
+.sigma-pdp .frow .fico{width:38px; height:38px; border:1.5px solid rgba(196,164,114,0.45); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;}
+.sigma-pdp .frow .fico svg{width:20px; height:20px; stroke:var(--bronze-light); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
 .sigma-pdp .frow .nm{font-size:15px; font-weight:500; color:var(--dark-fg);}
 .sigma-pdp .frow .note{display:block; font-weight:400; font-size:12.5px; color:var(--dark-soft); margin-top:4px; line-height:1.5; max-width:440px;}
-.sigma-pdp .frow .amt{white-space:nowrap; font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--bronze-light);}
+.sigma-pdp .frow .amt{white-space:nowrap; text-align:right; font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--bronze-light);}
+.sigma-pdp .frow .fpur{display:block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--dark-faint); margin-top:5px; letter-spacing:0.02em;}
 .sigma-pdp .r-other{padding:16px 26px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--dark-faint); line-height:1.6; border-bottom:1px solid rgba(245,241,232,0.08);}
 .sigma-pdp details.acc{border-bottom:1px solid rgba(245,241,232,0.08); padding:0 26px;}
 .sigma-pdp details.acc summary{cursor:pointer; display:flex; justify-content:space-between; gap:12px; font-family:'Fraunces',serif; font-size:16px; color:var(--dark-fg); list-style:none; padding:16px 0;}
@@ -262,7 +265,7 @@
 .sigma-pdp .pill{border:1px solid rgba(196,164,114,0.4); border-radius:100px; padding:7px 15px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--bronze-light);}
 @media(max-width:820px){.sigma-pdp .facts{grid-template-columns:1fr; gap:34px;}
   .sigma-pdp .fx-ill{position:static;}}
-@media(max-width:560px){.sigma-pdp .frow{flex-direction:column; gap:4px;}}
+@media(max-width:560px){.sigma-pdp .frow{gap:12px; padding:14px 16px;} .sigma-pdp .frow .fico{width:32px; height:32px;} .sigma-pdp .frow .fico svg{width:17px; height:17px;} .sigma-pdp .frow .note{max-width:none;}}
 
 /* ---------- COMPARISON ---------- */
 .sigma-pdp .ctable{max-width:840px; margin:0 auto; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--cream-card);}
@@ -296,7 +299,7 @@
 /* ---------- STANDARDS (cream) — split, faded bottle in background ---------- */
 .sigma-pdp .std-band{position:relative; overflow:hidden;}
 .sigma-pdp .std-bg{position:absolute; right:-30px; top:50%; transform:translateY(-50%); width:360px; max-width:38%; opacity:0.08; pointer-events:none; user-select:none;}
-.sigma-pdp .split{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; position:relative;}
+.sigma-pdp .split{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; position:relative; text-align:center;}
 .sigma-pdp .split h2{font-size:clamp(30px,3.8vw,48px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; margin-bottom:20px;}
 .sigma-pdp .split h2 em{font-style:italic; color:var(--teal-mid);}
 .sigma-pdp .split p{font-size:16.5px; line-height:1.68; color:var(--ink-soft);}
@@ -340,7 +343,7 @@
 .sigma-pdp .band.green .text-block p{color:var(--dark-soft);}
 .sigma-pdp .band.cream .text-block p{color:var(--ink-soft);}
 /* capsule-anatomy (text only) */
-.sigma-pdp .ca-head{max-width:640px; margin-bottom:44px;}
+.sigma-pdp .ca-head{max-width:640px; margin:0 auto 44px; text-align:center;}
 .sigma-pdp .ca-head h2{font-size:clamp(32px,5vw,54px); font-weight:300; line-height:1.05; letter-spacing:-0.025em; margin-bottom:18px;}
 .sigma-pdp .ca-head h2 em{font-style:italic; color:var(--bronze-light);}
 .sigma-pdp .ca-head p{font-size:16.5px; color:var(--dark-soft); line-height:1.68; margin-bottom:6px; max-width:460px;}
@@ -682,13 +685,13 @@
     <div class="facts-single reveal">
       <div class="readout">
         <div class="r-serve">Serving Size 2 capsules · Servings Per Container 30 · 60 capsules per bottle · 1-month supply</div>
-        <div class="frow"><span class="nm">β-Nicotinamide Mononucleotide (NMN)<span class="note">A direct NAD⁺ precursor — studied for its role in cellular energy metabolism.</span></span><span class="amt">500 mg</span></div>
-        <div class="frow"><span class="nm">Trans-Resveratrol<span class="note">A polyphenol studied for its role in supporting sirtuin activity.</span></span><span class="amt">150 mg</span></div>
-        <div class="frow"><span class="nm">Quercetin<span class="note">A plant flavonoid studied for its antioxidant properties.</span></span><span class="amt">100 mg</span></div>
-        <div class="frow"><span class="nm">Vitamin B6 (as Pyridoxal-5-Phosphate)<span class="note">The active (P5P) form of vitamin B6 — studied for its role in methylation and amino-acid metabolism.</span></span><span class="amt">20 mg</span></div>
-        <div class="frow"><span class="nm">Vitamin B12 (as Methylcobalamin)<span class="note">The methylated form of vitamin B12 — studied for its role in methylation metabolism.</span></span><span class="amt">400 mcg</span></div>
-        <div class="frow"><span class="nm">Folate (as L-Methylfolate)<span class="note">The bioavailable (L-methylfolate) form of folate — studied for its role in one-carbon metabolism.</span></span><span class="amt">400 mcg DFE</span></div>
-        <div class="frow"><span class="nm">Black Pepper Extract (BioPerine)<span class="note">A black-pepper extract studied for its role in supporting nutrient absorption.</span></span><span class="amt">5 mg</span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">β-Nicotinamide Mononucleotide (NMN)<span class="note">A direct NAD⁺ precursor — studied for its role in cellular energy metabolism.</span></span><span class="amt">500 mg<span class="fpur">99% pure · UTHEVER®</span></span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Trans-Resveratrol<span class="note">A polyphenol studied for its role in supporting sirtuin activity.</span></span><span class="amt">150 mg<span class="fpur">99% pure</span></span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Quercetin<span class="note">A plant flavonoid studied for its antioxidant properties.</span></span><span class="amt">100 mg</span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Vitamin B6 (as Pyridoxal-5-Phosphate)<span class="note">The active (P5P) form of vitamin B6 — studied for its role in methylation and amino-acid metabolism.</span></span><span class="amt">20 mg</span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Vitamin B12 (as Methylcobalamin)<span class="note">The methylated form of vitamin B12 — studied for its role in methylation metabolism.</span></span><span class="amt">400 mcg<span class="fpur">99% pure</span></span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Folate (as L-Methylfolate)<span class="note">The bioavailable (L-methylfolate) form of folate — studied for its role in one-carbon metabolism.</span></span><span class="amt">400 mcg DFE</span></div>
+        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Black Pepper Extract (BioPerine)<span class="note">A black-pepper extract studied for its role in supporting nutrient absorption.</span></span><span class="amt">5 mg<span class="fpur">95% piperine</span></span></div>
         <div class="r-other">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule).</div>
         <details class="acc">
           <summary>About NMN <span class="pm" aria-hidden="true">+</span></summary>
