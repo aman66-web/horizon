@@ -47,6 +47,8 @@
 /* ---------- full-width bands ---------- */
 .sigma-pdp .band{padding:56px 0;}
 @media(max-width:700px){.sigma-pdp .band{padding:38px 0;}}
+/* leave room for the sticky theme header when a rail node / anchor scrolls to a section */
+.sigma-pdp .hero,.sigma-pdp .band,.sigma-pdp [id]{scroll-margin-top:calc(var(--header-height, 80px) + 14px);}
 .sigma-pdp .band.cream{background:var(--cream); border-top:1px solid var(--line);}
 .sigma-pdp .band.green{background:var(--green-band); color:var(--dark-fg);}
 .sigma-pdp .band.green + .band.green{border-top:1px solid var(--line-light);}
