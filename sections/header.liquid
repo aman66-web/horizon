@@ -1174,9 +1174,9 @@
     background: #0d3d3e;
     color: #ede7da;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1;
-    padding: 10px 22px;
+    padding: 14px 30px;
     border-radius: 100px;
     white-space: nowrap;
     text-decoration: none;
@@ -1186,6 +1186,14 @@
   #header-component .header-cta:hover {
     background: #14514f;
     color: #ede7da;
+  }
+
+  /* Frosted-glass sticky header (Seed-style): let content show through, blurred */
+  #header-component .header__underlay-closed,
+  #header-component .header__underlay-open {
+    background: rgba(253, 252, 247, 0.7) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    backdrop-filter: blur(16px) saturate(1.3);
   }
 
   /* Drop the account + cart icons so only the CTA remains in the actions cluster */
@@ -1225,8 +1233,8 @@
     }
 
     #header-component .header-cta {
-      padding: 8px 18px;
-      font-size: 0.8125rem;
+      padding: 13px 26px;
+      font-size: 0.95rem;
     }
   }
 {% endstylesheet %}
