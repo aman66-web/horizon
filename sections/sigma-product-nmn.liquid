@@ -92,9 +92,17 @@
 
 /* ---------- HERO ---------- */
 .sigma-pdp .hero{padding:16px 0 44px;}
-.sigma-pdp .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:start;}
+.sigma-pdp .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; column-gap:64px; row-gap:0; align-items:start;}
+.sigma-pdp .product-head{grid-column:1 / -1; margin-bottom:26px;}
+.sigma-pdp .gallery{position:relative;}
+.sigma-pdp .gal-viewport{position:relative;}
 .sigma-pdp .gal-slider{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
 .sigma-pdp .gal-slider::-webkit-scrollbar{display:none;}
+.sigma-pdp .gal-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:3; width:46px; height:46px; border-radius:50%; border:1px solid rgba(13,61,62,0.10); background:rgba(255,255,255,0.94); color:var(--teal-deep); font-size:26px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 5px 16px rgba(13,61,62,0.18); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); transition:background .2s, transform .15s, box-shadow .2s;}
+.sigma-pdp .gal-arrow:hover{background:#fff; box-shadow:0 6px 20px rgba(13,61,62,0.24);}
+.sigma-pdp .gal-arrow:active{transform:translateY(-50%) scale(0.9);}
+.sigma-pdp .gal-arrow.prev{left:12px; padding-right:2px;}
+.sigma-pdp .gal-arrow.next{right:12px; padding-left:2px;}
 .sigma-pdp .slide{flex:0 0 calc(100% - 36px); scroll-snap-align:start; aspect-ratio:1/1; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--cream);}
 .sigma-pdp .slide:last-child{flex-basis:100%;}
 .sigma-pdp .slide img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -104,7 +112,7 @@
 .sigma-pdp .buybox{position:sticky; top:20px;}
 .sigma-pdp .title-row{display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
 .sigma-pdp .pill-badge{font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--teal-deep); border:1.5px solid var(--teal-deep); border-radius:100px; padding:5px 15px; white-space:nowrap;}
-.sigma-pdp .buybox h1{font-family:'Inter',sans-serif; font-size:clamp(30px,4.6vw,45px); line-height:1.04; font-weight:600; letter-spacing:-0.02em; color:var(--teal-deep); margin:0;}
+.sigma-pdp .product-head h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-size:clamp(36px,5.6vw,56px); line-height:1.0; font-weight:500; letter-spacing:-0.02em; color:var(--teal-deep); margin:0;}
 .sigma-pdp .rating{display:flex; align-items:center; gap:12px; margin-top:16px;}
 .sigma-pdp .rating .stars{color:var(--teal-deep); font-size:18px; letter-spacing:3px; line-height:1;}
 .sigma-pdp .rating .rcount{font-size:15px; color:var(--teal-deep); font-weight:500; text-decoration:underline; text-underline-offset:3px;}
@@ -166,8 +174,12 @@
 .sigma-pdp .tab-ings .dose{font-family:'IBM Plex Mono',monospace; color:var(--bronze); white-space:nowrap;}
 .sigma-pdp .tab-note{font-size:12.5px; color:var(--ink-faint); line-height:1.6; padding-bottom:20px;}
 @media(max-width:880px){
-  .sigma-pdp .hero-grid{grid-template-columns:1fr; gap:22px;}
+  .sigma-pdp .hero-grid{grid-template-columns:1fr; row-gap:22px;}
+  .sigma-pdp .product-head{margin-bottom:2px;}
   .sigma-pdp .buybox{position:static;}
+  .sigma-pdp .gal-arrow{width:40px; height:40px; font-size:23px;}
+  .sigma-pdp .gal-arrow.prev{left:8px;}
+  .sigma-pdp .gal-arrow.next{right:8px;}
 }
 
 /* ---------- BENEFIT TILES ---------- */
@@ -387,8 +399,21 @@
 <section class="hero" id="nmn-top">
   <div class="wrap hero-grid">
 
-    <!-- LEFT: product gallery — swipe-across slider (front glow → hand → spill → capsule → marble) -->
+    <!-- TOP: product title + rating, above the gallery (AG1-style) -->
+    <div class="product-head reveal">
+      <div class="title-row">
+        <span class="pill-badge">NMN+</span>
+        <h1>{% if has_product %}{{ product.title | remove_first: 'NMN+' | strip }}{% else %}Daily Longevity{% endif %}</h1>
+      </div>
+      <div class="rating" id="nmn-reviews">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <a href="#nmn-reviews" class="rcount">1473 Reviews</a>
+      </div>
+    </div>
+
+    <!-- LEFT: product gallery — swipe-across slider with clear arrow controls -->
     <div class="gallery reveal">
+      <div class="gal-viewport">
       <div class="gal-slider" id="galSlider">
         <div class="slide"><img src="{{ img_bottle_plain }}?width=1100" alt="NMN+ Daily Longevity bottle, front view" loading="eager" width="1100" height="1100"></div>
         <div class="slide"><img src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="lazy" width="1100" height="1100"></div>
@@ -396,6 +421,9 @@
         <div class="slide"><img src="{{ img_spill }}?width=1100" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="1100" height="1100"></div>
         <div class="slide"><img src="{{ img_capsule }}?width=1100" alt="A single NMN+ capsule on a dark background" loading="lazy" width="1100" height="1100"></div>
         <div class="slide"><img src="{{ img_marble }}?width=1100" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="1100" height="1100"></div>
+      </div>
+        <button type="button" class="gal-arrow prev" id="galPrev" aria-label="Previous image">&#8249;</button>
+        <button type="button" class="gal-arrow next" id="galNext" aria-label="Next image">&#8250;</button>
       </div>
       <div class="gal-dots" id="galDots">
         <button type="button" class="dot active" aria-label="Go to image 1"></button>
@@ -409,16 +437,6 @@
 
     <!-- RIGHT: sticky buy box -->
     <div class="buybox reveal">
-      <div class="title-row">
-        <span class="pill-badge">NMN+</span>
-        <h1>{% if has_product %}{{ product.title | remove_first: 'NMN+' | strip }}{% else %}Daily Longevity{% endif %}</h1>
-      </div>
-
-      <div class="rating" id="nmn-reviews">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <a href="#nmn-reviews" class="rcount">1473 Reviews</a>
-      </div>
-
       <p class="desc">A daily NAD⁺ precursor — seven fully disclosed actives, each dosed to the levels used in published research, with every ingredient printed on the label.*</p>
 
       <div class="freq">
@@ -929,6 +947,14 @@
       dots.forEach(function(d,idx){
         d.addEventListener('click', function(){ slider.scrollTo({ left: idx*step(), behavior:'smooth' }); });
       });
+      var go=function(dir){
+        var n=dots.length, cur=Math.round(slider.scrollLeft/step());
+        var next=(cur+dir+n)%n;
+        slider.scrollTo({ left: next*step(), behavior:'smooth' });
+      };
+      var prevBtn=root.querySelector('#galPrev'), nextBtn=root.querySelector('#galNext');
+      if(prevBtn) prevBtn.addEventListener('click', function(){ go(-1); });
+      if(nextBtn) nextBtn.addEventListener('click', function(){ go(1); });
     }
 
     // frequency / subscription selector
