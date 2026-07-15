@@ -18,11 +18,20 @@
       , {{ powered_by_link }}
     {%- endif -%}
   </span>
+  <span class="footer-utilities__text footer-utilities__legal">
+    AURORELLE ECOM, LLC &middot; 255 S. Orange Ave, 104 #1558, Orlando, FL 32801, USA
+  </span>
 </div>
 
 {% stylesheet %}
   .footer-utilities__group-copyright {
     color: var(--color-utilities, var(--color-foreground-muted));
+  }
+  .footer-utilities__legal {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75em;
+    opacity: 0.8;
   }
 {% endstylesheet %}
 
