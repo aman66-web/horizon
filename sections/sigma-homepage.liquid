@@ -91,7 +91,7 @@
 .sigma-home .thesis-lede{font-size:17px; line-height:1.7; color:var(--ink-soft); max-width:660px;}
 .sigma-home .thesis-lede strong{color:var(--ink); font-weight:600;}
 .sigma-home .prob-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-.sigma-home .prob-dots{display:none; justify-content:center; gap:9px; margin-top:22px;}
+.sigma-home .prob-dots,.sigma-home .mech-dots{display:none; justify-content:center; gap:9px; margin-top:22px;}
 .sigma-home .pdot{width:8px; height:8px; padding:0; border:none; border-radius:5px; background:var(--ink-faint); opacity:0.35; cursor:pointer; transition:opacity .2s, width .2s, background .2s;}
 .sigma-home .pdot.is-active{opacity:1; width:22px; background:var(--teal);}
 .sigma-home .prob-card{background:var(--bone-card); border:1px solid var(--line); border-radius:6px; padding:28px 26px;}
@@ -196,8 +196,8 @@
 .sigma-home .philo .big{font-size:clamp(40px,6vw,80px); font-weight:300; line-height:1.02; letter-spacing:-0.03em; max-width:900px; margin:22px auto 26px;}
 .sigma-home .philo .big em{font-style:italic; color:var(--teal-mid);}
 .sigma-home .philo p{max-width:540px; margin:0 auto; font-size:17px; line-height:1.68; color:var(--ink-soft);}
-.sigma-home .philo-media{max-width:540px; margin:44px auto 0; border-radius:16px; overflow:hidden; aspect-ratio:4/5;}
-.sigma-home .philo-media img{width:100%; height:100%; object-fit:cover; object-position:14% center; display:block;}
+.sigma-home .philo-media{max-width:500px; margin:44px auto 0; border-radius:16px; overflow:hidden; aspect-ratio:3/4;}
+.sigma-home .philo-media img{width:100%; height:100%; object-fit:cover; object-position:5% center; display:block;}
 .sigma-home /* MECHANISM */
   .mech{padding:0 0 60px;}
 .sigma-home .section-head{max-width:600px; margin-bottom:60px;}
@@ -219,9 +219,13 @@
 .sigma-home .mech-card .idx{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--bronze); margin-bottom:60px; letter-spacing:0.06em; display:block;}
 .sigma-home .mech-card h3{font-size:23px; margin-bottom:14px; font-weight:400;}
 .sigma-home .mech-card p{font-size:14.5px; color:var(--ink-soft); line-height:1.62;}
-@media(max-width:880px){.sigma-home .mech-row{grid-template-columns:1fr;}
-.sigma-home .mech-card{border-right:none; border-bottom:1px solid var(--line);}
-.sigma-home .mech-card .idx{margin-bottom:22px;}}
+@media(max-width:880px){
+  .sigma-home .mech-row{display:flex; grid-template-columns:none; border-top:none; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px;}
+  .sigma-home .mech-row::-webkit-scrollbar{display:none;}
+  .sigma-home .mech-card{flex:0 0 80%; scroll-snap-align:start; border:1px solid var(--line); border-radius:8px; padding:28px 24px 32px;}
+  .sigma-home .mech-card .idx{margin-bottom:26px;}
+  .sigma-home .mech-dots{display:flex;}
+}
 .sigma-home /* FORMULA */
   .formula{background:var(--bone-light); border-top:1px solid var(--line); padding:60px 0;}
 .sigma-home .readout{background:var(--teal-deep); border-radius:6px; overflow:hidden; border:1px solid rgba(196,164,114,0.25);}
@@ -508,7 +512,7 @@
       <span class="eyebrow">How It Works</span>
       <h2>From capsule to cell, in three conversions.</h2>
     </div>
-    <div class="mech-row reveal">
+    <div class="mech-row reveal" id="mechRow">
       <div class="mech-card">
         <span class="idx">01 / INGEST</span>
         <h3>NMN enters circulation</h3>
@@ -524,6 +528,11 @@
         <h3>Sirtuins engage</h3>
         <p>Restored NAD⁺ availability supports sirtuin activity — proteins tied to cellular resilience and healthy-aging pathways.</p>
       </div>
+    </div>
+    <div class="mech-dots" id="mechDots">
+      <button class="pdot is-active" type="button" aria-label="Show step 1"></button>
+      <button class="pdot" type="button" aria-label="Show step 2"></button>
+      <button class="pdot" type="button" aria-label="Show step 3"></button>
     </div>
   </div>
 </section>
@@ -868,21 +877,23 @@ function initSigma(){
     onScroll();
   })();
 
-  // Longevity problem cards — mobile swipe carousel dot sync
+  // Mobile swipe carousels (Longevity problem cards + How-it-works steps)
   (function(){
-    var grid=document.getElementById('probGrid');
-    var dotsWrap=document.getElementById('probDots');
-    if(!grid||!dotsWrap||grid.dataset.carousel) return;
-    grid.dataset.carousel='1';
-    var cards=[].slice.call(grid.querySelectorAll('.prob-card'));
-    var dots=[].slice.call(dotsWrap.querySelectorAll('.pdot'));
-    dots.forEach(function(d,i){ d.addEventListener('click', function(){ if(cards[i]) cards[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'}); }); });
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ var idx=cards.indexOf(e.target); if(idx>-1) dots.forEach(function(d,i){ d.classList.toggle('is-active', i===idx); }); } });
-      }, {root:grid, threshold:0.6});
-      cards.forEach(function(c){ io.observe(c); });
+    function initCarousel(track, dotsWrap, cardSel){
+      if(!track||!dotsWrap||track.dataset.carousel) return;
+      track.dataset.carousel='1';
+      var cards=[].slice.call(track.querySelectorAll(cardSel));
+      var dots=[].slice.call(dotsWrap.querySelectorAll('.pdot'));
+      dots.forEach(function(d,i){ d.addEventListener('click', function(){ if(cards[i]) cards[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'}); }); });
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if(e.isIntersecting){ var idx=cards.indexOf(e.target); if(idx>-1) dots.forEach(function(d,i){ d.classList.toggle('is-active', i===idx); }); } });
+        }, {root:track, threshold:0.6});
+        cards.forEach(function(c){ io.observe(c); });
+      }
     }
+    initCarousel(document.getElementById('probGrid'), document.getElementById('probDots'), '.prob-card');
+    initCarousel(document.getElementById('mechRow'), document.getElementById('mechDots'), '.mech-card');
   })();
 }
 initSigma();
