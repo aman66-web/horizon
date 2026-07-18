@@ -51,33 +51,28 @@
 @media (max-width:560px){.sigma-home .home-rail{right:12px; height:68vh; padding:12px 0;} .sigma-home .rail-node .rn{width:23px; height:23px;} .sigma-home .rail-node .rn svg{width:12.5px; height:12.5px;} .sigma-home .rail-node .rl{font-size:8px;}}
 @media (prefers-reduced-motion:reduce){.sigma-home .rail-fill{transition:height 0s;}}
 .sigma-home #home-top,.sigma-home #longevity,.sigma-home #instrument,.sigma-home #formula,.sigma-home #proof,.sigma-home #pricing{scroll-margin-top:86px;}
-.sigma-home /* HERO */
-  .hero{padding:70px 0 56px; position:relative;}
-.sigma-home .hero-inner{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
-.sigma-home .hero h1{font-size:clamp(46px,5.8vw,78px); line-height:1.0; font-weight:300; margin:26px 0 26px; letter-spacing:-0.028em;}
-.sigma-home .hero h1 em{font-style:italic; color:var(--teal-mid);}
-.sigma-home .hero .lede{font-size:18px; line-height:1.62; color:var(--ink-soft); max-width:450px; margin-bottom:36px;}
-.sigma-home .btn-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
-.sigma-home .btn-primary{background:var(--ink); color:var(--bone); padding:16px 30px; font-size:14px; font-weight:500; border-radius:2px; transition:background .2s, transform .2s;}
-.sigma-home .btn-primary:hover{background:var(--teal-deep); transform:translateY(-1px);}
-.sigma-home .btn-ghost{border:1px solid var(--line); color:var(--ink); padding:15px 26px; font-size:14px; font-weight:500; border-radius:2px; transition:border-color .2s;}
-.sigma-home .btn-ghost:hover{border-color:var(--ink);}
-.sigma-home .hero-meta{display:flex; gap:32px; margin-top:40px; padding-top:26px; border-top:1px solid var(--line);}
-.sigma-home .hero-meta .stat{display:flex; flex-direction:column; gap:3px;}
-.sigma-home .hero-meta .stat .n{font-family:'Fraunces',serif; font-size:26px; color:var(--ink); font-weight:400;}
-.sigma-home .hero-meta .stat .l{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint);}
-.sigma-home .hero-visual{position:relative; display:flex; justify-content:center; align-items:flex-end; min-height:440px;}
-.sigma-home .hero-visual::after{content:''; position:absolute; bottom:5%; left:50%; transform:translateX(-50%); width:60%; height:26px; background:radial-gradient(ellipse, rgba(23,48,45,0.18), transparent 70%); filter:blur(6px); z-index:0;}
-.sigma-home .hero-visual img{width:100%; max-width:400px; position:relative; z-index:1; filter:drop-shadow(0 30px 45px rgba(13,61,62,0.22));}
-.sigma-home .spec-tag{position:absolute; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.05em; color:var(--ink-faint); z-index:2; text-align:left;}
-.sigma-home .spec-tag .val{color:var(--teal-mid); display:block; font-size:13px; margin-top:2px;}
-.sigma-home .spec-tag.t1{top:12%; right:0%;}
-.sigma-home .spec-tag.t2{bottom:22%; left:-2%;}
-.sigma-home .spec-tag .rule{display:inline-block; width:24px; height:1px; background:var(--line); vertical-align:middle; margin-right:8px;}
-@media(max-width:880px){.sigma-home .hero-inner{grid-template-columns:1fr; gap:28px;}
-.sigma-home .hero-visual{min-height:340px;}
-.sigma-home .spec-tag{display:none;}
-.sigma-home .hero-meta{gap:22px;}}
+.sigma-home /* HERO — full-bleed immersive image */
+  .hero{position:relative; min-height:92vh; display:flex; align-items:flex-start; justify-content:center; text-align:center; background:var(--teal-deep); overflow:hidden;}
+.sigma-home .hero-bg{position:absolute; inset:0; z-index:0;}
+.sigma-home .hero-bg img{width:100%; height:100%; object-fit:cover; object-position:center; display:block;}
+.sigma-home .hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(13,61,62,0.94) 0%, rgba(13,61,62,0.6) 20%, rgba(13,61,62,0.12) 42%, rgba(13,61,62,0.12) 64%, rgba(13,61,62,0.78) 100%);}
+.sigma-home .hero-content{position:relative; z-index:1; max-width:660px; padding:86px 24px 56px; color:var(--bone);}
+.sigma-home .hero-trust{display:inline-flex; align-items:center; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.09em; text-transform:uppercase; color:var(--bronze-light); margin-bottom:22px; flex-wrap:wrap; justify-content:center;}
+.sigma-home .hero-trust .dot{opacity:0.5;}
+.sigma-home .hero .eyebrow{color:var(--bronze-light); justify-content:center;}
+.sigma-home .hero .eyebrow::before{color:var(--bronze-light);}
+.sigma-home .hero h1{font-size:clamp(42px,7vw,74px); line-height:1.02; font-weight:300; margin:14px 0 14px; letter-spacing:-0.028em; color:var(--bone);}
+.sigma-home .hero .hero-punch{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:clamp(19px,2.7vw,27px); color:var(--bronze-light); margin-bottom:20px;}
+.sigma-home .hero .lede{font-size:16.5px; line-height:1.6; color:var(--dark-soft); max-width:480px; margin:0 auto 32px;}
+.sigma-home .btn-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;}
+.sigma-home .btn-primary{background:var(--bone); color:var(--teal-deep); padding:16px 32px; font-size:14px; font-weight:600; border-radius:100px; transition:background .2s, transform .2s;}
+.sigma-home .btn-primary:hover{background:#fff; transform:translateY(-1px);}
+.sigma-home .btn-ghost{border:1px solid rgba(237,231,218,0.4); color:var(--bone); padding:15px 26px; font-size:14px; font-weight:500; border-radius:100px; transition:border-color .2s, background .2s;}
+.sigma-home .btn-ghost:hover{border-color:var(--bone); background:rgba(237,231,218,0.08);}
+@media(max-width:880px){
+  .sigma-home .hero{min-height:94vh;}
+  .sigma-home .hero-content{padding:66px 20px 44px;}
+}
 .sigma-home /* THESIS */
   .thesis{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bone-light);}
 .sigma-home .thesis-inner{max-width:1200px; margin:0 auto; padding:34px 62px 34px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;}
@@ -286,28 +281,22 @@
 
 <!-- HERO -->
 <section class="hero" id="home-top">
-  <div class="wrap hero-inner">
-    <div class="reveal">
-      <span class="eyebrow">NMN+ · NAD⁺ Precursor</span>
-      <h1>{{ section.settings.hero_heading }}</h1>
-      <p class="lede">{{ section.settings.hero_text }}</p>
-      <div class="btn-row">
-        <a href="/products/nmn-01" class="btn-primary">Shop NMN+</a>
-        <a href="#instrument" class="btn-ghost">See your NAD⁺ decline</a>
-      </div>
-      <div class="hero-meta">
-        <div class="stat"><span class="n">7</span><span class="l">Disclosed actives</span></div>
-        <div class="stat"><span class="n">60</span><span class="l">Capsules · 1 month</span></div>
-        <div class="stat"><span class="n">0</span><span class="l">Proprietary blends</span></div>
-      </div>
-    </div>
-    <div class="hero-visual reveal">
-      <span class="spec-tag t1"><span class="rule"></span>Form<span class="val">Vegan HPMC caps</span></span>
-      {%- if section.settings.hero_image -%}
-        {{ section.settings.hero_image | image_url: width: 800 | image_tag: alt: section.settings.hero_image.alt, loading: "eager" }}
-      {%- else -%}
-        {{ "product-1" | placeholder_svg_tag }}
-      {%- endif -%}
+  <div class="hero-bg" aria-hidden="true">
+    {%- if section.settings.hero_image -%}
+      <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" alt="" loading="eager">
+    {%- else -%}
+      <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-hero.png?width=1400" alt="" width="1696" height="2528" loading="eager">
+    {%- endif -%}
+  </div>
+  <div class="hero-content reveal">
+    <div class="hero-trust"><span>Fully disclosed</span><span class="dot">·</span><span>Third-party tested</span><span class="dot">·</span><span>Vegan HPMC</span></div>
+    <span class="eyebrow">NMN+ · NAD⁺ Precursor</span>
+    <h1>The molecule your cells run on.</h1>
+    <p class="hero-punch">Seven disclosed actives. One daily capsule. Nothing hidden.</p>
+    <p class="lede">NMN+ replenishes NAD⁺ — the coenzyme behind cellular energy, DNA repair, and healthy aging — at doses you can verify, batch by batch.<sup>*</sup></p>
+    <div class="btn-row">
+      <a href="/products/nmn-01" class="btn-primary">Shop NMN+ →</a>
+      <a href="#instrument" class="btn-ghost">See your NAD⁺ decline</a>
     </div>
   </div>
 </section>
@@ -633,7 +622,7 @@ function initSigma(){
     var current=-1;
     function bandInfo(el){
       if(!el) return {c:'#EDE7DA', dark:false};
-      if(el.classList.contains('instrument-sec')||el.classList.contains('pricing')) return {c:'#0D3D3E', dark:true};
+      if(el.classList.contains('hero')||el.classList.contains('instrument-sec')||el.classList.contains('pricing')) return {c:'#0D3D3E', dark:true};
       if(el.tagName==='FOOTER') return {c:'#17302D', dark:true};
       if(el.classList.contains('thesis')||el.classList.contains('formula')||el.classList.contains('reviews')||el.classList.contains('closing')) return {c:'#F5F1E8', dark:false};
       return {c:'#EDE7DA', dark:false};
