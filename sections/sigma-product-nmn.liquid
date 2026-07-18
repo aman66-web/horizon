@@ -318,6 +318,15 @@
 .sigma-pdp .faq details.acc p{padding:0 0 22px; font-size:14.5px;}
 
 /* ---------- CLOSING (green) ---------- */
+.sigma-pdp .sec-head p a{color:inherit; text-decoration:underline; text-underline-offset:3px;}
+/* sticky mobile add-to-cart bar */
+.sigma-pdp .buybar{position:fixed; left:14px; right:14px; bottom:calc(14px + env(safe-area-inset-bottom)); z-index:80; display:none; align-items:center; justify-content:space-between; gap:14px; background:rgba(13,61,62,0.97); border:1px solid rgba(196,164,114,0.35); border-radius:100px; padding:10px 10px 10px 20px; box-shadow:0 10px 30px rgba(10,40,40,0.35); transform:translateY(160%); transition:transform .35s ease;}
+.sigma-pdp .buybar.on{transform:translateY(0);}
+.sigma-pdp .buybar .bb-t{color:var(--bone); font-size:14px; font-weight:600; line-height:1.2;}
+.sigma-pdp .buybar .bb-t small{display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:400; color:rgba(237,231,218,0.55); letter-spacing:0.04em; text-transform:uppercase; margin-top:2px;}
+.sigma-pdp .buybar .bb-cta{background:var(--bone); color:var(--teal-deep); border:none; cursor:pointer; padding:12px 22px; border-radius:100px; font-size:13.5px; font-weight:700; white-space:nowrap;}
+.sigma-pdp .buybar .bb-cta[disabled]{opacity:0.6; cursor:default;}
+@media(max-width:880px){.sigma-pdp .buybar{display:flex;}}
 .sigma-pdp .closing{text-align:center;}
 .sigma-pdp .closing h2{font-size:clamp(32px,4.6vw,58px); font-weight:300; line-height:1.05; letter-spacing:-0.025em; max-width:760px; margin:0 auto 18px;}
 .sigma-pdp .closing h2 em{font-style:italic; color:var(--bronze-light);}
@@ -560,6 +569,7 @@
 
       <div class="trust">
         <div class="tb"><span class="d">✓</span>Third-Party Tested</div>
+        <div class="tb"><span class="d">✓</span>30-Day Guarantee</div>
         <div class="tb"><span class="d">✓</span>Vegan HPMC</div>
         <div class="tb"><span class="d">✓</span>Non-GMO</div>
         <div class="tb"><span class="d">✓</span>No Hidden Fillers</div>
@@ -758,7 +768,7 @@
     <div class="sec-head center reveal">
       <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10.5 3v6l-4.3 7.4A2 2 0 0 0 7.9 20h8.2a2 2 0 0 0 1.7-3.6L13.5 9V3"/><path d="M8.3 15h7.4"/></svg></span>Third-Party Tested</span>
       <h2>What every batch is checked for.</h2>
-      <p>Every batch of NMN+ is tested by <strong>Eurofins</strong> — one of the world's largest independent testing networks, with laboratories across dozens of countries. Independent means the lab has no stake in the result: the identity, purity, and potency on the label are verified by someone other than us, before the batch ever ships.</p>
+      <p>Every batch of NMN+ is tested by <strong>Eurofins</strong> — one of the world's largest independent testing networks, with laboratories across dozens of countries. Independent means the lab has no stake in the result: the identity, purity, and potency on the label are verified by someone other than us, before the batch ever ships. Batch results are published on our <a href="/pages/lab-reports">Lab Reports page</a>.</p>
     </div>
     <div class="tested-grid reveal">
       <div class="t"><span class="ring">✓</span><span>Third-Party Tested</span></div>
@@ -926,7 +936,7 @@
       </details>
       <details class="acc">
         <summary>What’s actually in it? <span class="pm" aria-hidden="true">+</span></summary>
-        <p>NMN (nicotinamide mononucleotide), trans-resveratrol, quercetin, the active forms of vitamins B6, B12 and folate, and BioPerine black-pepper extract — in a plant-based HPMC capsule. Every dose is printed in full on the label, and the other ingredients (microcrystalline cellulose, magnesium stearate, silicon dioxide, and the vegetable capsule) are disclosed too. No proprietary blends. The exact milligrams are in the formula table above and on each batch’s Certificate of Analysis.</p>
+        <p>NMN (nicotinamide mononucleotide), trans-resveratrol, quercetin, the active forms of vitamins B6, B12 and folate, and BioPerine black-pepper extract — in a plant-based HPMC capsule. Every dose is printed in full on the label, and the other ingredients (microcrystalline cellulose, magnesium stearate, silicon dioxide, and the vegetable capsule) are disclosed too. No proprietary blends. The exact milligrams are in the formula table above and on each batch’s <a href="/pages/lab-reports">Certificate of Analysis</a>.</p>
       </details>
     </div>
   </div>
@@ -969,6 +979,14 @@
     <p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Where research is referenced, it refers to studies of NMN and its cofactors in general, not to this specific product.</p>
   </div>
 </div>
+
+{%- if has_product -%}
+<!-- STICKY MOBILE ADD-TO-CART BAR -->
+<div class="buybar" id="pdpBuyBar" aria-hidden="true">
+  <span class="bb-t">NMN+ — <span id="bbPrice">{{ sub_price | money }}</span><small>60 caps · 1-month supply</small></span>
+  <button type="button" class="bb-cta" id="bbAtc"{% unless product.available %} disabled{% endunless %}>{% if product.available %}Add to Cart{% else %}Sold Out{% endif %}</button>
+</div>
+{%- endif -%}
 
 <script>
 (function(){
@@ -1100,9 +1118,33 @@
       onScroll();
     }
   }
-  initPDP();
-  document.addEventListener('DOMContentLoaded', initPDP);
-  document.addEventListener('shopify:section:load', initPDP);
+  function initBuyBar(){
+    var bar=document.getElementById('pdpBuyBar');
+    if(!bar||bar.dataset.init) return;
+    bar.dataset.init='1';
+    var buybox=document.querySelector('.sigma-pdp .buybox');
+    var closing=document.querySelector('.sigma-pdp .closing');
+    var realBtn=document.querySelector('#nmn-atc-hero button[name="add"]');
+    var bbPrice=document.getElementById('bbPrice');
+    var ctaPrice=document.getElementById('ctaPrice');
+    document.getElementById('bbAtc').addEventListener('click', function(){
+      if(realBtn && !realBtn.disabled){ realBtn.click(); }
+      else if(buybox){ buybox.scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+    // mirror the buybox price when the frequency choice changes
+    [].slice.call(document.querySelectorAll('input[name="nmn-freq"]')).forEach(function(r){
+      r.addEventListener('change', function(){ setTimeout(function(){ if(ctaPrice&&bbPrice) bbPrice.textContent=ctaPrice.textContent; }, 0); });
+    });
+    if('IntersectionObserver' in window && buybox){
+      var boxOut=false, endIn=false;
+      function upd(){ var on=boxOut&&!endIn; bar.classList.toggle('on',on); bar.setAttribute('aria-hidden', on?'false':'true'); }
+      new IntersectionObserver(function(es){ es.forEach(function(e){ boxOut=!e.isIntersecting; }); upd(); },{threshold:0.05}).observe(buybox);
+      if(closing){ new IntersectionObserver(function(es){ es.forEach(function(e){ endIn=e.isIntersecting; }); upd(); },{threshold:0.05}).observe(closing); }
+    }
+  }
+  initPDP(); initBuyBar();
+  document.addEventListener('DOMContentLoaded', function(){ initPDP(); initBuyBar(); });
+  document.addEventListener('shopify:section:load', function(){ initPDP(); initBuyBar(); });
 })();
 </script>
 </div>
