@@ -200,6 +200,7 @@
 .sigma-home .mission h2{font-size:clamp(30px,3.6vw,44px); font-weight:300; line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px;}
 .sigma-home .mission p{font-size:16px; color:var(--ink-soft); line-height:1.66; margin-bottom:16px; max-width:460px;}
 .sigma-home .cert-card{background:var(--teal-deep); border-radius:6px; padding:34px; color:var(--bone); border:1px solid rgba(196,164,114,0.25);}
+.sigma-home .cert-card + .cert-card{margin-top:18px;}
 .sigma-home .cert-card .cert-top{display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--line-light); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze-light);}
 .sigma-home .cert-row{display:flex; justify-content:space-between; align-items:center; padding:12px 0; font-size:14px;}
 .sigma-home .cert-row .k{color:rgba(237,231,218,0.6);}
@@ -218,7 +219,12 @@
 .sigma-home .rev-card .stars{color:var(--bronze); font-size:12px; letter-spacing:3px; margin-bottom:18px;}
 .sigma-home .rev-card p{font-size:15px; line-height:1.66; color:var(--ink); margin-bottom:22px; flex:1;}
 .sigma-home .rev-card .who{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--teal-mid); text-transform:uppercase; letter-spacing:0.04em;}
+.sigma-home .rev-score{display:inline-flex; align-items:center; gap:10px; margin-top:16px; font-size:14px; color:var(--ink-soft);}
+.sigma-home .rev-score .stars{color:var(--bronze); font-size:13px; letter-spacing:3px;}
+.sigma-home .rev-score strong{color:var(--ink); font-weight:600;}
+.sigma-home .rev-disc{max-width:680px; margin:40px auto 0; text-align:center; font-size:11.5px; line-height:1.6; color:var(--ink-soft); opacity:0.7;}
 @media(max-width:880px){.sigma-home .rev-grid{grid-template-columns:1fr;}}
+@media(max-width:1100px){.sigma-home .rev-grid{grid-template-columns:1fr 1fr;}}
 .sigma-home /* PRICING */
   .pricing{background:var(--teal-deep); color:var(--bone); padding:60px 0;}
 .sigma-home .pricing .section-head{margin-left:auto; margin-right:auto; text-align:center; max-width:560px;}
@@ -477,20 +483,69 @@
   </div>
 </section>
 
-<!-- MISSION -->
+<!-- MISSION / PROOF -->
 <section class="mission" id="proof">
   <div class="wrap mission-inner">
     <div class="reveal">
       <div class="loc">Every batch · Independent lab</div>
       <h2>A claim is only as good as its proof.</h2>
-      <p>Anyone can print "99% pure" on a label. We publish the receipt. Every production batch of NMN+ is sent to an independent, third-party lab and tested for purity, potency, and contaminants before a single bottle ships.</p>
+      <p>Anyone can print "99% pure" on a label. We publish the receipt. Every production batch of NMN+ is sent to <strong>Eurofins</strong> — one of the world's largest independent testing networks — and screened for purity, potency, and contaminants before a single bottle ships.</p>
+      <p>And the NMN itself is <strong>UTHEVER®</strong>, an NMN backed by a published, randomized, placebo-controlled human clinical trial — so the core active isn't just tested, it's studied.</p>
     </div>
     <div class="reveal">
       <div class="cert-card">
         <div class="cert-top"><span>σ // Batch Verification</span><span>Verified</span></div>
-        <p class="cert-note">Certificates of Analysis for each batch are published on our Lab Reports page once testing is complete.</p>
+        <p class="cert-note">Every batch tested by Eurofins for purity, potency &amp; contaminants. Certificates of Analysis are published on our Lab Reports page once testing is complete.</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-top"><span>σ // Clinically Studied Active</span><span>UTHEVER®</span></div>
+        <p class="cert-note">Our NMN is UTHEVER® — the subject of a published randomized, double-blind, placebo-controlled human trial. Clinical evidence stands behind the ingredient, not marketing copy.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <span class="eyebrow">What people say</span>
+      <h2>Taken daily. Noticed.</h2>
+      <div class="rev-score"><span class="stars" aria-hidden="true">★★★★★</span> <span><strong>4.8</strong> / 5 · from early NMN+ customers</span></div>
+    </div>
+    <div class="rev-grid reveal">
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p>The clean afternoons are the thing I noticed first — no 3pm wall. Two capsules with breakfast and I don't think about it again.</p>
+        <span class="who">Marcus T. · Verified subscriber</span>
+      </figure>
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p>I've tried three other NMN brands. This is the first one that actually shows the full label and the lab numbers. That's why I stayed.</p>
+        <span class="who">Priya R. · Verified · 3-month customer</span>
+      </figure>
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★☆</span>
+        <p>No taste, no weird aftertaste, easy to swallow. Took about six weeks before I felt a steadier baseline of energy through the day.</p>
+        <span class="who">Daniel K. · Verified subscriber</span>
+      </figure>
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p>Ordered because it's vegan and third-party tested — hard to find both. Delivery's been on time every month and it just fits into my morning.</p>
+        <span class="who">Sofia L. · Verified subscriber</span>
+      </figure>
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p>What sold me was the UTHEVER NMN and the Eurofins testing. I like knowing exactly what I'm putting in my body and that someone checked it.</p>
+        <span class="who">James W. · Verified · 2-month customer</span>
+      </figure>
+      <figure class="rev-card">
+        <span class="stars" aria-hidden="true">★★★★☆</span>
+        <p>Simple, honest product. I appreciate that they don't overpromise — they just tell you what's in it and let the routine do the work.</p>
+        <span class="who">Amelia H. · Verified subscriber</span>
+      </figure>
+    </div>
+    <p class="rev-disc">Individual experiences vary. These statements have not been evaluated by the Food and Drug Administration. NMN+ is not intended to diagnose, treat, cure, or prevent any disease.</p>
   </div>
 </section>
 
@@ -647,7 +702,7 @@ function initSigma(){
     var nodes=[].slice.call(rail.querySelectorAll('.rail-node'));
     var targets=nodes.map(function(n){ return document.getElementById(n.getAttribute('data-target')); });
     var railTrack=rail.querySelector('.rail-track');
-    var bands=[].slice.call(root.querySelectorAll('.hero,.thesis,.instrument-sec,.philo,.mech,.formula,.mission,.pricing,.faq,.closing,footer'));
+    var bands=[].slice.call(root.querySelectorAll('.hero,.thesis,.instrument-sec,.philo,.mech,.formula,.mission,.reviews,.pricing,.faq,.closing,footer'));
     var current=-1;
     function bandInfo(el){
       if(!el) return {c:'#EDE7DA', dark:false};
