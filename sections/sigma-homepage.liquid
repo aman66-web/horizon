@@ -91,8 +91,8 @@
   .sigma-home .hero-points li{font-size:12px;}
 }
 .sigma-home /* PRESS MARQUEE */
-  .press{background:var(--teal-deep); color:var(--bone); padding:34px 0 30px; border-top:1px solid rgba(196,164,114,0.22); overflow:hidden;}
-.sigma-home .press-head{text-align:center; margin-bottom:22px; padding:0 24px;}
+  .press{background:var(--teal-deep); color:var(--bone); padding:22px 0 20px; border-top:1px solid rgba(196,164,114,0.22); overflow:hidden;}
+.sigma-home .press-head{text-align:center; margin-bottom:18px; padding:0 24px;}
 .sigma-home .press-head .eyebrow{color:var(--bronze-light);}
 .sigma-home .press-head .eyebrow::before{color:var(--bronze-light);}
 .sigma-home .press-head h2{font-size:clamp(21px,2.9vw,30px); font-weight:300; color:var(--bone); letter-spacing:-0.015em; margin-top:12px; line-height:1.12;}
@@ -102,7 +102,9 @@
 .sigma-home .press-track span em{font-style:italic;}
 @keyframes pressScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .sigma-home .press-marquee:hover .press-track{animation-play-state:paused;}
-.sigma-home .press-note{text-align:center; font-size:10.5px; color:rgba(237,231,218,0.42); margin:22px auto 0; max-width:640px; padding:0 24px; line-height:1.55;}
+.sigma-home .press-note{text-align:center; font-size:12px; color:rgba(237,231,218,0.6); margin:18px auto 0; padding:0 24px; line-height:1.55;}
+.sigma-home .press-link{color:var(--bronze-light); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; border-bottom:1px solid rgba(196,164,114,0.5); padding-bottom:3px; transition:color .2s, border-color .2s;}
+.sigma-home .press-link:hover{color:var(--bone); border-color:var(--bone);}
 @media (prefers-reduced-motion: reduce){.sigma-home .press-track{animation:none;}}
 .sigma-home /* THESIS */
   .thesis{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bone-light);}
@@ -268,6 +270,11 @@
 .sigma-home .cert-card a{color:var(--bronze-light); text-decoration:underline; text-underline-offset:3px;}
 .sigma-home .cert-card .cert-top{display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--line-light); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze-light);}
 .sigma-home .cert-card .cert-note{color:rgba(237,231,218,0.88);}
+.sigma-home .cert-ttl{display:inline-flex; align-items:center; gap:8px;}
+.sigma-home .cert-ttl svg{width:16px; height:16px; stroke:var(--bronze-light); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+.sigma-home .cert-tests{display:flex; flex-wrap:wrap; gap:11px 20px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line-light);}
+.sigma-home .cert-tests span{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(237,231,218,0.72);}
+.sigma-home .cert-tests svg{width:18px; height:18px; stroke:var(--bronze-light); fill:none; stroke-width:1.55; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
 .sigma-home .cert-row{display:flex; justify-content:space-between; align-items:center; padding:12px 0; font-size:14px;}
 .sigma-home .cert-row .k{color:rgba(237,231,218,0.6);}
 .sigma-home .cert-row .v{font-family:'IBM Plex Mono',monospace; color:var(--bone); font-size:13.5px;}
@@ -421,7 +428,7 @@
     {%- if section.settings.hero_image -%}
       <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" alt="" loading="eager" fetchpriority="high">
     {%- else -%}
-      <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-duo.jpg?width=1400" alt="" width="1880" height="1792" loading="eager" fetchpriority="high">
+      <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-duo.jpg?width=1400" alt="Sigma Formulas NMN+ — a NAD⁺ precursor supplement, jars with capsules" width="1880" height="1792" loading="eager" fetchpriority="high">
     {%- endif -%}
   </div>
   <div class="hero-content reveal">
@@ -471,7 +478,7 @@
       <span aria-hidden="true"><em>Cell Metabolism</em></span>
     </div>
   </div>
-  <p class="press-note">Selected publications and peer-reviewed journals that have reported on NMN and NAD⁺ research. Coverage refers to the compound and the science — not an endorsement of Sigma Formulas.</p>
+  <p class="press-note"><a href="/pages/nmn-in-the-press" class="press-link">See who's writing about NMN →</a></p>
 </section>
 
 <!-- THESIS / LONGEVITY — the problem -->
@@ -657,12 +664,22 @@
     </div>
     <div class="reveal">
       <div class="cert-card">
-        <div class="cert-top"><span>σ // Batch Verification</span><span>Verified</span></div>
+        <div class="cert-top"><span class="cert-ttl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10.5 3v6l-4.3 7.4A2 2 0 0 0 7.9 20h8.2a2 2 0 0 0 1.7-3.6L13.5 9V3"/><path d="M8.3 15h7.4"/></svg>σ // Batch Verification</span><span>Verified</span></div>
         <p class="cert-note">Every batch tested by Eurofins for purity, potency &amp; contaminants. Certificates of Analysis are published on our <a href="/pages/lab-reports">Lab Reports page</a> once testing is complete.</p>
+        <div class="cert-tests">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3z"/></svg>Purity</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0"/><path d="M12 15l4.5-3.2"/><circle cx="12" cy="15" r="1.2"/></svg>Potency</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Contaminants</span>
+        </div>
       </div>
       <div class="cert-card">
-        <div class="cert-top"><span>σ // Clinically Studied Active</span><span>UTHEVER®</span></div>
+        <div class="cert-top"><span class="cert-ttl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8.5 13h2l1-2 1.6 4 1-2h1.9"/></svg>σ // Clinically Studied Active</span><span>UTHEVER®</span></div>
         <p class="cert-note">Our NMN is UTHEVER® — the subject of a published randomized, double-blind, placebo-controlled human trial. Clinical evidence stands behind the ingredient, not marketing copy.</p>
+        <div class="cert-tests">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3 2.4-5 5.5-5s5.5 2 5.5 5"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M20.5 20c0-2.2-1.3-4.1-3.3-4.7"/></svg>Human trial</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4v4"/><path d="M19 4l-6 6"/><path d="M5 5h3l3 3"/><path d="M15 20h4v-4"/><path d="M19 20l-6-6"/><path d="M5 19h3l2-2"/></svg>Randomized</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg>Placebo-controlled</span>
+        </div>
       </div>
     </div>
   </div>

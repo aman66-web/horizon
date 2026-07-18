@@ -33,6 +33,22 @@
 }
 </script>
 
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is NMN, and why not just take NAD⁺?", "acceptedAnswer": { "@type": "Answer", "text": "NAD⁺ is poorly absorbed when taken orally. NMN (Nicotinamide Mononucleotide) is a direct precursor your body readily converts into NAD⁺ — which is why it is the preferred delivery route." } },
+    { "@type": "Question", "name": "How long until I notice a difference?", "acceptedAnswer": { "@type": "Answer", "text": "Most people take NMN+ daily for 4–8 weeks before evaluating effects, since replenishing cellular NAD⁺ is a gradual process. Consistency matters more than any single dose." } },
+    { "@type": "Question", "name": "Is it third-party tested?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every batch is tested by an independent lab for purity and potency before release. Certificates of Analysis are available on request." } },
+    { "@type": "Question", "name": "Is NMN safe?", "acceptedAnswer": { "@type": "Answer", "text": "NMN has been generally well tolerated in published human studies at doses comparable to ours. Supplements are not right for everyone — talk to your healthcare provider before starting, especially if you are pregnant, nursing, taking medication, or managing a condition." } },
+    { "@type": "Question", "name": "Why UTHEVER® NMN specifically?", "acceptedAnswer": { "@type": "Answer", "text": "UTHEVER® is one of the few NMN ingredients evaluated in a published randomized, double-blind, placebo-controlled human trial. We would rather build on an ingredient with public evidence than an unbranded powder." } }
+  ]
+}
+</script>
+{%- endif -%}
+
 {%- if request.page_type == 'product' and product != blank -%}
 <script type="application/ld+json">
 {
