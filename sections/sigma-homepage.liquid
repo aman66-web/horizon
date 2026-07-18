@@ -225,12 +225,16 @@
 .sigma-home .section-head{max-width:600px; margin-bottom:40px;}
 .sigma-home .section-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:20px; letter-spacing:-0.02em;}
 .sigma-home .section-head p{font-size:16.5px; color:var(--ink-soft); margin-top:18px; line-height:1.62;}
-.sigma-home .actives-fig{max-width:760px; margin:0 auto 44px; border-radius:14px; overflow:hidden;}
+.sigma-home .actives-fig{max-width:760px; margin:0 auto 20px; border-radius:14px; overflow:hidden;}
 .sigma-home .actives-fig img{width:100%; height:auto; display:block;}
+.sigma-home .actives-other{max-width:640px; margin:0 auto 44px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.7; color:var(--ink-faint); letter-spacing:0.01em;}
+.sigma-home .actives-other strong{color:var(--bronze); font-weight:500;}
+.sigma-home .mech-card .mech-ico{width:48px; height:48px; border-radius:50%; border:1.5px solid var(--bronze); display:flex; align-items:center; justify-content:center; margin-bottom:22px;}
+.sigma-home .mech-card .mech-ico svg{width:24px; height:24px; stroke:var(--bronze); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
 .sigma-home .mech-row{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line);}
 .sigma-home .mech-card{padding:40px 34px 44px; border-right:1px solid var(--line); position:relative;}
 .sigma-home .mech-card:last-child{border-right:none;}
-.sigma-home .mech-card .idx{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--bronze); margin-bottom:40px; letter-spacing:0.06em; display:block;}
+.sigma-home .mech-card .idx{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--bronze); margin-bottom:16px; letter-spacing:0.06em; display:block;}
 .sigma-home .mech-card h3{font-size:23px; margin-bottom:14px; font-weight:400;}
 .sigma-home .mech-card p{font-size:14.5px; color:var(--ink-soft); line-height:1.62;}
 @media(max-width:880px){
@@ -616,16 +620,19 @@
     </div>
     <div class="mech-row reveal" id="mechRow">
       <div class="mech-card">
+        <span class="mech-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg></span>
         <span class="idx">01 / INGEST</span>
         <h3>NMN enters circulation</h3>
         <p>Nicotinamide Mononucleotide is absorbed and transported into cells, where it serves as a direct building block for NAD⁺.</p>
       </div>
       <div class="mech-card">
+        <span class="mech-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h9a4 4 0 0 1 0 8H8"/><path d="M7 5 4 8l3 3"/><path d="M20 16h-9a4 4 0 0 1 0-8h5"/><path d="M17 19l3-3-3-3"/></svg></span>
         <span class="idx">02 / CONVERT</span>
         <h3>NAD⁺ is synthesized</h3>
         <p>Cells convert NMN into NAD⁺, replenishing the coenzyme required for mitochondrial energy production and DNA repair.</p>
       </div>
       <div class="mech-card">
+        <span class="mech-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
         <span class="idx">03 / ACTIVATE</span>
         <h3>Sirtuins engage</h3>
         <p>Restored NAD⁺ availability supports sirtuin activity — proteins tied to cellular resilience and healthy-aging pathways.</p>
@@ -650,6 +657,7 @@
     <figure class="actives-fig reveal">
       <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-actives-guide-cream.png?width=1400" alt="The seven NMN+ actives shown as powders with names, doses and roles" width="2500" height="4000" loading="lazy">
     </figure>
+    <p class="actives-other reveal"><strong>Other ingredients:</strong> Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (vegetable capsule). Nothing you can’t see on the label.</p>
   </div>
 </section>
 

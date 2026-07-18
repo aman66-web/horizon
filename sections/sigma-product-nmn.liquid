@@ -181,6 +181,23 @@
 .sigma-pdp .tb{flex:1 1 calc(50% - 4px); display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); border:1px solid var(--line); border-radius:100px; padding:9px 13px;}
 .sigma-pdp .tb .d{flex-shrink:0; width:15px; height:15px; border-radius:50%; border:1.5px solid var(--teal-mid); color:var(--teal-mid); display:flex; align-items:center; justify-content:center; font-size:9px;}
 .sigma-pdp .guarantee{text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); margin-top:14px; letter-spacing:0.03em;}
+/* quantity stepper + volume-discount (revealed after first add-to-cart) */
+.sigma-pdp .qty-wrap{margin-top:14px; padding:16px; border:1.5px solid var(--teal-deep); border-radius:14px; background:rgba(201,232,140,0.12); animation:qtyIn .35s ease;}
+@keyframes qtyIn{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:none;}}
+.sigma-pdp .qty-label{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bronze); margin-bottom:12px;}
+.sigma-pdp .qty-row{display:flex; align-items:stretch; gap:12px;}
+.sigma-pdp .qty-stepper{display:flex; align-items:center; border:1.5px solid var(--line); border-radius:100px; background:var(--cream-card); overflow:hidden; flex-shrink:0;}
+.sigma-pdp .qbtn{width:44px; height:52px; border:none; background:transparent; color:var(--teal-deep); font-size:22px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s;}
+.sigma-pdp .qbtn:hover{background:rgba(20,81,79,0.08);}
+.sigma-pdp .qty-stepper input{width:40px; text-align:center; border:none; background:transparent; font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:var(--teal-deep); -moz-appearance:textfield;}
+.sigma-pdp .qty-stepper input::-webkit-outer-spin-button,.sigma-pdp .qty-stepper input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+.sigma-pdp .cta-more{margin:0; padding:0 22px; font-size:14px; flex:1;}
+.sigma-pdp .vol-msg{margin-top:12px; font-size:13.5px; color:var(--teal-deep); text-align:center; line-height:1.45;}
+.sigma-pdp .vol-msg strong{color:var(--bronze); font-weight:600;}
+.sigma-pdp .vol-msg.maxed strong{color:var(--teal-deep);}
+/* ingredients accordion image (replaces the actives list) */
+.sigma-pdp .tab-ings-fig{margin:0 0 6px; border-radius:12px; overflow:hidden; border:1px solid var(--line);}
+.sigma-pdp .tab-ings-fig img{display:block; width:100%; height:auto;}
 .sigma-pdp .checks{list-style:none; margin-top:30px; padding-top:26px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:14px;}
 .sigma-pdp .checks .h{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bronze);}
 .sigma-pdp .checks li{display:flex; gap:12px; font-size:14.5px; line-height:1.5; color:var(--ink);}
@@ -561,6 +578,18 @@
                 {% if product.available %}Add to Cart — <span id="ctaPrice">{{ sub_price | money }}</span>{% else %}Sold Out{% endif %}
               </button>
             </add-to-cart-component>
+            <div class="qty-wrap" id="qtyWrap" hidden>
+              <div class="qty-label">Bundle &amp; save — buy more, save more</div>
+              <div class="qty-row">
+                <div class="qty-stepper">
+                  <button type="button" class="qbtn" id="qMinus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="6" inputmode="numeric" readonly>
+                  <button type="button" class="qbtn" id="qPlus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="submit" name="add" class="cta cta-more" id="addMore">Add to cart</button>
+              </div>
+              <div class="vol-msg" id="volMsg">Add one more to unlock <strong>5% off</strong>.</div>
+            </div>
           {%- endform -%}
         </product-form-component>
       {%- else -%}
@@ -569,12 +598,11 @@
 
       <div class="trust">
         <div class="tb"><span class="d">✓</span>Third-Party Tested</div>
-        <div class="tb"><span class="d">✓</span>30-Day Guarantee</div>
+        <div class="tb"><span class="d">✓</span>Highly Researched</div>
         <div class="tb"><span class="d">✓</span>Vegan HPMC</div>
         <div class="tb"><span class="d">✓</span>Non-GMO</div>
-        <div class="tb"><span class="d">✓</span>No Hidden Fillers</div>
       </div>
-      <div class="guarantee">Free US shipping over $60 · Cancel anytime</div>
+      <div class="guarantee">Free US shipping over $60 · 30-day money-back guarantee · Cancel anytime</div>
 
       <div class="acc-tabs">
         <details class="tab">
@@ -583,20 +611,14 @@
             <li>Supports your body’s NAD⁺ — a coenzyme central to cellular energy.*</li>
             <li>Every ingredient disclosed in full — no proprietary blends.</li>
             <li>Dosed to the levels used in published NMN research.</li>
-            <li>No hidden fillers — nothing you can’t see on the label.</li>
+            <li>Third-party tested every batch for purity and potency.</li>
           </ul>
         </details>
         <details class="tab">
           <summary>Ingredients <span class="pm" aria-hidden="true">+</span></summary>
-          <ul class="tab-ings">
-            <li><span class="nm">Beta-Nicotinamide Mononucleotide (NMN), UTHEVER®</span><span class="pur">99%</span><span class="dose">500 mg</span></li>
-            <li><span class="nm">Trans-Resveratrol (from Polygonum cuspidatum / knotweed root extract)</span><span class="pur">99%</span><span class="dose">150 mg</span></li>
-            <li><span class="nm">Vitamin B6 (P-5-P, pyridoxal-5′-phosphate)</span><span class="dose">20 mg</span></li>
-            <li><span class="nm">Vitamin B12 (methylcobalamin)</span><span class="pur">99%</span><span class="dose">400 mcg (0.4 mg)</span></li>
-            <li><span class="nm">Quercetin</span><span class="dose">100 mg</span></li>
-            <li><span class="nm">Methylated folate (L-5-MTHF)</span><span class="dose">400 mcg DFE (0.236 mg)</span></li>
-            <li><span class="nm">BioPerine® black pepper extract (standardized to 95% piperine)</span><span class="pur">95%</span><span class="dose">5 mg</span></li>
-          </ul>
+          <figure class="tab-ings-fig">
+            <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-actives-guide-cream.png?width=1000" alt="The seven NMN+ actives — each ingredient, its dose and what it does" loading="lazy" width="2500" height="4000">
+          </figure>
           <p class="tab-note">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule). Every dose is printed in full on the label.</p>
         </details>
       </div>
@@ -1142,9 +1164,38 @@
       if(closing){ new IntersectionObserver(function(es){ es.forEach(function(e){ endIn=e.isIntersecting; }); upd(); },{threshold:0.05}).observe(closing); }
     }
   }
-  initPDP(); initBuyBar();
-  document.addEventListener('DOMContentLoaded', function(){ initPDP(); initBuyBar(); });
-  document.addEventListener('shopify:section:load', function(){ initPDP(); initBuyBar(); });
+  function initQty(){
+    var wrap=document.getElementById('qtyWrap');
+    if(!wrap||wrap.dataset.init) return;
+    var input=document.getElementById('qtyInput');
+    var minus=document.getElementById('qMinus');
+    var plus=document.getElementById('qPlus');
+    var msg=document.getElementById('volMsg');
+    var addMore=document.getElementById('addMore');
+    var mainBtn=document.querySelector('#nmn-atc-hero button[name="add"]');
+    if(!input||!minus||!plus||!msg) return;
+    wrap.dataset.init='1';
+    var TIERS={
+      1:'Add one more to unlock <strong>5% off</strong>.',
+      2:'<strong>5% off</strong> applied at checkout — add one more for 10%.',
+      3:'<strong>10% off</strong> applied at checkout — add one more for 15%.'
+    };
+    function render(){
+      var q=parseInt(input.value,10)||1;
+      if(q>=4){ msg.classList.add('maxed'); msg.innerHTML='Best value — <strong>15% off</strong> applied automatically at checkout.'; }
+      else { msg.classList.remove('maxed'); msg.innerHTML=TIERS[q]; }
+      if(addMore){ addMore.textContent = q>1 ? ('Add '+q+' to cart') : 'Add to cart'; }
+      minus.disabled = q<=1;
+    }
+    plus.addEventListener('click', function(){ var q=parseInt(input.value,10)||1; if(q<6){ input.value=q+1; render(); } });
+    minus.addEventListener('click', function(){ var q=parseInt(input.value,10)||1; if(q>1){ input.value=q-1; render(); } });
+    // reveal the stepper once the shopper has added to cart at least once
+    if(mainBtn){ mainBtn.addEventListener('click', function(){ if(!mainBtn.disabled){ wrap.hidden=false; } }); }
+    render();
+  }
+  initPDP(); initBuyBar(); initQty();
+  document.addEventListener('DOMContentLoaded', function(){ initPDP(); initBuyBar(); initQty(); });
+  document.addEventListener('shopify:section:load', function(){ initPDP(); initBuyBar(); initQty(); });
 })();
 </script>
 </div>
