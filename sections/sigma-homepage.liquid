@@ -59,7 +59,7 @@
 .sigma-home .hero-content{position:relative; z-index:1; width:100%; max-width:640px; color:var(--bone);}
 .sigma-home .hero-top{position:absolute; top:calc(var(--header-height, 72px) + 18px); left:0; right:0; padding:0 24px 0 clamp(24px,5vw,64px);}
 .sigma-home .hero-content .hero-bottom{position:absolute; bottom:26px; left:0; right:0; padding:0 24px 0 clamp(24px,5vw,64px); gap:10px; justify-content:flex-start;}
-.sigma-home .hero-eyebrow{margin-top:12px; justify-content:flex-start; color:var(--bronze-light);}
+.sigma-home .hero-eyebrow{margin-top:8px; justify-content:flex-start; color:var(--bronze-light);}
 .sigma-home .hero-eyebrow::before{color:var(--bronze-light);}
 .sigma-home .hero-points{display:flex; flex-wrap:wrap; justify-content:flex-start; gap:9px 18px; margin:16px 0 0; max-width:440px; list-style:none;}
 .sigma-home .hero-points li{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--bone); font-weight:500; white-space:nowrap;}
@@ -68,7 +68,7 @@
 .sigma-home .hero-trust .dot{opacity:0.5;}
 .sigma-home .hero .eyebrow{color:var(--bronze-light); justify-content:flex-start;}
 .sigma-home .hero .eyebrow::before{color:var(--bronze-light);}
-.sigma-home .hero h1{font-size:clamp(38px,6.4vw,66px); line-height:1.03; font-weight:300; margin:0 0 4px; letter-spacing:-0.028em; color:var(--bone);}
+.sigma-home .hero h1{font-size:clamp(34px,5.6vw,58px); line-height:1.03; font-weight:300; margin:0 0 4px; letter-spacing:-0.028em; color:var(--bone);}
 .sigma-home .hero .hero-punch{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:clamp(19px,2.7vw,27px); color:var(--bronze-light); margin-bottom:20px;}
 .sigma-home .hero .lede{font-size:16.5px; line-height:1.6; color:var(--dark-soft); max-width:480px; margin:0 auto 32px;}
 .sigma-home .btn-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;}
@@ -78,12 +78,13 @@
 .sigma-home .btn-ghost:hover{border-color:var(--bone); background:rgba(237,231,218,0.08);}
 @media(max-width:880px){
   .sigma-home .hero{min-height:94vh;}
-  .sigma-home .hero-top{top:calc(var(--header-height, 64px) + 10px); padding:0 20px;}
+  .sigma-home .hero-top{top:calc(var(--header-height, 64px) + 4px); padding:0 20px;}
   .sigma-home .hero-content .hero-bottom{bottom:14px; padding:0 20px; flex-wrap:nowrap; gap:10px;}
   .sigma-home .hero-bottom .btn-primary,
   .sigma-home .hero-bottom .btn-ghost{flex:1 1 0; padding:14px 10px; font-size:13px; text-align:center; white-space:nowrap;}
-  .sigma-home .hero-points{gap:8px 16px;}
-  .sigma-home .hero-points li{font-size:12px;}
+  .sigma-home .hero-points{flex-wrap:nowrap; gap:0 11px; margin-top:12px; max-width:none;}
+  .sigma-home .hero-points li{font-size:10.5px; gap:5px;}
+  .sigma-home .hero-points svg{width:13px; height:13px;}
 }
 .sigma-home /* THESIS */
   .thesis{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bone-light);}
