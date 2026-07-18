@@ -364,6 +364,9 @@
 .sigma-home .foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding-top:26px; border-top:1px solid var(--line-light); font-size:12px; color:rgba(237,231,218,0.4); line-height:1.5;}
 .sigma-home .foot-bottom .disc{max-width:600px;}
 @media(max-width:880px){.sigma-home .foot-grid{grid-template-columns:1fr 1fr;}}
+/* homepage only: drop the announcement strip so the transparent header sits directly on the hero */
+.shopify-section-group-header-group:has(.announcement-bar),
+.shopify-section:has(> .announcement-bar){display:none;}
 /* sticky mobile buy bar */
 .sigma-home .buybar{position:fixed; left:14px; right:14px; bottom:calc(14px + env(safe-area-inset-bottom)); z-index:80; display:none; align-items:center; justify-content:space-between; gap:14px; background:rgba(13,61,62,0.97); border:1px solid rgba(196,164,114,0.35); border-radius:100px; padding:10px 10px 10px 20px; box-shadow:0 10px 30px rgba(10,40,40,0.35); transform:translateY(160%); transition:transform .35s ease;}
 .sigma-home .buybar.on{transform:translateY(0);}

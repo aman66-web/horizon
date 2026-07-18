@@ -16,9 +16,9 @@
     render 'slideshow-styles'
   endif
 
-  if section.settings.enable_transparent_header_home and template.name == 'index'
+  if template.name == 'index'
     assign transparent = 'always'
-    assign transparent_text_color_setting = section.settings.text_color_transparent_home
+    assign transparent_text_color_setting = section.settings.text_color_transparent_home | default: '#EDE7DA'
   elsif section.settings.enable_transparent_header_product and template.name == 'product'
     assign transparent = 'always'
     assign transparent_text_color_setting = section.settings.text_color_transparent_product
