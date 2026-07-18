@@ -1188,6 +1188,17 @@
     color: #ede7da;
   }
 
+  /* Transparent-over-hero state (homepage, before scroll): invert the pill */
+  #header-component[transparent]:not([data-sticky-state='active']) .header-cta {
+    background: #ede7da;
+    color: #0d3d3e;
+  }
+
+  #header-component[transparent]:not([data-sticky-state='active']) .header-cta:hover {
+    background: #fff;
+    color: #0d3d3e;
+  }
+
   /* Frosted-glass sticky header (Seed-style): let content show through, blurred */
   #header-component .header__underlay-closed,
   #header-component .header__underlay-open {
