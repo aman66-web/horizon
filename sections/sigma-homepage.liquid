@@ -17,8 +17,8 @@
 @media(max-width:560px){.sigma-home .wrap{padding:0 54px 0 22px;}}
 .sigma-home ::selection{background:var(--bronze-light); color:var(--ink);}
 .sigma-home sup{font-size:0.55em; vertical-align:super; color:var(--bronze); font-family:'IBM Plex Mono',monospace;}
-.sigma-home .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px;}
-.sigma-home .eyebrow::before{content:'●'; font-size:7px; color:var(--bronze); transform:translateY(-1px);}
+.sigma-home .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px; font-weight:500;}
+.sigma-home .eyebrow::before{content:'●'; font-size:8px; color:var(--bronze); transform:translateY(-1px);}
 .sigma-home .reveal{opacity:1; transform:none;}
 .sigma-home.js-anim .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
 .sigma-home.js-anim .reveal.in{opacity:1; transform:none;}
@@ -288,7 +288,8 @@
 .sigma-home .cmp-row:first-child{border-top:none;}
 .sigma-home .cmp-row.head{background:var(--teal-deep);}
 .sigma-home .cmp-row.head > span{padding:15px 18px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:rgba(237,231,218,0.55);}
-.sigma-home .cmp-row.head .us{color:var(--bronze-light); font-weight:600;}
+.sigma-home .cmp-row.head .us{color:var(--bronze-light); font-weight:600; display:flex; flex-direction:column; gap:3px;}
+.sigma-home .cmp-sub{font-size:9.5px; letter-spacing:0.12em; color:rgba(237,231,218,0.6); font-weight:500;}
 .sigma-home .cmp-row > span{padding:15px 18px; font-size:13.5px; line-height:1.45;}
 .sigma-home .cmp-row .k{color:var(--ink); font-weight:600; font-size:12.5px;}
 .sigma-home .cmp-row .us{background:rgba(20,81,79,0.05); color:var(--ink);}
@@ -484,7 +485,7 @@
 <div class="thesis" id="longevity">
   <div class="thesis-inner">
     <div class="thesis-head reveal">
-      <span class="eyebrow">The Problem</span>
+      <span class="eyebrow">Longevity · The Problem</span>
       <h2>Aging starts in your cells.</h2>
       <p class="thesis-lede">Inside every cell is a molecule called <strong>NAD⁺</strong> — the spark your body uses to turn food into energy, repair DNA, and keep cells working the way they did in your twenties. But NAD⁺ doesn't hold. It falls year after year, and by midlife research suggests it can drop to roughly <strong>half</strong> of youthful levels.*</p>
     </div>
@@ -527,7 +528,7 @@
 <section class="instrument-sec" id="instrument">
   <div class="wrap inst-grid">
     <div class="inst-copy reveal">
-      <span class="eyebrow">Interactive · NAD⁺ Model</span>
+      <span class="eyebrow">Science · How NMN Works</span>
       <h2>See what time takes from <em>your cells.</em></h2>
       <p>NAD⁺ powers energy, repairs DNA, and keeps cells resilient — and it falls as you age. Drag to your age. Then switch on NMN+ and watch what a precursor gives back.</p>
       <div class="hint"><span class="arrow">→</span> Drag the slider · toggle NMN+</div>
@@ -642,7 +643,7 @@
 <section class="formula" id="formula">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">The Formula</span>
+      <span class="eyebrow">Formula · Fully Disclosed</span>
       <h2>Every capsule, on the record.</h2>
       <p>No proprietary blends. No hidden fillers. Every ingredient is dosed to published research levels and disclosed in full — read it like a lab printout, not ad copy.</p>
     </div>
@@ -656,7 +657,7 @@
 <section class="mission" id="proof">
   <div class="wrap mission-inner">
     <div class="reveal">
-      <div class="loc">Every batch · Independent lab</div>
+      <span class="eyebrow" style="margin-bottom:22px;">Proof · Clinically &amp; Third-party Tested</span>
       <h2>A claim is only as good as its proof.</h2>
       <p>Anyone can print "99% pure" on a label. We publish the receipt. Every production batch of NMN+ is sent to <strong>Eurofins</strong> — one of the world's largest independent testing networks — and screened for purity, potency, and contaminants before a single bottle ships.</p>
       <p>And the NMN itself is <strong>UTHEVER®</strong>, an NMN backed by a published, randomized, placebo-controlled human clinical trial — so the core active isn't just tested, it's studied.</p>
@@ -693,7 +694,8 @@
       <p>Most NMN products ask for trust. Ours shows its work — here's NMN+ against common practice across the category.</p>
     </div>
     <div class="cmp-table reveal">
-      <div class="cmp-row head"><span></span><span class="us">Sigma NMN+</span><span>Typical NMN products</span></div>
+      <div class="cmp-row head"><span class="k">What matters</span><span class="us">Sigma Formulas<span class="cmp-sub">NMN+</span></span><span>Typical NMN products</span></div>
+      <div class="cmp-row"><span class="k">Clinical evidence</span><span class="us">Tested in humans — randomized, placebo-controlled trial</span><span class="them">Rarely studied in people</span></div>
       <div class="cmp-row"><span class="k">NMN source</span><span class="us">UTHEVER® — clinically studied</span><span class="them">Unbranded, origin unclear</span></div>
       <div class="cmp-row"><span class="k">Label</span><span class="us">Every dose disclosed</span><span class="them">Proprietary blends common</span></div>
       <div class="cmp-row"><span class="k">Testing</span><span class="us">Eurofins — every batch</span><span class="them">Rarely published</span></div>
@@ -791,7 +793,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="faq">
+<section class="faq" id="faq">
   <div class="wrap faq-wrap">
     <div class="section-head reveal" style="margin-bottom:40px;">
       <span class="eyebrow">Questions</span>
