@@ -1244,6 +1244,12 @@
     }
   }
 
+  /* Drop the featured product/collection card from the mobile menu drawer */
+  #header-component .menu-drawer__featured-content,
+  #header-component .menu-drawer__featured-content--childlist {
+    display: none !important;
+  }
+
   /* Drop the account + cart icons so only the CTA remains in the actions cluster */
   #header-component .account-button,
   #header-component header-actions :is(button, a):has(.header-actions__cart-icon) {

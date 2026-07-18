@@ -134,6 +134,26 @@
   </div>
 </section>
 
+<!-- BATCH LOOKUP -->
+<section class="lookup">
+  <div class="wrap lu-in">
+    <div class="reveal">
+      <span class="eyebrow">Verify your bottle</span>
+      <h2>Look up your batch.</h2>
+      <p>Enter the 6-digit batch number printed on the base of your NMN+ bottle to open its Certificate of Analysis.</p>
+    </div>
+    <div class="lu-box reveal">
+      <div class="lu-label">Batch number</div>
+      <form class="lu-row" id="batchForm" novalidate>
+        <input id="batchInput" type="text" inputmode="numeric" autocomplete="off" pattern="[0-9]{6}" maxlength="6" placeholder="e.g. 240815" aria-label="6-digit batch number">
+        <button type="submit">Find COA →</button>
+      </form>
+      <div class="lu-hint">Six digits, printed on the base of the bottle and the insert card.</div>
+      <div class="lu-out" id="batchOut" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT WE TEST -->
 <section class="what">
   <div class="wrap">
@@ -196,6 +216,24 @@ function initSigma(){
   root.classList.add('js-anim');
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
 root.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Batch number lookup.
+  // To publish a batch, add "BATCHNO":"/pages/coa-BATCHNO" (or any URL) below —
+  // entering that number then jumps straight to its Certificate of Analysis.
+  var bf=root.querySelector('#batchForm');
+  if(bf){
+    var bi=root.querySelector('#batchInput'), bo=root.querySelector('#batchOut');
+    var COA_URLS={};
+    bi.addEventListener('input',function(){ bi.value=bi.value.replace(/[^0-9]/g,'').slice(0,6); bo.classList.remove('show'); });
+    bf.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(bi.value||'').trim();
+      if(!/^[0-9]{6}$/.test(v)){ bo.textContent='↳ Enter the 6-digit batch number from your bottle.'; bo.classList.add('show'); return; }
+      if(COA_URLS[v]){ window.location.href=COA_URLS[v]; return; }
+      bo.textContent='↳ Batch '+v+' — its Certificate of Analysis will be published here once this batch completes third-party testing.';
+      bo.classList.add('show');
+    });
+  }
 }
 initSigma();
 document.addEventListener('DOMContentLoaded', initSigma);
