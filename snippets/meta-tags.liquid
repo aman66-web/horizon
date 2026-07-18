@@ -15,7 +15,7 @@
 >
 <meta
   name="theme-color"
-  content=""
+  content="#0D3D3E"
 >
 
 {%- liquid
@@ -23,6 +23,10 @@
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
+
+  if request.page_type == 'index' and page_description == blank and shop.description == blank
+    assign og_description = 'Sigma Formulas NMN+ — a fully disclosed NAD⁺ precursor supplement with research-backed doses. Third-party tested, vegan and non-GMO.'
+  endif
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -71,6 +75,20 @@
     property="og:image:height"
     content="{{ page_image.height }}"
   >
+{%- elsif request.page_type == 'index' -%}
+  {%- assign default_share_image = 'https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-lifestyle.png' -%}
+  <meta
+    property="og:image"
+    content="{{ default_share_image }}?width=1200"
+  >
+  <meta
+    property="og:image:secure_url"
+    content="{{ default_share_image }}?width=1200"
+  >
+  <meta
+    name="twitter:image"
+    content="{{ default_share_image }}?width=1200"
+  >
 {%- endif -%}
 
 {%- if request.page_type == 'product' -%}
@@ -115,9 +133,7 @@
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
-  <meta
-    name="description"
-    content="{{ page_description | escape }}"
-  >
-{% endif %}
+<meta
+  name="description"
+  content="{{ og_description | escape }}"
+>

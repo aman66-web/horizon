@@ -1,0 +1,65 @@
+{% comment %}
+  JSON-LD structured data for SEO.
+  - Organization + WebSite on every page
+  - Product schema on product pages (real price/availability only; no
+    review or rating markup, since on-site reviews are placeholder content)
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "legalName": "AURORELLE ECOM, LLC",
+  "url": "{{ request.origin }}/",
+  {%- if settings.logo != blank %}
+  "logo": "https:{{ settings.logo | image_url: width: 512 }}",
+  {%- endif %}
+  "description": {{ shop.description | default: shop.name | json }}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": "{{ request.origin }}/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ request.origin }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{%- if request.page_type == 'product' and product != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 320 | json }},
+  "url": "{{ request.origin }}{{ product.url }}",
+  {%- if product.images.size > 0 %}
+  "image": [
+    {%- for image in product.images limit: 4 -%}
+      "https:{{ image | image_url: width: 1200 }}"{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif %}
+  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+  {%- if product.selected_or_first_available_variant.sku != blank %}
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  {%- endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ request.origin }}{{ product.url }}",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "price": "{{ product.price | divided_by: 100.0 }}",
+    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+    "seller": { "@type": "Organization", "name": {{ shop.name | json }} }
+  }
+}
+</script>
+{%- endif -%}
