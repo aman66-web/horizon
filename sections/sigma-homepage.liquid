@@ -120,6 +120,7 @@
 .sigma-home .instrument-sec .eyebrow{color:var(--bronze-light);}
 .sigma-home .instrument-sec .eyebrow::before{color:var(--bronze-light);}
 .sigma-home .inst-grid{display:grid; grid-template-columns:0.82fr 1.18fr; gap:60px; align-items:center;}
+.sigma-home .inst-grid > *{min-width:0;}
 .sigma-home .inst-copy h2{color:var(--bone); font-size:clamp(36px,4.4vw,56px); line-height:1.06; font-weight:300; margin:22px 0 24px; letter-spacing:-0.02em;}
 .sigma-home .inst-copy h2 em{font-style:italic; color:var(--bronze-light);}
 .sigma-home .inst-copy p{color:rgba(237,231,218,0.76); font-size:16.5px; line-height:1.68; max-width:420px;}
@@ -127,11 +128,11 @@
 .sigma-home .inst-copy .hint .arrow{animation:nudge 1.6s ease-in-out infinite;}
 @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
 @media (prefers-reduced-motion: reduce){.sigma-home .inst-copy .hint .arrow{animation:none;}}
-.sigma-home .instrument{background:rgba(255,255,255,0.035); border:1px solid rgba(196,164,114,0.3); border-radius:8px; padding:26px 28px 24px;}
+.sigma-home .instrument{background:rgba(255,255,255,0.035); border:1px solid rgba(196,164,114,0.3); border-radius:8px; padding:26px 28px 24px; overflow:hidden;}
 .sigma-home .inst-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bronze-light);}
 .sigma-home .inst-head .live{display:flex; align-items:center; gap:7px; color:rgba(237,231,218,0.55);}
 .sigma-home .inst-head .live .led{width:6px; height:6px; border-radius:50%; background:#8FD6A6; box-shadow:0 0 7px #8FD6A6;}
-.sigma-home .inst-readouts{display:flex; gap:34px; align-items:flex-end; margin:14px 0 6px;}
+.sigma-home .inst-readouts{display:flex; flex-wrap:wrap; gap:14px 34px; align-items:flex-end; margin:14px 0 6px;}
 .sigma-home .ro-block .ro-label{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(237,231,218,0.5); margin-bottom:4px;}
 .sigma-home .ro-block .ro-val{font-family:'Fraunces',serif; font-weight:300; line-height:1; letter-spacing:-0.02em;}
 .sigma-home .ro-block.age .ro-val{font-size:34px; color:var(--bone);}
@@ -176,6 +177,14 @@
 .sigma-home .inst-foot{font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(237,231,218,0.38); line-height:1.6; margin-top:18px; letter-spacing:0.02em;}
 @media(max-width:880px){.sigma-home .inst-grid{grid-template-columns:1fr; gap:40px;}
 .sigma-home .inst-copy p{max-width:100%;}}
+@media(max-width:560px){
+  .sigma-home .inst-readouts{gap:12px 26px;}
+  .sigma-home .ro-block.delta{margin-left:0;}
+  .sigma-home .ro-block.nat .ro-val,
+  .sigma-home .ro-block.sup .ro-val{font-size:38px;}
+  .sigma-home .instrument.supported .ro-block.nat .ro-val{font-size:26px;}
+  .sigma-home .instrument{padding:22px 18px 20px;}
+}
 .sigma-home /* PHILOSOPHY BEAT */
   .philo{padding:60px 0; text-align:center;}
 .sigma-home .philo .big{font-size:clamp(40px,6vw,80px); font-weight:300; line-height:1.02; letter-spacing:-0.03em; max-width:900px; margin:22px auto 26px;}
