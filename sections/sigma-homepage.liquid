@@ -178,11 +178,16 @@
 .sigma-home .section-head{max-width:600px; margin-bottom:60px;}
 .sigma-home .section-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:20px; letter-spacing:-0.02em;}
 .sigma-home .section-head p{font-size:16.5px; color:var(--ink-soft); margin-top:18px; line-height:1.62;}
-.sigma-home .actives-fig{margin:0 auto 44px; max-width:900px;}
-.sigma-home .actives-fig img{width:100%; display:block; border-radius:14px;}
-.sigma-home .actives-labels{display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-top:14px; padding:0 4%;}
-.sigma-home .actives-labels span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.01em; text-align:center; color:var(--ink-soft); line-height:1.3;}
-@media(max-width:560px){.sigma-home .actives-labels{gap:3px; padding:0 2%;} .sigma-home .actives-labels span{font-size:7.5px; letter-spacing:0;}}
+.sigma-home .actives-list{max-width:720px; margin:0 auto 44px; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--bone-card);}
+.sigma-home .active-row{display:flex; align-items:center; gap:20px; padding:18px 24px; border-top:1px solid var(--line);}
+.sigma-home .active-row:first-child{border-top:none;}
+.sigma-home .active-swatch{flex-shrink:0; width:74px; height:74px; border-radius:50%; background-image:url('https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-actives-powders.webp?width=1200'); background-size:700% auto; background-repeat:no-repeat; box-shadow:inset 0 0 0 1px rgba(23,48,45,0.08);}
+.sigma-home .active-copy{flex:1; min-width:0;}
+.sigma-home .active-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:5px;}
+.sigma-home .active-name{font-size:16px; font-weight:600; color:var(--ink); letter-spacing:-0.01em;}
+.sigma-home .active-dose{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--bronze); letter-spacing:0.02em;}
+.sigma-home .active-copy p{font-size:14px; line-height:1.55; color:var(--ink-soft);}
+@media(max-width:560px){.sigma-home .active-row{gap:14px; padding:14px 16px;} .sigma-home .active-swatch{width:58px; height:58px;} .sigma-home .active-copy p{font-size:13px;}}
 .sigma-home .mech-row{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line);}
 .sigma-home .mech-card{padding:40px 34px 44px; border-right:1px solid var(--line); position:relative;}
 .sigma-home .mech-card:last-child{border-right:none;}
@@ -493,10 +498,55 @@
       <h2>Every capsule, on the record.</h2>
       <p>No proprietary blends. No hidden fillers. Every ingredient is dosed to published research levels and disclosed in full — read it like a lab printout, not ad copy.</p>
     </div>
-    <figure class="actives-fig reveal">
-      <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-actives-powders.webp?width=1200" alt="The seven disclosed actives shown as coloured powders in a row" width="1280" height="956" loading="lazy">
-      <div class="actives-labels">
-        <span>NMN</span><span>Trans-Resveratrol</span><span>Quercetin</span><span>Vitamin B6</span><span>Vitamin B12</span><span>Folate</span><span>BioPerine</span>
+    <figure class="actives-list reveal" aria-label="The seven disclosed actives">
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:0% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">NMN</span><span class="active-dose">500 mg · UTHEVER®</span></div>
+          <p>The direct NAD⁺ precursor — the molecule your body converts straight into cellular NAD⁺.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:16.66% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">Trans-Resveratrol</span><span class="active-dose">150 mg</span></div>
+          <p>A polyphenol studied alongside NMN for its role in supporting sirtuin activity.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:33.33% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">Quercetin</span><span class="active-dose">100 mg</span></div>
+          <p>A plant flavonoid with antioxidant properties that complements the NAD⁺ pathway.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:50% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">Vitamin B6</span><span class="active-dose">20 mg · P-5-P</span></div>
+          <p>The active form of B6 — a cofactor your cells use in methylation and energy metabolism.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:66.66% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">Vitamin B12</span><span class="active-dose">400 mcg · Methylcobalamin</span></div>
+          <p>The methylated, bioavailable form — a cofactor in methylation and nerve health.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:83.33% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">Folate</span><span class="active-dose">400 mcg · L-Methylfolate</span></div>
+          <p>The active folate your body uses for one-carbon metabolism — no conversion needed.</p>
+        </div>
+      </div>
+      <div class="active-row">
+        <span class="active-swatch" style="background-position:100% 50%;" aria-hidden="true"></span>
+        <div class="active-copy">
+          <div class="active-head"><span class="active-name">BioPerine®</span><span class="active-dose">5 mg</span></div>
+          <p>Black-pepper extract standardized to piperine, studied to improve nutrient absorption.</p>
+        </div>
       </div>
     </figure>
     <div class="readout reveal">
