@@ -12,7 +12,14 @@
         type="image/png"
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
+    {%- else -%}
+      <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-favicon.png?width=64">
+      <link rel="apple-touch-icon" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-favicon.png">
     {%- endif -%}
+    <style>
+      html { scroll-behavior: smooth; }
+      ::selection { background: #14514F; color: #EDE7DA; }
+    </style>
 
     {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
     {% if settings.transition_to_main_product or settings.page_transition_enabled %}

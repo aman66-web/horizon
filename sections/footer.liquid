@@ -95,6 +95,54 @@
       grid-column: 1 / -1;
     }
   }
+
+  /* ---- Sigma brand footer: deep-teal panel with bone text ---- */
+  footer:has(.footer-content) {
+    display: block;
+    background: #0d3d3e;
+    border-top: 1px solid rgba(196, 164, 114, 0.28);
+  }
+
+  footer .section-background {
+    background: #0d3d3e !important;
+  }
+
+  footer :is(.footer-content, .utilities),
+  footer :is(.footer-content, .utilities) :is(h1, h2, h3, h4, p, span, li, summary, label, legend, small, div) {
+    color: #ede7da;
+  }
+
+  footer :is(.footer-content, .utilities) a {
+    color: rgba(237, 231, 218, 0.78);
+    transition: color 0.2s ease;
+  }
+
+  footer :is(.footer-content, .utilities) a:hover {
+    color: #c4a472;
+  }
+
+  footer :is(.footer-content, .utilities) svg {
+    color: #ede7da;
+  }
+
+  footer .footer-content input:is([type='email'], [type='text']) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(237, 231, 218, 0.28);
+    color: #ede7da;
+    border-radius: 100px;
+  }
+
+  footer .footer-content input:is([type='email'], [type='text'])::placeholder {
+    color: rgba(237, 231, 218, 0.5);
+  }
+
+  footer .footer-content button[type='submit'],
+  footer .footer-content .button:not(.button-unstyled) {
+    background: #c4a472;
+    color: #17302d;
+    border: none;
+    border-radius: 100px;
+  }
 {% endstylesheet %}
 
 {% schema %}
