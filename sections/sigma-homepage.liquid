@@ -58,7 +58,7 @@
 .sigma-home .hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(13,61,62,0.96) 0%, rgba(13,61,62,0.8) 24%, rgba(13,61,62,0.16) 42%, rgba(13,61,62,0.16) 60%, rgba(13,61,62,0.74) 80%, rgba(13,61,62,0.95) 100%);}
 .sigma-home .hero-content{position:relative; z-index:1; width:100%; max-width:640px; color:var(--bone);}
 .sigma-home .hero-top{position:absolute; top:34px; left:0; right:0; padding:0 24px 0 clamp(24px,5vw,64px);}
-.sigma-home .hero-content .hero-bottom{position:absolute; bottom:40px; left:0; right:0; padding:0 24px 0 clamp(24px,5vw,64px); gap:10px; justify-content:flex-start;}
+.sigma-home .hero-content .hero-bottom{position:absolute; bottom:26px; left:0; right:0; padding:0 24px 0 clamp(24px,5vw,64px); gap:10px; justify-content:flex-start;}
 .sigma-home .hero-eyebrow{margin-top:12px; justify-content:flex-start; color:var(--bronze-light);}
 .sigma-home .hero-eyebrow::before{color:var(--bronze-light);}
 .sigma-home .hero-points{display:flex; flex-wrap:wrap; justify-content:flex-start; gap:9px 18px; margin:16px 0 0; max-width:440px; list-style:none;}
@@ -79,7 +79,7 @@
 @media(max-width:880px){
   .sigma-home .hero{min-height:94vh;}
   .sigma-home .hero-top{top:26px; padding:0 20px;}
-  .sigma-home .hero-content .hero-bottom{bottom:34px; padding:0 20px;}
+  .sigma-home .hero-content .hero-bottom{bottom:14px; padding:0 20px;}
   .sigma-home .hero-points{gap:8px 16px;}
   .sigma-home .hero-points li{font-size:12px;}
 }
@@ -102,10 +102,18 @@
 .sigma-home .thesis-cta{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); border-bottom:1px solid var(--bronze); padding-bottom:3px; white-space:nowrap; transition:color .2s;}
 .sigma-home .thesis-cta:hover{color:var(--teal-deep);}
 .sigma-home .thesis-note{font-size:11.5px; color:var(--ink-faint); margin-top:20px; line-height:1.55; max-width:720px;}
+.sigma-home .thesis-close{display:grid; grid-template-columns:1.15fr 0.85fr; gap:clamp(28px,5vw,56px); align-items:center; margin-top:36px; padding-top:32px; border-top:1px solid var(--line);}
+.sigma-home .thesis-close .prob-stat{margin-bottom:22px;}
+.sigma-home .thesis-close .thesis-cta{display:inline-block; margin-bottom:22px;}
+.sigma-home .thesis-close .thesis-note{margin-top:0;}
+.sigma-home .thesis-close-media{align-self:stretch; border-radius:14px; overflow:hidden; min-height:300px; background:var(--bone-card);}
+.sigma-home .thesis-close-media img{width:100%; height:100%; object-fit:cover; object-position:center; display:block;}
 @media(max-width:820px){
   .sigma-home .thesis-inner{padding:44px 52px 44px 22px;}
   .sigma-home .prob-grid{grid-template-columns:1fr;}
   .sigma-home .thesis-foot{align-items:flex-start;}
+  .sigma-home .thesis-close{grid-template-columns:1fr; gap:24px; align-items:stretch;}
+  .sigma-home .thesis-close-media{min-height:0; aspect-ratio:4/3;}
 }
 .sigma-home /* SIGNATURE — INTERACTIVE INSTRUMENT */
   .instrument-sec{background:linear-gradient(175deg,var(--teal-deep),#0A3132); color:var(--bone); padding:60px 0; position:relative; overflow:hidden;}
@@ -375,11 +383,16 @@
         <p>With less NAD⁺, the systems that keep cells youthful and resilient lose momentum — and the effect compounds with every passing year.</p>
       </div>
     </div>
-    <div class="thesis-foot reveal">
-      <div class="prob-stat"><span class="pstat-n">~50%</span><span class="pstat-l">estimated fall in cellular NAD⁺ by midlife*</span></div>
-      <a href="#instrument" class="thesis-cta">See your NAD⁺ decline →</a>
+    <div class="thesis-close reveal">
+      <div class="thesis-close-copy">
+        <div class="prob-stat"><span class="pstat-n">~50%</span><span class="pstat-l">estimated fall in cellular NAD⁺ by midlife*</span></div>
+        <a href="#instrument" class="thesis-cta">See your NAD⁺ decline →</a>
+        <p class="thesis-note">*Based on published research on NAD⁺ and aging. Individual levels vary and are not measured by this website. This statement has not been evaluated by the FDA. NMN+ is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+      <div class="thesis-close-media">
+        <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-duo.jpg?width=800" alt="Two Sigma Formulas NMN+ jars, one tipped with capsules spilling out" width="1880" height="1792" loading="lazy">
+      </div>
     </div>
-    <p class="thesis-note reveal">*Based on published research on NAD⁺ and aging. Individual levels vary and are not measured by this website. This statement has not been evaluated by the FDA. NMN+ is not intended to diagnose, treat, cure, or prevent any disease.</p>
   </div>
 </div>
 
