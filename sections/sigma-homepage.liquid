@@ -90,6 +90,20 @@
   .sigma-home .hero-points{gap:8px 16px;}
   .sigma-home .hero-points li{font-size:12px;}
 }
+.sigma-home /* PRESS MARQUEE */
+  .press{background:var(--teal-deep); color:var(--bone); padding:34px 0 30px; border-top:1px solid rgba(196,164,114,0.22); overflow:hidden;}
+.sigma-home .press-head{text-align:center; margin-bottom:22px; padding:0 24px;}
+.sigma-home .press-head .eyebrow{color:var(--bronze-light);}
+.sigma-home .press-head .eyebrow::before{color:var(--bronze-light);}
+.sigma-home .press-head h2{font-size:clamp(21px,2.9vw,30px); font-weight:300; color:var(--bone); letter-spacing:-0.015em; margin-top:12px; line-height:1.12;}
+.sigma-home .press-marquee{position:relative; width:100%; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+.sigma-home .press-track{display:inline-flex; align-items:center; white-space:nowrap; animation:pressScroll 42s linear infinite; will-change:transform;}
+.sigma-home .press-track span{font-family:'Fraunces',serif; font-weight:400; font-size:clamp(20px,3.2vw,30px); color:rgba(237,231,218,0.82); letter-spacing:-0.01em; margin-right:clamp(34px,6vw,64px); flex:none;}
+.sigma-home .press-track span em{font-style:italic;}
+@keyframes pressScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.sigma-home .press-marquee:hover .press-track{animation-play-state:paused;}
+.sigma-home .press-note{text-align:center; font-size:10.5px; color:rgba(237,231,218,0.42); margin:22px auto 0; max-width:640px; padding:0 24px; line-height:1.55;}
+@media (prefers-reduced-motion: reduce){.sigma-home .press-track{animation:none;}}
 .sigma-home /* THESIS */
   .thesis{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bone-light);}
 .sigma-home .thesis-inner{max-width:1080px; margin:0 auto; padding:58px 62px 58px 40px; text-align:left;}
@@ -425,6 +439,39 @@
       <a href="#instrument" class="btn-ghost">See your NAD⁺ decline</a>
     </div>
   </div>
+</section>
+
+<!-- PRESS / NMN IN THE MEDIA -->
+<section class="press">
+  <div class="press-head reveal">
+    <span class="eyebrow" style="justify-content:center;">In the science &amp; press</span>
+    <h2>The molecule the world can't stop talking about.</h2>
+  </div>
+  <div class="press-marquee" role="img" aria-label="Publications and journals that have covered NMN and NAD-plus research">
+    <div class="press-track">
+      <span>The New York Times</span>
+      <span>TIME</span>
+      <span><em>Nature</em></span>
+      <span>Scientific American</span>
+      <span>National Geographic</span>
+      <span>Harvard Medicine</span>
+      <span>The Wall Street Journal</span>
+      <span>Forbes</span>
+      <span>BBC</span>
+      <span><em>Cell Metabolism</em></span>
+      <span aria-hidden="true">The New York Times</span>
+      <span aria-hidden="true">TIME</span>
+      <span aria-hidden="true"><em>Nature</em></span>
+      <span aria-hidden="true">Scientific American</span>
+      <span aria-hidden="true">National Geographic</span>
+      <span aria-hidden="true">Harvard Medicine</span>
+      <span aria-hidden="true">The Wall Street Journal</span>
+      <span aria-hidden="true">Forbes</span>
+      <span aria-hidden="true">BBC</span>
+      <span aria-hidden="true"><em>Cell Metabolism</em></span>
+    </div>
+  </div>
+  <p class="press-note">Selected publications and peer-reviewed journals that have reported on NMN and NAD⁺ research. Coverage refers to the compound and the science — not an endorsement of Sigma Formulas.</p>
 </section>
 
 <!-- THESIS / LONGEVITY — the problem -->
@@ -891,11 +938,11 @@ function initSigma(){
     var nodes=[].slice.call(rail.querySelectorAll('.rail-node'));
     var targets=nodes.map(function(n){ return document.getElementById(n.getAttribute('data-target')); });
     var railTrack=rail.querySelector('.rail-track');
-    var bands=[].slice.call(root.querySelectorAll('.hero,.thesis,.instrument-sec,.philo,.mech,.formula,.mission,.compare,.reviews,.pricing,.faq,.closing,footer'));
+    var bands=[].slice.call(root.querySelectorAll('.hero,.press,.thesis,.instrument-sec,.philo,.mech,.formula,.mission,.compare,.reviews,.pricing,.faq,.closing,footer'));
     var current=-1;
     function bandInfo(el){
       if(!el) return {c:'#EDE7DA', dark:false};
-      if(el.classList.contains('hero')||el.classList.contains('instrument-sec')||el.classList.contains('pricing')) return {c:'#0D3D3E', dark:true};
+      if(el.classList.contains('hero')||el.classList.contains('press')||el.classList.contains('instrument-sec')||el.classList.contains('pricing')) return {c:'#0D3D3E', dark:true};
       if(el.tagName==='FOOTER') return {c:'#17302D', dark:true};
       if(el.classList.contains('thesis')||el.classList.contains('formula')||el.classList.contains('reviews')||el.classList.contains('closing')) return {c:'#F5F1E8', dark:false};
       return {c:'#EDE7DA', dark:false};
