@@ -1,0 +1,14 @@
+{% comment %}
+  Robots template. Preserves Shopify's default crawl rules (which block cart,
+  checkout, account, and internal search-with-params URLs) and emits the
+  sitemap directive so crawlers discover every product, page, and article.
+{% endcomment %}
+{%- for group in robots.default_groups -%}
+  {{- group.user_agent }}
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+  {%- if group.sitemap != blank %}
+  {{ group.sitemap }}
+  {%- endif %}
+{% endfor -%}

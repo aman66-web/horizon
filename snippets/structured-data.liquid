@@ -5,17 +5,18 @@
     review or rating markup, since on-site reviews are placeholder content)
 {% endcomment %}
 
+{%- assign brand_name = 'Sigma Formulas' -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": {{ shop.name | json }},
+  "name": {{ brand_name | json }},
   "legalName": "AURORELLE ECOM, LLC",
   "url": "{{ request.origin }}/",
   {%- if settings.logo != blank %}
   "logo": "https:{{ settings.logo | image_url: width: 512 }}",
   {%- endif %}
-  "description": {{ shop.description | default: shop.name | json }}
+  "description": "Sigma Formulas makes NMN+, a fully disclosed NAD⁺ precursor supplement dosed for daily longevity support and third-party tested for purity and potency."
 }
 </script>
 
@@ -23,7 +24,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": {{ shop.name | json }},
+  "name": {{ brand_name | json }},
   "url": "{{ request.origin }}/",
   "potentialAction": {
     "@type": "SearchAction",
@@ -64,7 +65,7 @@
     {%- endfor -%}
   ],
   {%- endif %}
-  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+  "brand": { "@type": "Brand", "name": {{ brand_name | json }} },
   {%- if product.selected_or_first_available_variant.sku != blank %}
   "sku": {{ product.selected_or_first_available_variant.sku | json }},
   {%- endif %}
@@ -74,8 +75,59 @@
     "priceCurrency": "{{ cart.currency.iso_code }}",
     "price": "{{ product.price | divided_by: 100.0 }}",
     "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-    "seller": { "@type": "Organization", "name": {{ shop.name | json }} }
+    "seller": { "@type": "Organization", "name": {{ brand_name | json }} }
   }
 }
 </script>
 {%- endif -%}
+
+{%- if request.page_type == 'article' and article != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json }},
+  "url": "{{ request.origin }}{{ article.url }}",
+  {%- if article.image != blank %}
+  "image": ["https:{{ article.image | image_url: width: 1200 }}"],
+  {%- endif %}
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+  "dateModified": "{{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+  "author": { "@type": "Organization", "name": {{ brand_name | json }} },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ brand_name | json }}
+    {%- if settings.logo != blank -%}
+    , "logo": { "@type": "ImageObject", "url": "https:{{ settings.logo | image_url: width: 512 }}" }
+    {%- endif -%}
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ request.origin }}{{ article.url }}" }
+  {%- if article.excerpt_or_content != blank -%}
+  , "description": {{ article.excerpt_or_content | strip_html | truncate: 280 | json }}
+  {%- endif -%}
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} Breadcrumbs on non-home pages help Google render trails in results. {%- endcomment -%}
+{%- unless request.page_type == 'index' or request.page_type == 'password' or request.page_type == 'cart' or request.page_type == '404' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ request.origin }}/" }
+    {%- if request.page_type == 'product' and product != blank -%}
+    , { "@type": "ListItem", "position": 2, "name": {{ product.title | json }}, "item": "{{ request.origin }}{{ product.url }}" }
+    {%- elsif request.page_type == 'article' and article != blank -%}
+    , { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": "{{ request.origin }}{{ blog.url }}" }
+    , { "@type": "ListItem", "position": 3, "name": {{ article.title | json }}, "item": "{{ request.origin }}{{ article.url }}" }
+    {%- elsif request.page_type == 'blog' and blog != blank -%}
+    , { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": "{{ request.origin }}{{ blog.url }}" }
+    {%- elsif request.page_type == 'page' and page != blank -%}
+    , { "@type": "ListItem", "position": 2, "name": {{ page.title | json }}, "item": "{{ request.origin }}{{ page.url }}" }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endunless -%}
