@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h1>Page not found</h1>",
+            "text": "<h1>This page slipped off the label.</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -41,7 +41,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>The link may be incorrect, or the page has been removed. </p>",
+            "text": "<p>The link may be wrong, or the page has moved. Try the <a href=\"/products/nmn-01\">NMN+ product page</a>, <a href=\"/blogs/journal\">The Longevity Journal</a>, or head <a href=\"/\">home</a>.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -66,8 +66,8 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Continue shopping",
-            "link": "shopify://collections/all",
+            "label": "Shop NMN+",
+            "link": "shopify://products/nmn-01",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -266,7 +266,6 @@
     }
   },
   "order": [
-    "main",
-    "product_list_iA96Tq"
+    "main"
   ]
 }

@@ -8,6 +8,12 @@
   <head>
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    {%- comment -%} Preload the largest-contentful image per page type to improve LCP {%- endcomment -%}
+    {%- if request.page_type == 'index' -%}
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-duo.jpg?width=1400" fetchpriority="high">
+    {%- elsif template.suffix == 'nmn' -%}
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-bottle-front.webp?width=1100" fetchpriority="high">
+    {%- endif -%}
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -21,6 +27,8 @@
     <style>
       html { scroll-behavior: smooth; }
       ::selection { background: #14514F; color: #EDE7DA; }
+      :focus-visible { outline: 2px solid #A6844E; outline-offset: 2px; border-radius: 2px; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
 
     {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
