@@ -1,0 +1,149 @@
+{%- comment -%}
+  Sigma Formulas — self-contained help assistant (no backend).
+  A floating launcher (bottom-right) that opens a scripted chat: quick-reply
+  topics answer the common NMN+ questions and link through to real pages,
+  with a Contact fallback. Rendered globally from theme.liquid.
+{%- endcomment -%}
+
+<div class="sg-chat" id="sgChat">
+  <button type="button" class="sg-chat-fab" id="sgChatFab" aria-label="Open help chat" aria-expanded="false" aria-controls="sgChatPanel">
+    <span class="sg-ico sg-ico-open" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.7 8.7 0 0 1-3.8-.9L3 20.5l1.4-4.2A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+    </span>
+    <span class="sg-ico sg-ico-close" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </span>
+  </button>
+
+  <div class="sg-chat-panel" id="sgChatPanel" role="dialog" aria-modal="false" aria-label="Sigma Formulas help assistant" hidden>
+    <header class="sg-chat-head">
+      <span class="sg-chat-avatar" aria-hidden="true">σ</span>
+      <span class="sg-chat-who"><b>Sigma Assistant</b><span class="sg-chat-status">Usually replies instantly</span></span>
+      <button type="button" class="sg-chat-x" id="sgChatX" aria-label="Close chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <div class="sg-chat-log" id="sgChatLog" role="log" aria-live="polite"></div>
+    <div class="sg-chat-quick" id="sgChatQuick"></div>
+    <p class="sg-chat-foot">Automated assistant · educational only, not medical advice</p>
+  </div>
+</div>
+
+<style>
+  .sg-chat{--t:#0D3D3E;--t2:#14514F;--bone:#EDE7DA;--bone2:#F6F2E9;--ink:#17302D;--ink-soft:rgba(23,48,45,.66);--bronze:#A6844E;--bronze-l:#C4A472;--line:rgba(23,48,45,.12);
+    position:fixed;right:20px;bottom:20px;z-index:70;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}
+  .sg-chat.sg-raised{bottom:84px;}
+  .sg-chat *{box-sizing:border-box;}
+
+  .sg-chat-fab{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;background:var(--t);color:var(--bone);box-shadow:0 8px 24px rgba(13,61,62,.34);display:flex;align-items:center;justify-content:center;transition:transform .2s ease, background .2s;position:relative;}
+  .sg-chat-fab:hover{background:var(--t2);transform:translateY(-2px);}
+  .sg-chat-fab svg{width:26px;height:26px;}
+  .sg-chat-fab .sg-ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .2s, transform .2s;}
+  .sg-chat-fab .sg-ico-close{opacity:0;transform:rotate(-45deg);}
+  .sg-chat.sg-open .sg-ico-open{opacity:0;transform:rotate(45deg);}
+  .sg-chat.sg-open .sg-ico-close{opacity:1;transform:rotate(0);}
+
+  .sg-chat-panel{position:absolute;right:0;bottom:74px;width:352px;max-width:calc(100vw - 32px);height:min(520px,72vh);background:var(--bone2);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 60px rgba(13,61,62,.28);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;animation:sgIn .22s cubic-bezier(.2,.7,.2,1);}
+  @keyframes sgIn{from{opacity:0;transform:translateY(10px) scale(.97);}to{opacity:1;transform:none;}}
+  .sg-chat-panel[hidden]{display:none;}
+
+  .sg-chat-head{display:flex;align-items:center;gap:11px;padding:15px 16px;background:var(--t);color:var(--bone);}
+  .sg-chat-avatar{width:36px;height:36px;border-radius:50%;background:var(--bronze);color:var(--t);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-size:20px;flex-shrink:0;}
+  .sg-chat-who{display:flex;flex-direction:column;line-height:1.25;flex:1;}
+  .sg-chat-who b{font-size:15px;font-weight:600;}
+  .sg-chat-status{font-size:11.5px;color:rgba(237,231,218,.7);display:flex;align-items:center;gap:6px;}
+  .sg-chat-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#8FD48A;box-shadow:0 0 0 2px rgba(143,212,138,.3);}
+  .sg-chat-x{margin-left:auto;background:transparent;border:none;color:var(--bone);cursor:pointer;padding:4px;border-radius:8px;opacity:.8;display:flex;}
+  .sg-chat-x:hover{opacity:1;background:rgba(255,255,255,.1);}
+  .sg-chat-x svg{width:19px;height:19px;}
+
+  .sg-chat-log{flex:1;overflow-y:auto;padding:18px 16px 6px;display:flex;flex-direction:column;gap:11px;scrollbar-width:thin;}
+  .sg-msg{max-width:84%;font-size:14px;line-height:1.55;padding:11px 14px;border-radius:15px;}
+  .sg-msg a{color:var(--t2);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+  .sg-msg.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px;}
+  .sg-msg.user{align-self:flex-end;background:var(--t);color:var(--bone);border-bottom-right-radius:5px;}
+  .sg-msg.user a{color:var(--bronze-l);}
+  .sg-typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:15px;border-bottom-left-radius:5px;padding:13px 15px;display:flex;gap:5px;}
+  .sg-typing span{width:7px;height:7px;border-radius:50%;background:var(--bronze-l);opacity:.5;animation:sgBlink 1.2s infinite;}
+  .sg-typing span:nth-child(2){animation-delay:.2s;}
+  .sg-typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes sgBlink{0%,60%,100%{opacity:.35;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+
+  .sg-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:8px 14px 12px;border-top:1px solid var(--line);background:var(--bone2);}
+  .sg-qr{font-size:12.5px;font-weight:500;color:var(--t);background:rgba(20,81,79,.07);border:1px solid rgba(20,81,79,.18);border-radius:100px;padding:7px 13px;cursor:pointer;transition:background .15s, border-color .15s;font-family:inherit;}
+  .sg-qr:hover{background:rgba(20,81,79,.14);border-color:var(--t2);}
+  .sg-chat-foot{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);opacity:.6;text-align:center;padding:0 14px 11px;background:var(--bone2);}
+
+  @media (max-width:520px){
+    .sg-chat{right:14px;bottom:16px;}
+    .sg-chat.sg-raised{bottom:80px;}
+    .sg-chat-panel{width:calc(100vw - 28px);height:min(66vh,540px);bottom:70px;}
+  }
+  @media (prefers-color-scheme:dark){
+    .sg-chat-panel{--bone2:#123837;background:#123837;}
+    .sg-chat .sg-msg.bot{background:#0F2F2E;color:#ECE7D9;border-color:rgba(236,231,217,.14);}
+    .sg-chat .sg-typing{background:#0F2F2E;border-color:rgba(236,231,217,.14);}
+    .sg-chat .sg-chat-quick,.sg-chat .sg-chat-foot{background:#123837;}
+    .sg-chat .sg-qr{color:#ECE7D9;background:rgba(236,231,217,.08);border-color:rgba(236,231,217,.2);}
+    .sg-chat .sg-msg a{color:var(--bronze-l);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sg-chat-panel,.sg-typing span,.sg-chat-fab{animation:none;transition:none;}
+  }
+</style>
+
+<script>
+(function(){
+  var root=document.getElementById('sgChat'); if(!root||root.dataset.init) return; root.dataset.init='1';
+  var fab=document.getElementById('sgChatFab'), panel=document.getElementById('sgChatPanel'),
+      log=document.getElementById('sgChatLog'), quick=document.getElementById('sgChatQuick'),
+      x=document.getElementById('sgChatX');
+
+  var TOPICS=[
+    {q:"What is NMN+?", a:"NMN+ is a daily <b>NAD⁺ precursor</b> — seven fully disclosed actives, each dosed to published-research levels. NMN is a direct building block your body converts into NAD⁺, a coenzyme central to cellular energy and repair. <a href='/pages/science'>Read the science →</a>"},
+    {q:"How do I take it?", a:"Two capsules daily, ideally in the morning, with or without food. Consistency matters more than timing — NAD⁺ support is gradual."},
+    {q:"Is it third-party tested?", a:"Yes. Every production batch is tested by <b>Eurofins</b> for purity, potency and contaminants before it ships. You can look up your batch on the <a href='/pages/lab-reports'>Lab Reports page</a>."},
+    {q:"When will I feel it?", a:"NAD⁺ replenishment is gradual — most people take NMN+ daily for <b>4–8 weeks</b> before evaluating how they feel. Results vary by individual, and it isn't a quick fix.*"},
+    {q:"What's in it?", a:"NMN (UTHEVER®), trans-resveratrol, quercetin, the active forms of B6, B12 and folate, and BioPerine® — in a vegan capsule. Every dose is on the label. <a href='/products/nmn-01'>See the full formula →</a>"},
+    {q:"Subscribe & Save", a:"Subscribe &amp; Save is <b>10% off</b>, delivered every 30 days — pause, skip, or cancel anytime. Choose it on the <a href='/products/nmn-01'>product page</a>."},
+    {q:"Shipping & returns", a:"Free US shipping on orders over $60, plus a 30-day money-back guarantee. Question about an order? <a href='/pages/contact'>Contact us →</a>"},
+    {q:"Talk to a human", a:"Happy to help — reach the team through our <a href='/pages/contact'>Contact page</a> and we'll get right back to you."}
+  ];
+
+  function scroll(){ log.scrollTop=log.scrollHeight; }
+  function bubble(cls,html){ var d=document.createElement('div'); d.className='sg-msg '+cls; d.innerHTML=html; log.appendChild(d); scroll(); return d; }
+  function renderQuick(){
+    quick.innerHTML='';
+    TOPICS.forEach(function(t){
+      var b=document.createElement('button'); b.type='button'; b.className='sg-qr'; b.textContent=t.q;
+      b.addEventListener('click', function(){ ask(t); });
+      quick.appendChild(b);
+    });
+  }
+  function ask(t){
+    bubble('user', t.q);
+    quick.innerHTML='';
+    var typ=document.createElement('div'); typ.className='sg-typing'; typ.innerHTML='<span></span><span></span><span></span>';
+    log.appendChild(typ); scroll();
+    setTimeout(function(){ typ.remove(); bubble('bot', t.a); renderQuick(); }, 620);
+  }
+  var greeted=false;
+  function greet(){ if(greeted) return; greeted=true; bubble('bot',"Hi 👋 I'm the Sigma assistant — here to help with NMN+, your order, or the science. Pick a topic:"); renderQuick(); }
+
+  function open(){ panel.hidden=false; root.classList.add('sg-open'); fab.setAttribute('aria-expanded','true'); greet(); }
+  function close(){ panel.hidden=true; root.classList.remove('sg-open'); fab.setAttribute('aria-expanded','false'); }
+  fab.addEventListener('click', function(){ panel.hidden ? open() : close(); });
+  x.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !panel.hidden) close(); });
+
+  // Lift the launcher above the sticky mobile buy bar when it's showing
+  var ticking=false;
+  function checkBar(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){ ticking=false; root.classList.toggle('sg-raised', !!document.querySelector('.buybar.on')); });
+  }
+  window.addEventListener('scroll', checkBar, {passive:true});
+  setInterval(checkBar, 600);
+  checkBar();
+})();
+</script>
