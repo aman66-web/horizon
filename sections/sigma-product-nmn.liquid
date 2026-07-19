@@ -434,6 +434,32 @@
 .sigma-pdp .tested-grid .t .ring{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--bronze-light); color:var(--bronze-light); display:flex; align-items:center; justify-content:center; font-size:16px;}
 .sigma-pdp .tested-grid .t span{font-size:12.5px; color:var(--dark-soft); line-height:1.4;}
 @media(max-width:600px){.sigma-pdp .tested-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* ===== Formula + Proof sections copied from the homepage ===== */
+.sigma-pdp .section-head{max-width:600px; margin-bottom:40px;}
+.sigma-pdp .section-head h2{font-size:clamp(30px,3.6vw,46px); line-height:1.1; font-weight:300; margin-top:20px; letter-spacing:-0.02em; color:var(--ink);}
+.sigma-pdp .section-head p{font-size:16.5px; color:var(--ink-soft); margin-top:18px; line-height:1.62;}
+.sigma-pdp .hp-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:var(--bronze); display:inline-flex; align-items:center; gap:11px; font-weight:500;}
+.sigma-pdp .hp-eyebrow::before{content:'●'; font-size:8px; color:var(--bronze); transform:translateY(-1px);}
+.sigma-pdp .actives-fig{max-width:760px; margin:0 auto 20px; border-radius:14px; overflow:hidden;}
+.sigma-pdp .actives-fig img{width:100%; height:auto; display:block;}
+.sigma-pdp .actives-other{max-width:640px; margin:0 auto; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.7; color:var(--ink-faint); letter-spacing:0.01em;}
+.sigma-pdp .actives-other strong{color:var(--bronze); font-weight:500;}
+.sigma-pdp .mission-inner{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+.sigma-pdp .mission h2{font-size:clamp(30px,3.6vw,44px); font-weight:300; line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px; color:var(--ink);}
+.sigma-pdp .mission p{font-size:16px; color:var(--ink-soft); line-height:1.66; margin-bottom:16px; max-width:460px;}
+.sigma-pdp .mission p strong{color:var(--teal-deep); font-weight:600;}
+.sigma-pdp .cert-card{background:var(--teal-deep); border-radius:6px; padding:34px; color:var(--bone); border:1px solid rgba(196,164,114,0.25);}
+.sigma-pdp .cert-card + .cert-card{margin-top:18px;}
+.sigma-pdp .cert-card a{color:var(--bronze-light); text-decoration:underline; text-underline-offset:3px;}
+.sigma-pdp .cert-card .cert-top{display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--line-light); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bronze-light);}
+.sigma-pdp .cert-card .cert-note{color:rgba(237,231,218,0.88); font-size:14px; line-height:1.6;}
+.sigma-pdp .cert-ttl{display:inline-flex; align-items:center; gap:8px;}
+.sigma-pdp .cert-ttl svg{width:16px; height:16px; stroke:var(--bronze-light); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+.sigma-pdp .cert-tests{display:flex; flex-wrap:wrap; gap:11px 20px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line-light);}
+.sigma-pdp .cert-tests span{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(237,231,218,0.72);}
+.sigma-pdp .cert-tests svg{width:18px; height:18px; stroke:var(--bronze-light); fill:none; stroke-width:1.55; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+@media(max-width:880px){.sigma-pdp .mission-inner{grid-template-columns:1fr; gap:40px;}}
 </style>
 
 {%- liquid
@@ -470,10 +496,8 @@
   <span class="rail-track" aria-hidden="true"></span>
   <span class="rail-fill" id="railFill" aria-hidden="true"></span>
   <button class="rail-node is-active" type="button" data-target="nmn-top" aria-label="Overview"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5v2.4l1.3 1.9c.5.8.7 1.6.7 2.5V19a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2V9.8c0-.9.2-1.7.7-2.5L9.5 5.4z"/><path d="M8.5 13h7"/></svg></span><span class="rl">Overview</span></button>
-  <button class="rail-node" type="button" data-target="why-nmn" aria-label="Why NMN+"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 13.7 10.3 20.5 12 13.7 13.7 12 20.5 10.3 13.7 3.5 12 10.3 10.3z"/></svg></span><span class="rl">Why NMN+</span></button>
-  <button class="rail-node" type="button" data-target="how-it-works" aria-label="The science"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1.7"/><ellipse cx="12" cy="12" rx="9" ry="3.9"/><ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(120 12 12)"/></svg></span><span class="rl">Science</span></button>
   <button class="rail-node" type="button" data-target="nmn-formula" aria-label="The formula"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4.5" width="13" height="16" rx="2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.8 11h6.4M8.8 14.3h6.4M8.8 17.6h3.8"/></svg></span><span class="rl">Formula</span></button>
-  <button class="rail-node" type="button" data-target="tested" aria-label="Third-party tested"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10.5 3v6l-4.3 7.4A2 2 0 0 0 7.9 20h8.2a2 2 0 0 0 1.7-3.6L13.5 9V3"/><path d="M8.3 15h7.4"/></svg></span><span class="rl">3rd-Party<br>Tested</span></button>
+  <button class="rail-node" type="button" data-target="proof" aria-label="The proof"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="rl">Proof</span></button>
   <button class="rail-node" type="button" data-target="what-to-expect" aria-label="The ritual"><span class="rn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.8"/><path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M6.2 6.2 4.8 4.8M19.2 19.2l-1.4-1.4M17.8 6.2l1.4-1.4M4.8 19.2l1.4-1.4"/></svg></span><span class="rl">Ritual</span></button>
 </nav>
 
@@ -498,12 +522,12 @@
     <div class="gallery reveal">
       <div class="gal-viewport">
       <div class="gal-slider" id="galSlider">
-        <div class="slide"><img src="{{ img_bottle_plain }}?width=1100" alt="NMN+ Daily Longevity bottle, front view" loading="eager" width="1100" height="1100"></div>
-        <div class="slide"><img src="{{ img_glow }}?width=1100" alt="NMN+ bottle with a warm glow" loading="lazy" width="1100" height="1100"></div>
-        <div class="slide"><img src="{{ img_hand }}?width=1100" alt="Hand holding the NMN+ bottle" loading="lazy" width="1100" height="1100"></div>
-        <div class="slide"><img src="{{ img_spill }}?width=1100" alt="NMN+ capsules spilling from the bottle" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-bottle-front.webp?width=1100" alt="NMN+ Daily Longevity bottle, front view" loading="eager" width="1100" height="1100"></div>
+        <div class="slide"><img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-sand-swirl.jpg?width=1100" alt="NMN+ bottle with a swirl of powder" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-three-jars.png?width=1100" alt="Three NMN+ jars stacked, one open showing capsules" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-two-jars-spill.png?width=1100" alt="Two NMN+ jars with capsules spilling out" loading="lazy" width="1100" height="1100"></div>
         <div class="slide"><img src="{{ img_capsule }}?width=1100" alt="A single NMN+ capsule on a dark background" loading="lazy" width="1100" height="1100"></div>
-        <div class="slide"><img src="{{ img_marble }}?width=1100" alt="NMN+ on a sunlit marble counter with a glass of water" loading="lazy" width="1100" height="1100"></div>
+        <div class="slide"><img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-unboxing_23db4435-1b40-4546-9180-20943826d05b.png?width=1100" alt="NMN+ jar in a Sigma Formulas unboxing gift box" loading="lazy" width="1100" height="1100"></div>
       </div>
         <button type="button" class="gal-arrow prev" id="galPrev" aria-label="Previous image">&#8249;</button>
         <button type="button" class="gal-arrow next" id="galNext" aria-label="Next image">&#8250;</button>
@@ -622,240 +646,54 @@
   </div>
 </section>
 
-<!-- ============ WHY NMN+ / BENEFIT TILES (teal) ============ -->
-<section class="band green" id="why-nmn">
+<!-- ============ FORMULA (copied from the homepage) ============ -->
+<section class="band cream" id="nmn-formula">
   <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 13.7 10.3 20.5 12 13.7 13.7 12 20.5 10.3 13.7 3.5 12 10.3 10.3z"/></svg></span>Why NMN+</span>
-      <h2>The difference is disclosure.</h2>
-      <p>Every ingredient, every dose, printed in full. No proprietary blends — ever.</p>
+    <div class="section-head reveal">
+      <span class="hp-eyebrow">Formula · Fully Disclosed</span>
+      <h2>Every capsule, on the record.</h2>
+      <p>No proprietary blends. No hidden fillers. Every ingredient is dosed to published research levels and disclosed in full — read it like a lab printout, not ad copy.</p>
     </div>
-    <div class="bene-grid reveal">
-      <div class="bene-card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="16" x2="13" y2="16"/></svg></div>
-        <h3>Full Disclosure</h3>
-        <p>Every milligram on the label. No proprietary blends, ever.</p>
-      </div>
-      <div class="bene-card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="14" x2="20" y2="14"/><circle cx="15" cy="14" r="3"/></svg></div>
-        <h3>Research-Level Dosing</h3>
-        <p>Matched to the doses used in published NMN studies.</p>
-      </div>
-      <div class="bene-card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 5 a7 7 0 0 1 7 7"/></svg></div>
-        <h3>NAD<sup>+</sup> Precursor</h3>
-        <p>NMN is a direct precursor your body can convert to NAD<sup>+</sup>.*</p>
-      </div>
-      <div class="bene-card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.5 l2.5 2.5 l4.5 -5"/></svg></div>
-        <h3>A Simple Ritual</h3>
-        <p>Two capsules a day. One bottle, one month.</p>
-      </div>
-    </div>
+    <figure class="actives-fig reveal">
+      <img src="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-actives-guide-cream.png?width=1400" alt="The seven NMN+ actives shown as powders with names, doses and roles" width="2500" height="4000" loading="lazy">
+    </figure>
+    <p class="actives-other reveal"><strong>Other ingredients:</strong> Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (vegetable capsule). Nothing you can’t see on the label.</p>
   </div>
 </section>
 
-<!-- ============ 4.3 DISCLOSURE EXPLAINER (green) — SPILL image left ============ -->
-<section class="band green">
-  <div class="wrap">
-    <div class="text-block reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 13.7 10.3 20.5 12 13.7 13.7 12 20.5 10.3 13.7 3.5 12 10.3 10.3z"/></svg></span>The Difference</span>
-      <h2>Unlike some <em>NMN products</em>, NMN+ hides nothing.</h2>
-      <p>Some NMN products use proprietary blends — labels that name the ingredients but hide the doses.</p>
-      <p>NMN+ is the opposite: one formula, fully disclosed, with NMN dosed to the levels used in published research. The label <em>is</em> the formula.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CAPSULE ANATOMY (green) — between Benefits and Why NMN ============ -->
-<section class="band green mech-band">
-  <div class="wrap ca">
-    <div class="ca-head reveal">
-      <h2>One capsule. Seven actives. <em>Nothing hidden.</em></h2>
-      <p>Every NMN+ capsule is a plant-based (HPMC) shell — no proprietary blends, no hidden fillers.</p>
-      <a href="#nmn-formula" class="lnk">Learn more →</a>
-    </div>
-    <div class="ca-points reveal">
-      <div class="ca-point">
-        <h3>Vegan HPMC Shell</h3>
-        <p>A plant-based capsule — no gelatin or animal-derived ingredients.</p>
-      </div>
-      <div class="ca-point">
-        <h3>Seven Disclosed Actives</h3>
-        <p>NMN, trans-resveratrol, quercetin, and supporting B-vitamin cofactors — each dosed to research levels.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MECHANISM (green) — SINGLE CAPSULE image right + animation slot ============ -->
-<section class="band cream mech-band" id="how-it-works">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1.7"/><ellipse cx="12" cy="12" rx="9" ry="3.9"/><ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(120 12 12)"/></svg></span>Science</span>
-      <h2>From capsule to cell, in three conversions.</h2>
-    </div>
-
-    <!-- CAPSULE ANIMATION SLOT -->
-    <div class="capsule-anim-slot" aria-hidden="true"><!-- drop capsule animation here later --></div>
-
+<!-- ============ PROOF (copied from the homepage) ============ -->
+<section class="band cream mission" id="proof">
+  <div class="wrap mission-inner">
     <div class="reveal">
-      <div class="mech-list">
-        <div class="mech-item">
-          <span class="n">01 / INGEST</span>
-          <div>
-            <h3>NMN enters circulation</h3>
-            <p>Nicotinamide Mononucleotide is absorbed and transported into cells, where it serves as a direct building block for NAD⁺.</p>
-          </div>
+      <span class="hp-eyebrow" style="margin-bottom:22px;">Proof · Clinically &amp; Third-party Tested</span>
+      <h2>A claim is only as good as its proof.</h2>
+      <p>Anyone can print "99% pure" on a label. We publish the receipt. Every production batch of NMN+ is sent to <strong>Eurofins</strong> — one of the world's largest independent testing networks — and screened for purity, potency, and contaminants before a single bottle ships.</p>
+      <p>And the NMN itself is <strong>UTHEVER®</strong>, an NMN backed by a published, randomized, placebo-controlled human clinical trial — so the core active isn't just tested, it's studied.</p>
+    </div>
+    <div class="reveal">
+      <div class="cert-card">
+        <div class="cert-top"><span class="cert-ttl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10.5 3v6l-4.3 7.4A2 2 0 0 0 7.9 20h8.2a2 2 0 0 0 1.7-3.6L13.5 9V3"/><path d="M8.3 15h7.4"/></svg>σ // Batch Verification</span><span>Verified</span></div>
+        <p class="cert-note">Every batch tested by Eurofins for purity, potency &amp; contaminants. Certificates of Analysis are published on our <a href="/pages/lab-reports">Lab Reports page</a> once testing is complete.</p>
+        <div class="cert-tests">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3z"/></svg>Purity</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0"/><path d="M12 15l4.5-3.2"/><circle cx="12" cy="15" r="1.2"/></svg>Potency</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Contaminants</span>
         </div>
-        <div class="mech-item">
-          <span class="n">02 / CONVERT</span>
-          <div>
-            <h3>NAD⁺ is synthesized</h3>
-            <p>Cells convert NMN into NAD⁺, replenishing the coenzyme required for mitochondrial energy production and DNA repair.</p>
-          </div>
-        </div>
-        <div class="mech-item">
-          <span class="n">03 / ACTIVATE</span>
-          <div>
-            <h3>Sirtuins engage</h3>
-            <p>Restored NAD⁺ availability supports sirtuin activity — proteins tied to cellular resilience and healthy-aging pathways.</p>
-          </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-top"><span class="cert-ttl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8.5 13h2l1-2 1.6 4 1-2h1.9"/></svg>σ // Clinically Studied Active</span><span>UTHEVER®</span></div>
+        <p class="cert-note">Our NMN is UTHEVER® — the subject of a published randomized, double-blind, placebo-controlled human trial. Clinical evidence stands behind the ingredient, not marketing copy.</p>
+        <div class="cert-tests">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3 2.4-5 5.5-5s5.5 2 5.5 5"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M20.5 20c0-2.2-1.3-4.1-3.3-4.7"/></svg>Human trial</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4v4"/><path d="M19 4l-6 6"/><path d="M5 5h3l3 3"/><path d="M15 20h4v-4"/><path d="M19 20l-6-6"/><path d="M5 19h3l2-2"/></svg>Randomized</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg>Placebo-controlled</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 4.4 SUPPLEMENT FACTS (green) — FRONT BOTTLE image right ============ -->
-<section class="band green" id="nmn-formula">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4.5" width="13" height="16" rx="2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.8 11h6.4M8.8 14.3h6.4M8.8 17.6h3.8"/></svg></span>The Formula</span>
-      <h2>Seven disclosed actives for <em>one daily ritual.</em><sup>*</sup></h2>
-      <p>A label with nothing to hide — Serving Size 2 capsules · Servings Per Container 30 · 60 capsules per bottle · 1-month supply.</p>
-    </div>
-    <div class="facts-single reveal">
-      <div class="readout">
-        <div class="r-serve">Serving Size 2 capsules · Servings Per Container 30 · 60 capsules per bottle · 1-month supply</div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">β-Nicotinamide Mononucleotide (NMN)<span class="note">A direct NAD⁺ precursor — studied for its role in cellular energy metabolism.</span></span><span class="amt">500 mg<span class="fpur">99% pure · UTHEVER®</span></span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Trans-Resveratrol<span class="note">A polyphenol studied for its role in supporting sirtuin activity.</span></span><span class="amt">150 mg<span class="fpur">99% pure</span></span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Quercetin<span class="note">A plant flavonoid studied for its antioxidant properties.</span></span><span class="amt">100 mg</span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Vitamin B6 (as Pyridoxal-5-Phosphate)<span class="note">The active (P5P) form of vitamin B6 — studied for its role in methylation and amino-acid metabolism.</span></span><span class="amt">20 mg</span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Vitamin B12 (as Methylcobalamin)<span class="note">The methylated form of vitamin B12 — studied for its role in methylation metabolism.</span></span><span class="amt">400 mcg<span class="fpur">99% pure</span></span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Folate (as L-Methylfolate)<span class="note">The bioavailable (L-methylfolate) form of folate — studied for its role in one-carbon metabolism.</span></span><span class="amt">400 mcg DFE</span></div>
-        <div class="frow"><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="8" r="1.9"/><circle cx="17.5" cy="8" r="1.9"/><circle cx="12" cy="16.5" r="1.9"/><path d="M8.2 9 10.3 14.8M15.8 9 13.7 14.8M8.4 8h7.2"/></svg></span><span class="nm">Black Pepper Extract (BioPerine)<span class="note">A black-pepper extract studied for its role in supporting nutrient absorption.</span></span><span class="amt">5 mg<span class="fpur">95% piperine</span></span></div>
-        <div class="r-other">Other Ingredients: Microcrystalline Cellulose, Magnesium Stearate, Silicon Dioxide, Hypromellose (Vegetable Capsule).</div>
-        <details class="acc">
-          <summary>About NMN <span class="pm" aria-hidden="true">+</span></summary>
-          <p>A direct precursor to NAD⁺ (nicotinamide adenine dinucleotide), a coenzyme found in every living cell and central to energy metabolism. NAD⁺ levels decline with age — NMN is among the studied approaches to supporting them.* Dosed to published research levels, with the full amount on the label.</p>
-        </details>
-      </div>
-    </div>
-    <div class="pills reveal">
-      <span class="pill">Full label disclosure</span>
-      <span class="pill">No proprietary blends</span>
-      <span class="pill">Third-party tested</span>
-      <span class="pill">Research-level NMN dose</span>
-      <span class="pill">Vegan HPMC capsule</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.5 COMPARISON (cream) ============ -->
-<section class="band green" id="compare">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20V4M7 4 4 7.5M7 4l3 3.5M17 4v16M17 20l-3-3.5M17 20l3-3.5"/></svg></span>The Difference</span>
-      <h2>How NMN+ compares.</h2>
-    </div>
-    <div class="ctable reveal">
-      <div class="crow head"><div class="feat">Standard</div><div class="us">NMN+</div><div class="them">Others</div></div>
-      <div class="crow"><div class="feat">Every ingredient fully disclosed</div><div class="us"><span class="mk-yes">✓</span><span class="sr">Yes</span></div><div class="them"><span class="mk-no"></span><span class="sr">Not always</span></div></div>
-      <div class="crow"><div class="feat">NMN dosed to published research levels</div><div class="us"><span class="mk-yes">✓</span><span class="sr">Yes</span></div><div class="them"><span class="mk-no"></span><span class="sr">Not always</span></div></div>
-      <div class="crow"><div class="feat">Clinically studied NMN — tested in humans</div><div class="us"><span class="mk-yes">✓</span><span class="sr">Yes</span></div><div class="them"><span class="mk-no"></span><span class="sr">Rarely</span></div></div>
-      <div class="crow"><div class="feat">Third-party tested every batch</div><div class="us"><span class="mk-yes">✓</span><span class="sr">Yes</span></div><div class="them"><span class="mk-no"></span><span class="sr">Rarely published</span></div></div>
-      <div class="crow"><div class="feat">Honest one-month supply</div><div class="us"><span class="mk-yes">✓</span><span class="sr">Yes</span></div><div class="them"><span class="mk-no"></span><span class="sr">Varies</span></div></div>
-    </div>
-    <p class="cnote reveal">Some NMN products use proprietary blends or do not disclose full doses; always compare labels.</p>
-  </div>
-</section>
-
-<!-- ============ TESTED FOR (green) — verification grid ============ -->
-<section class="band cream" id="tested">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10.5 3v6l-4.3 7.4A2 2 0 0 0 7.9 20h8.2a2 2 0 0 0 1.7-3.6L13.5 9V3"/><path d="M8.3 15h7.4"/></svg></span>Third-Party Tested</span>
-      <h2>What every batch is checked for.</h2>
-      <p>Every batch of NMN+ is tested by <strong>Eurofins</strong> — one of the world's largest independent testing networks, with laboratories across dozens of countries. Independent means the lab has no stake in the result: the identity, purity, and potency on the label are verified by someone other than us, before the batch ever ships. Batch results are published on our <a href="/pages/lab-reports">Lab Reports page</a>.</p>
-    </div>
-    <div class="tested-grid reveal">
-      <div class="t"><span class="ring">✓</span><span>Third-Party Tested</span></div>
-      <div class="t"><span class="ring">✓</span><span>Heavy Metals Screened</span></div>
-      <div class="t"><span class="ring">✓</span><span>Microbials Screened</span></div>
-      <div class="t"><span class="ring">✓</span><span>Vegan HPMC</span></div>
-      <div class="t"><span class="ring">✓</span><span>Non-GMO</span></div>
-      <div class="t"><span class="ring">✓</span><span>Research-Level Doses</span></div>
-      <div class="t"><span class="ring">✓</span><span>No Proprietary Blends</span></div>
-      <div class="t"><span class="ring">✓</span><span>No Hidden Fillers</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.7 STANDARDS (cream) — faded bottle in background ============ -->
-<section class="band cream std-band" id="standards">
-  <div class="wrap split reveal">
-    <div>
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>Standards</span>
-      <h2 style="margin-top:18px;">A higher standard of disclosure.</h2>
-      <p>What’s <em>not</em> hidden in your supplement matters as much as what’s in it.</p>
-    </div>
-    <div class="std-cards">
-      <div class="card"><span class="ring">✓</span>Formulated without proprietary blends</div>
-      <div class="card"><span class="ring">✓</span>NMN dosed to published research levels</div>
-      <div class="card"><span class="ring">✓</span>The label is the formula</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TIMELINE (cream) — MARBLE image left ============ -->
-<section class="band cream">
-  <div class="wrap">
-    <div class="text-block reveal">
-      <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>A practice, not a quick fix</span>
-      <h2>Longevity is a practice.<sup>*</sup></h2>
-      <p>NAD⁺ isn’t a quick fix — NMN+ is built for the long run.</p>
-      <div class="tl-list">
-        <div class="tl-item">
-          <span class="chip">Month 1</span>
-          <h3>The ritual takes hold</h3>
-          <ul>
-            <li>Two capsules a day becomes routine</li>
-            <li>NMN is a precursor your body can use in the NAD⁺ pathway*</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <span class="chip">The research</span>
-          <h3>NAD⁺ and NMN</h3>
-          <ul>
-            <li>In published human studies, supplemental NMN has been reported to raise blood NAD⁺ levels*</li>
-            <li class="fine">Those are studies of NMN generally — not of this product; individual results are not established</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <span class="chip">The long game</span>
-          <h3>Consistency over intensity</h3>
-          <ul>
-            <li>Longevity is a practice of consistency — one month at a time</li>
-            <li>Keep the same simple ritual; let the routine do the work</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHAT TO EXPECT — timeline + how-to-use (cream) ============ -->
+<!-- ============ RITUAL — timeline + how-to-use ============ -->
 <section class="band green" id="what-to-expect">
   <div class="wrap">
     <div class="ritual-hero reveal">
@@ -902,42 +740,7 @@
   </div>
 </section>
 
-<!-- ============ 4.6 SIMPLY DELIVERED (green) — HAND image left ============ -->
-<section class="band green">
-  <div class="wrap reveal">
-    <div>
-      <div class="sec-head">
-        <span class="eyebrow"><span class="eb-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21 4 16.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg></span>Simply delivered</span>
-        <h2>Simply delivered.</h2>
-      </div>
-      <div class="dcards">
-        <div class="dcard">
-          <h3>What arrives</h3>
-          <p class="sub">One bottle. One month. No clutter.</p>
-          <div class="kv"><span class="k">NMN+ Daily Longevity</span><span class="v">60 capsules</span></div>
-          <div class="kv"><span class="k">Supply</span><span class="v">30 days</span></div>
-          <div class="kv"><span class="k">Label</span><span class="v">Fully disclosed</span></div>
-        </div>
-        <div class="dcard">
-          <h3>The daily ritual</h3>
-          <p class="sub">Consistency beats intensity.</p>
-          <div class="kv"><span class="k">How much</span><span class="v">2 capsules daily</span></div>
-          <div class="kv"><span class="k">The habit</span><span class="v">Same time each day</span></div>
-          <div class="kv"><span class="k">One bottle</span><span class="v">One month</span></div>
-        </div>
-        <div class="dcard">
-          <h3>The subscription</h3>
-          <p class="sub">On your schedule.</p>
-          <div class="kv"><span class="k">Cadence</span><span class="v">Delivered monthly</span></div>
-          <div class="kv"><span class="k">Control</span><span class="v">Pause, skip, cancel anytime</span></div>
-          <div class="kv"><span class="k">Where</span><span class="v">Your account</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.8 FAQ (green) ============ -->
+<!-- ============ FAQ (green) ============ -->
 <section class="band green">
   <div class="wrap">
     <div class="sec-head center reveal">
