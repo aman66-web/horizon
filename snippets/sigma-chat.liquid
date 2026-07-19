@@ -1,12 +1,19 @@
 {%- comment -%}
   Sigma Formulas — self-contained help assistant (no backend).
-  A floating launcher (bottom-right) that opens a scripted chat: quick-reply
-  topics answer the common NMN+ questions and link through to real pages,
-  with a Contact fallback. Rendered globally from theme.liquid.
+  A floating launcher (bottom-right) that opens a scripted chat. Users can
+  tap quick-reply topics OR type a question — a lightweight keyword matcher
+  routes typed questions to the best answer, with a Contact fallback.
+  Rendered globally from theme.liquid.
 {%- endcomment -%}
 
 <div class="sg-chat" id="sgChat">
+  <div class="sg-nudge" id="sgNudge" hidden>
+    <button type="button" class="sg-nudge-x" id="sgNudgeX" aria-label="Dismiss">&times;</button>
+    <span>Questions about NMN+? I can help &mdash; tap to chat. 👋</span>
+  </div>
+
   <button type="button" class="sg-chat-fab" id="sgChatFab" aria-label="Open help chat" aria-expanded="false" aria-controls="sgChatPanel">
+    <span class="sg-dot" id="sgDot" aria-hidden="true"></span>
     <span class="sg-ico sg-ico-open" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.7 8.7 0 0 1-3.8-.9L3 20.5l1.4-4.2A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
     </span>
@@ -25,6 +32,13 @@
     </header>
     <div class="sg-chat-log" id="sgChatLog" role="log" aria-live="polite"></div>
     <div class="sg-chat-quick" id="sgChatQuick"></div>
+    <form class="sg-chat-input" id="sgChatForm">
+      <label class="sg-vh" for="sgChatText">Type your question</label>
+      <input type="text" id="sgChatText" autocomplete="off" placeholder="Type a question…" maxlength="200">
+      <button type="submit" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </form>
     <p class="sg-chat-foot">Automated assistant · educational only, not medical advice</p>
   </div>
 </div>
@@ -34,6 +48,7 @@
     position:fixed;right:20px;bottom:20px;z-index:70;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}
   .sg-chat.sg-raised{bottom:84px;}
   .sg-chat *{box-sizing:border-box;}
+  .sg-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 
   .sg-chat-fab{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;background:var(--t);color:var(--bone);box-shadow:0 8px 24px rgba(13,61,62,.34);display:flex;align-items:center;justify-content:center;transition:transform .2s ease, background .2s;position:relative;}
   .sg-chat-fab:hover{background:var(--t2);transform:translateY(-2px);}
@@ -42,8 +57,16 @@
   .sg-chat-fab .sg-ico-close{opacity:0;transform:rotate(-45deg);}
   .sg-chat.sg-open .sg-ico-open{opacity:0;transform:rotate(45deg);}
   .sg-chat.sg-open .sg-ico-close{opacity:1;transform:rotate(0);}
+  .sg-dot{position:absolute;top:-1px;right:-1px;width:15px;height:15px;border-radius:50%;background:var(--bronze);border:2.5px solid var(--bone);display:none;}
+  .sg-chat.sg-unread .sg-dot{display:block;}
+  .sg-chat.sg-open .sg-dot{display:none;}
 
-  .sg-chat-panel{position:absolute;right:0;bottom:74px;width:352px;max-width:calc(100vw - 32px);height:min(520px,72vh);background:var(--bone2);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 60px rgba(13,61,62,.28);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;animation:sgIn .22s cubic-bezier(.2,.7,.2,1);}
+  .sg-nudge{position:absolute;bottom:6px;right:70px;width:max-content;max-width:220px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:14px;border-bottom-right-radius:4px;box-shadow:0 8px 24px rgba(13,61,62,.22);padding:12px 30px 12px 14px;font-size:13px;line-height:1.45;cursor:pointer;animation:sgIn .25s ease;}
+  .sg-nudge[hidden]{display:none;}
+  .sg-nudge-x{position:absolute;top:5px;right:7px;background:transparent;border:none;color:var(--ink-soft);font-size:16px;line-height:1;cursor:pointer;padding:2px 4px;border-radius:6px;}
+  .sg-nudge-x:hover{background:rgba(23,48,45,.08);}
+
+  .sg-chat-panel{position:absolute;right:0;bottom:74px;width:352px;max-width:calc(100vw - 32px);height:min(540px,74vh);background:var(--bone2);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 60px rgba(13,61,62,.28);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;animation:sgIn .22s cubic-bezier(.2,.7,.2,1);}
   @keyframes sgIn{from{opacity:0;transform:translateY(10px) scale(.97);}to{opacity:1;transform:none;}}
   .sg-chat-panel[hidden]{display:none;}
 
@@ -57,7 +80,7 @@
   .sg-chat-x:hover{opacity:1;background:rgba(255,255,255,.1);}
   .sg-chat-x svg{width:19px;height:19px;}
 
-  .sg-chat-log{flex:1;overflow-y:auto;padding:18px 16px 6px;display:flex;flex-direction:column;gap:11px;scrollbar-width:thin;}
+  .sg-chat-log{flex:1;overflow-y:auto;padding:18px 16px 6px;display:flex;flex-direction:column;gap:11px;scrollbar-width:thin;min-height:0;}
   .sg-msg{max-width:84%;font-size:14px;line-height:1.55;padding:11px 14px;border-radius:15px;}
   .sg-msg a{color:var(--t2);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
   .sg-msg.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px;}
@@ -69,26 +92,36 @@
   .sg-typing span:nth-child(3){animation-delay:.4s;}
   @keyframes sgBlink{0%,60%,100%{opacity:.35;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
 
-  .sg-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:8px 14px 12px;border-top:1px solid var(--line);background:var(--bone2);}
+  .sg-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:8px 14px 10px;border-top:1px solid var(--line);background:var(--bone2);}
   .sg-qr{font-size:12.5px;font-weight:500;color:var(--t);background:rgba(20,81,79,.07);border:1px solid rgba(20,81,79,.18);border-radius:100px;padding:7px 13px;cursor:pointer;transition:background .15s, border-color .15s;font-family:inherit;}
   .sg-qr:hover{background:rgba(20,81,79,.14);border-color:var(--t2);}
-  .sg-chat-foot{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);opacity:.6;text-align:center;padding:0 14px 11px;background:var(--bone2);}
+
+  .sg-chat-input{display:flex;align-items:center;gap:8px;padding:2px 12px 8px;background:var(--bone2);}
+  .sg-chat-input input{flex:1;border:1px solid var(--line);background:#fff;border-radius:100px;padding:11px 15px;font-size:13.5px;font-family:inherit;color:var(--ink);outline:none;min-width:0;}
+  .sg-chat-input input:focus{border-color:var(--t2);}
+  .sg-chat-input button{flex-shrink:0;width:40px;height:40px;border-radius:50%;border:none;background:var(--t);color:var(--bone);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+  .sg-chat-input button:hover{background:var(--t2);}
+  .sg-chat-input button svg{width:18px;height:18px;}
+  .sg-chat-foot{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);opacity:.6;text-align:center;padding:0 14px 10px;background:var(--bone2);}
 
   @media (max-width:520px){
     .sg-chat{right:14px;bottom:16px;}
     .sg-chat.sg-raised{bottom:80px;}
-    .sg-chat-panel{width:calc(100vw - 28px);height:min(66vh,540px);bottom:70px;}
+    .sg-chat-panel{width:calc(100vw - 28px);height:min(70vh,560px);bottom:70px;}
+    .sg-nudge{max-width:180px;}
   }
   @media (prefers-color-scheme:dark){
     .sg-chat-panel{--bone2:#123837;background:#123837;}
     .sg-chat .sg-msg.bot{background:#0F2F2E;color:#ECE7D9;border-color:rgba(236,231,217,.14);}
     .sg-chat .sg-typing{background:#0F2F2E;border-color:rgba(236,231,217,.14);}
-    .sg-chat .sg-chat-quick,.sg-chat .sg-chat-foot{background:#123837;}
+    .sg-chat .sg-chat-quick,.sg-chat .sg-chat-foot,.sg-chat .sg-chat-input{background:#123837;}
     .sg-chat .sg-qr{color:#ECE7D9;background:rgba(236,231,217,.08);border-color:rgba(236,231,217,.2);}
+    .sg-chat .sg-chat-input input{background:#0F2F2E;color:#ECE7D9;border-color:rgba(236,231,217,.16);}
     .sg-chat .sg-msg a{color:var(--bronze-l);}
+    .sg-chat .sg-nudge{background:#123837;color:#ECE7D9;border-color:rgba(236,231,217,.16);}
   }
   @media (prefers-reduced-motion:reduce){
-    .sg-chat-panel,.sg-typing span,.sg-chat-fab{animation:none;transition:none;}
+    .sg-chat-panel,.sg-typing span,.sg-chat-fab,.sg-nudge{animation:none;transition:none;}
   }
 </style>
 
@@ -97,18 +130,30 @@
   var root=document.getElementById('sgChat'); if(!root||root.dataset.init) return; root.dataset.init='1';
   var fab=document.getElementById('sgChatFab'), panel=document.getElementById('sgChatPanel'),
       log=document.getElementById('sgChatLog'), quick=document.getElementById('sgChatQuick'),
-      x=document.getElementById('sgChatX');
+      x=document.getElementById('sgChatX'), form=document.getElementById('sgChatForm'),
+      text=document.getElementById('sgChatText'), nudge=document.getElementById('sgNudge'),
+      nudgeX=document.getElementById('sgNudgeX');
+  var ss=window.sessionStorage;
 
+  // Topics shown as quick-reply chips (also matched from typed text via keywords)
   var TOPICS=[
-    {q:"What is NMN+?", a:"NMN+ is a daily <b>NAD⁺ precursor</b> — seven fully disclosed actives, each dosed to published-research levels. NMN is a direct building block your body converts into NAD⁺, a coenzyme central to cellular energy and repair. <a href='/pages/science'>Read the science →</a>"},
-    {q:"How do I take it?", a:"Two capsules daily, ideally in the morning, with or without food. Consistency matters more than timing — NAD⁺ support is gradual."},
-    {q:"Is it third-party tested?", a:"Yes. Every production batch is tested by <b>Eurofins</b> for purity, potency and contaminants before it ships. You can look up your batch on the <a href='/pages/lab-reports'>Lab Reports page</a>."},
-    {q:"When will I feel it?", a:"NAD⁺ replenishment is gradual — most people take NMN+ daily for <b>4–8 weeks</b> before evaluating how they feel. Results vary by individual, and it isn't a quick fix.*"},
-    {q:"What's in it?", a:"NMN (UTHEVER®), trans-resveratrol, quercetin, the active forms of B6, B12 and folate, and BioPerine® — in a vegan capsule. Every dose is on the label. <a href='/products/nmn-01'>See the full formula →</a>"},
-    {q:"Subscribe & Save", a:"Subscribe &amp; Save is <b>10% off</b>, delivered every 30 days — pause, skip, or cancel anytime. Choose it on the <a href='/products/nmn-01'>product page</a>."},
-    {q:"Shipping & returns", a:"Free US shipping on orders over $60, plus a 30-day money-back guarantee. Question about an order? <a href='/pages/contact'>Contact us →</a>"},
-    {q:"Talk to a human", a:"Happy to help — reach the team through our <a href='/pages/contact'>Contact page</a> and we'll get right back to you."}
+    {q:"What is NMN+?", k:["what is","nmn","nad","precursor","about","molecule"], a:"NMN+ is a daily <b>NAD⁺ precursor</b> — seven fully disclosed actives, each dosed to published-research levels. NMN is a direct building block your body converts into NAD⁺, a coenzyme central to cellular energy and repair. <a href='/pages/science'>Read the science →</a>"},
+    {q:"How do I take it?", k:["how do i take","dose","dosage","how much","when to take","capsules a day","use","directions"], a:"Two capsules daily, ideally in the morning, with or without food. Consistency matters more than timing — NAD⁺ support is gradual."},
+    {q:"Is it third-party tested?", k:["test","tested","third party","eurofins","lab","coa","certificate","purity","potency","quality"], a:"Yes. Every production batch is tested by <b>Eurofins</b> for purity, potency and contaminants before it ships. You can look up your batch on the <a href='/pages/lab-reports'>Lab Reports page</a>."},
+    {q:"When will I feel it?", k:["feel","notice","results","work","how long","weeks","effect"], a:"NAD⁺ replenishment is gradual — most people take NMN+ daily for <b>4–8 weeks</b> before evaluating how they feel. Results vary by individual, and it isn't a quick fix.*"},
+    {q:"What's in it?", k:["ingredient","what's in","contain","resveratrol","quercetin","uthever","formula","bioperine","b12","folate"], a:"NMN (UTHEVER®), trans-resveratrol, quercetin, the active forms of B6, B12 and folate, and BioPerine® — in a vegan capsule. Every dose is on the label. <a href='/products/nmn-01'>See the full formula →</a>"},
+    {q:"Subscribe & Save", k:["subscribe","subscription","monthly","recurring","cancel","save 10","pause"], a:"Subscribe &amp; Save is <b>10% off</b>, delivered every 30 days — pause, skip, or cancel anytime. Choose it on the <a href='/products/nmn-01'>product page</a>."},
+    {q:"Shipping & returns", k:["ship","shipping","delivery","return","refund","guarantee","money back","track","order"], a:"Free US shipping on orders over $60, plus a 30-day money-back guarantee. Question about an order? <a href='/pages/contact'>Contact us →</a>"},
+    {q:"Talk to a human", k:["human","agent","support","help","contact","email","speak","talk to"], a:"Happy to help — reach the team through our <a href='/pages/contact'>Contact page</a> and we'll get right back to you."}
   ];
+  // Matched from typed text only (no chip)
+  var EXTRA=[
+    {k:["price","cost","how much is","expensive","cheap","pounds","dollars","£","$"], a:"NMN+ is a one-month supply. Subscribe &amp; Save takes 10% off, and buying 2+ unlocks bundle discounts. See current pricing on the <a href='/products/nmn-01'>product page</a>."},
+    {k:["safe","safety","side effect","risk","pregnant","nursing","medication","doctor","interaction"], a:"NMN has been generally well tolerated in published human studies at comparable doses. Supplements aren't right for everyone — talk to your healthcare provider before starting, especially if you're pregnant, nursing, on medication, or managing a condition.*"},
+    {k:["vegan","gmo","gluten","dairy","allergen","gelatin","capsule made","animal"], a:"Yes — NMN+ uses a <b>vegan HPMC capsule</b> and is non-GMO. The full ingredient list, including other ingredients, is on the label and the <a href='/products/nmn-01'>product page</a>."},
+    {k:["decline","aging","age","older","younger","half"], a:"NAD⁺ tends to fall as we age — by midlife, research suggests it can drop toward half of youthful levels. That decline is a big reason the longevity field is interested in precursors like NMN. <a href='/pages/science'>More on the science →</a>"}
+  ];
+  var GREET=["hi","hello","hey","yo","hiya","good morning","good evening","howdy"];
 
   function scroll(){ log.scrollTop=log.scrollHeight; }
   function bubble(cls,html){ var d=document.createElement('div'); d.className='sg-msg '+cls; d.innerHTML=html; log.appendChild(d); scroll(); return d; }
@@ -116,25 +161,54 @@
     quick.innerHTML='';
     TOPICS.forEach(function(t){
       var b=document.createElement('button'); b.type='button'; b.className='sg-qr'; b.textContent=t.q;
-      b.addEventListener('click', function(){ ask(t); });
+      b.addEventListener('click', function(){ respond(t.q, t.a); });
       quick.appendChild(b);
     });
   }
-  function ask(t){
-    bubble('user', t.q);
-    quick.innerHTML='';
+  function botReply(html){
     var typ=document.createElement('div'); typ.className='sg-typing'; typ.innerHTML='<span></span><span></span><span></span>';
     log.appendChild(typ); scroll();
-    setTimeout(function(){ typ.remove(); bubble('bot', t.a); renderQuick(); }, 620);
+    setTimeout(function(){ typ.remove(); bubble('bot', html); renderQuick(); }, 560);
   }
-  var greeted=false;
-  function greet(){ if(greeted) return; greeted=true; bubble('bot',"Hi 👋 I'm the Sigma assistant — here to help with NMN+, your order, or the science. Pick a topic:"); renderQuick(); }
+  function respond(userText, html){ bubble('user', userText); quick.innerHTML=''; botReply(html); }
 
-  function open(){ panel.hidden=false; root.classList.add('sg-open'); fab.setAttribute('aria-expanded','true'); greet(); }
+  function match(raw){
+    var s=' '+raw.toLowerCase().replace(/[^a-z0-9£$ ]/g,' ')+' ';
+    for(var g=0; g<GREET.length; g++){ if(s.indexOf(' '+GREET[g]+' ')>-1 && raw.trim().length<14) return "Hi there! 👋 Ask me anything about NMN+, or pick a topic below."; }
+    var best=null, bestScore=0, pool=TOPICS.concat(EXTRA);
+    pool.forEach(function(item){
+      var score=0;
+      item.k.forEach(function(kw){ if(s.indexOf(kw)>-1) score += kw.length>4?2:1; });
+      if(score>bestScore){ bestScore=score; best=item; }
+    });
+    if(best && bestScore>0) return best.a;
+    return "I'm a simple assistant, so I may have missed that. Try one of the topics below — or reach a person any time through our <a href='/pages/contact'>Contact page</a>.";
+  }
+
+  var greeted=false;
+  function greet(){ if(greeted) return; greeted=true; bubble('bot',"Hi 👋 I'm the Sigma assistant — here to help with NMN+, your order, or the science. Ask a question, or pick a topic:"); renderQuick(); }
+  function open(){ panel.hidden=false; root.classList.add('sg-open'); root.classList.remove('sg-unread'); fab.setAttribute('aria-expanded','true'); hideNudge(); greet(); if(window.innerWidth>600){ setTimeout(function(){ try{ text.focus(); }catch(e){} }, 60); } }
   function close(){ panel.hidden=true; root.classList.remove('sg-open'); fab.setAttribute('aria-expanded','false'); }
+
   fab.addEventListener('click', function(){ panel.hidden ? open() : close(); });
   x.addEventListener('click', close);
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !panel.hidden) close(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v=(text.value||'').trim(); if(!v) return;
+    text.value='';
+    bubble('user', v.replace(/</g,'&lt;')); quick.innerHTML=''; botReply(match(v));
+  });
+
+  // First-visit affordances: unread dot + a one-time gentle nudge
+  if(!ss.getItem('sgSeen')){ root.classList.add('sg-unread'); }
+  function hideNudge(){ nudge.hidden=true; }
+  nudgeX.addEventListener('click', function(e){ e.stopPropagation(); hideNudge(); ss.setItem('sgNudged','1'); });
+  nudge.addEventListener('click', open);
+  if(!ss.getItem('sgNudged')){
+    setTimeout(function(){ if(panel.hidden){ nudge.hidden=false; ss.setItem('sgNudged','1'); } }, 9000);
+  }
+  fab.addEventListener('click', function(){ ss.setItem('sgSeen','1'); });
 
   // Lift the launcher above the sticky mobile buy bar when it's showing
   var ticking=false;
