@@ -1004,9 +1004,96 @@
       if(closing){ new IntersectionObserver(function(es){ es.forEach(function(e){ endIn=e.isIntersecting; }); upd(); },{threshold:0.05}).observe(closing); }
     }
   }
-  initPDP(); initBuyBar();
-  document.addEventListener('DOMContentLoaded', function(){ initPDP(); initBuyBar(); });
-  document.addEventListener('shopify:section:load', function(){ initPDP(); initBuyBar(); });
+  // ---- Self-contained add-to-cart (bypasses theme component wiring) ----
+  // The Horizon add-to-cart component was not reliably opening the drawer on
+  // this custom section, so we own the whole flow: intercept the form submit,
+  // POST to the Cart AJAX API, swap in the freshly rendered drawer section,
+  // open it, and sync the header cart counts.
+  var sgAdding = false;
+  function sgOpenCartDrawer(){
+    var tries = 0;
+    (function attempt(){
+      var drawer = document.getElementById('cart-drawer');
+      if (drawer) {
+        drawer.setAttribute('auto-open', '');
+        try { if (typeof drawer.open === 'function') { drawer.open(); return; } } catch(e){}
+        try { if (typeof drawer.showDialog === 'function') { drawer.showDialog(); return; } } catch(e){}
+        var dlg = drawer.querySelector('dialog');
+        if (dlg) {
+          try { if (!dlg.open) dlg.showModal(); return; }
+          catch(e){ dlg.setAttribute('open',''); return; }
+        }
+      }
+      if (tries++ < 20) setTimeout(attempt, 50);
+    })();
+  }
+  function sgRefreshCounts(){
+    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+      .then(function(r){ return r.json(); })
+      .then(function(c){
+        var n = c.item_count || 0;
+        document.querySelectorAll('[data-sg-cart-count]').forEach(function(el){ el.textContent = n; });
+        document.querySelectorAll('.cart-bubble__text-count').forEach(function(el){ el.textContent = n; });
+        document.querySelectorAll('header-actions').forEach(function(h){ h.classList.toggle('sg-has-items', n > 0); });
+        document.querySelectorAll('.cart-bubble').forEach(function(b){ if (n > 0) b.removeAttribute('hidden'); });
+      })
+      .catch(function(){});
+  }
+  function sgSubmitAdd(form){
+    if (sgAdding) return;
+    sgAdding = true;
+    var btn = form.querySelector('button[name="add"]');
+    var origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    var errEl = form.querySelector('.product-form-text__error');
+    if (errEl) { errEl.textContent = ''; errEl.classList.add('hidden'); }
+
+    var fd = new FormData(form);
+    if (!fd.get('selling_plan')) fd.delete('selling_plan');
+    fd.append('sections', 'cart-drawer-section');
+    fd.append('sections_url', window.location.pathname);
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+      body: fd
+    })
+      .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+      .then(function(r){
+        if (!r.ok) throw r.data;
+        if (r.data && r.data.sections && r.data.sections['cart-drawer-section']) {
+          var host = document.getElementById('shopify-section-cart-drawer-section');
+          if (host) host.innerHTML = r.data.sections['cart-drawer-section'];
+        }
+        sgRefreshCounts();
+        sgOpenCartDrawer();
+      })
+      .catch(function(err){
+        var msg = (err && err.description) || 'Sorry, this couldn’t be added. Please try again.';
+        if (errEl) { errEl.textContent = msg; errEl.classList.remove('hidden'); }
+        else { window.alert(msg); }
+      })
+      .then(function(){
+        sgAdding = false;
+        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.innerHTML = origHTML; }
+      });
+  }
+  function initAddToCart(){
+    ['nmn-atc-hero', 'nmn-atc-closing'].forEach(function(id){
+      var form = document.getElementById(id);
+      if (!form || form.dataset.sgAtc) return;
+      form.dataset.sgAtc = '1';
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        sgSubmitAdd(form);
+      }, true);
+    });
+  }
+
+  initPDP(); initBuyBar(); initAddToCart();
+  document.addEventListener('DOMContentLoaded', function(){ initPDP(); initBuyBar(); initAddToCart(); });
+  document.addEventListener('shopify:section:load', function(){ initPDP(); initBuyBar(); initAddToCart(); });
 })();
 </script>
 </div>
