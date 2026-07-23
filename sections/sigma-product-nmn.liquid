@@ -588,37 +588,30 @@
       </div>
 
       {%- if has_product -%}
-        <product-form-component
-          id="nmn-pf-hero"
-          data-section-id="{{ section.id }}"
-          data-product-id="{{ product.id }}"
-          data-product-url="{{ product.url }}"
-          on:submit="/handleSubmit"
-          data-quantity-default="1"
-        >
-          <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
-          {%- form 'product', product, id: 'nmn-atc-hero', data-type: 'add-to-cart-form', class: 'nmn-form' -%}
-            <input type="hidden" name="id" ref="variantId" value="{{ product.selected_or_first_available_variant.id }}">
-            {%- if sub_plan_id != blank -%}
-              <input type="hidden" name="selling_plan" id="nmnSellingPlan" value="{{ sub_plan_id }}">
-            {%- endif -%}
-            <span class="product-form-text__error hidden" ref="addToCartTextError"></span>
-            <div class="qty-wrap" id="qtyWrap" hidden>
-              <div class="qty-label">Bundle &amp; save — buy more, save more</div>
-              <div class="qty-stepper">
-                <button type="button" class="qbtn" id="qMinus" aria-label="Decrease quantity">&minus;</button>
-                <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="6" inputmode="numeric" readonly>
-                <button type="button" class="qbtn" id="qPlus" aria-label="Increase quantity">+</button>
-              </div>
-              <div class="vol-msg" id="volMsg">Add one more to unlock <strong>5% off</strong>.</div>
+        {%- comment -%}
+          Plain, dependency-free Shopify product form. Submits natively to
+          /cart/add and lands on the cart page — no custom JS, no web
+          components, so it can't be broken by a script error, a stale
+          bundle, or the drawer. This is the reliable baseline.
+        {%- endcomment -%}
+        {%- form 'product', product, id: 'nmn-atc-hero', class: 'nmn-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {%- if sub_plan_id != blank -%}
+            <input type="hidden" name="selling_plan" id="nmnSellingPlan" value="{{ sub_plan_id }}">
+          {%- endif -%}
+          <div class="qty-wrap" id="qtyWrap" hidden>
+            <div class="qty-label">Bundle &amp; save — buy more, save more</div>
+            <div class="qty-stepper">
+              <button type="button" class="qbtn" id="qMinus" aria-label="Decrease quantity">&minus;</button>
+              <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="6" inputmode="numeric" readonly>
+              <button type="button" class="qbtn" id="qPlus" aria-label="Increase quantity">+</button>
             </div>
-            <add-to-cart-component ref="addToCartButtonContainer" data-add-to-cart-animation="false">
-              <button type="submit" name="add" class="cta" ref="addToCartButton" on:click="/handleClick"{% unless product.available %} disabled{% endunless %}>
-                {% if product.available %}Add <span id="ctaQty"></span>to Cart<span id="ctaPriceWrap"> — <span id="ctaPrice">{{ default_price | money }}</span></span>{% else %}Sold Out{% endif %}
-              </button>
-            </add-to-cart-component>
-          {%- endform -%}
-        </product-form-component>
+            <div class="vol-msg" id="volMsg">Add one more to unlock <strong>5% off</strong>.</div>
+          </div>
+          <button type="submit" name="add" class="cta"{% unless product.available %} disabled{% endunless %}>
+            {% if product.available %}Add <span id="ctaQty"></span>to Cart<span id="ctaPriceWrap"> — <span id="ctaPrice">{{ default_price | money }}</span></span>{% else %}Sold Out{% endif %}
+          </button>
+        {%- endform -%}
       {%- else -%}
         <button type="button" class="cta">Add to Cart</button>
       {%- endif -%}
@@ -789,25 +782,12 @@
     <h2>Give your cells back what <em>time takes away.</em></h2>
     <p>NMN+ · 60 capsules · a 1-month supply.</p>
     {%- if has_product -%}
-      <product-form-component
-        id="nmn-pf-closing"
-        data-section-id="{{ section.id }}"
-        data-product-id="{{ product.id }}"
-        data-product-url="{{ product.url }}"
-        on:submit="/handleSubmit"
-        data-quantity-default="1"
-      >
-        <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
-        {%- form 'product', product, id: 'nmn-atc-closing', data-type: 'add-to-cart-form', class: 'nmn-form' -%}
-          <input type="hidden" name="id" ref="variantId" value="{{ product.selected_or_first_available_variant.id }}">
-          <span class="product-form-text__error hidden" ref="addToCartTextError"></span>
-          <add-to-cart-component ref="addToCartButtonContainer" data-add-to-cart-animation="false">
-            <button type="submit" name="add" class="cta" ref="addToCartButton" on:click="/handleClick"{% unless product.available %} disabled{% endunless %}>
-              {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
-            </button>
-          </add-to-cart-component>
-        {%- endform -%}
-      </product-form-component>
+      {%- form 'product', product, id: 'nmn-atc-closing', class: 'nmn-form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="cta"{% unless product.available %} disabled{% endunless %}>
+          {% if product.available %}Add to Cart — {{ product.price | money }}{% else %}Sold Out{% endif %}
+        </button>
+      {%- endform -%}
     {%- else -%}
       <a href="#nmn-top" class="cta">Add to Cart</a>
     {%- endif -%}
