@@ -10,9 +10,9 @@
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
     {%- comment -%} Preload the largest-contentful image per page type to improve LCP {%- endcomment -%}
     {%- if request.page_type == 'index' -%}
-      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-duo.jpg?width=1400" fetchpriority="high">
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0816/0287/1534/files/sigma-nmn-duo.jpg?width=1400" fetchpriority="high">
     {%- elsif template.suffix == 'nmn' -%}
-      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-nmn-bottle-front.webp?width=1100" fetchpriority="high">
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0816/0287/1534/files/sigma-nmn-bottle-front.webp?width=1100" fetchpriority="high">
     {%- endif -%}
     {%- if settings.favicon != blank -%}
       <link
@@ -21,8 +21,8 @@
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
     {%- else -%}
-      <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-favicon.png?width=64">
-      <link rel="apple-touch-icon" href="https://cdn.shopify.com/s/files/1/1006/9239/4368/files/sigma-favicon.png">
+      <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0816/0287/1534/files/sigma-favicon.png?width=64">
+      <link rel="apple-touch-icon" href="https://cdn.shopify.com/s/files/1/0816/0287/1534/files/sigma-favicon.png">
     {%- endif -%}
     <style>
       html { scroll-behavior: smooth; }
