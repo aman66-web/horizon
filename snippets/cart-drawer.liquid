@@ -51,9 +51,9 @@
       cart-summary-sticky="true"
     >
       <cart-drawer-component
-        {% unless template.name == 'cart' %}
+        {% if settings.auto_open_cart_drawer and template.name != 'cart' %}
           auto-open
-        {% endunless %}
+        {% endif %}
       >
         <template id="empty-cart-template">
           {{ empty_cart_drawer_content }}
@@ -63,35 +63,44 @@
           class="cart-drawer__inner{% if cart.empty? %} cart-drawer--empty{% endif %}"
           data-hydration-key="cart-drawer-inner"
         >
-          {% capture cart_badge_html %}
-            <span
-              class="theme-drawer__badge{% if cart.item_count == 0 %} visually-hidden{% endif %}"
-              aria-hidden="true"
-              {% if cart.item_count <= 99 %}
-                data-maintain-ratio
-              {% endif %}
-            >
-              {{- cart.item_count -}}
-            </span>
-            {% if cart.item_count > 0 %}
-              <span class="visually-hidden">
-                {{ 'accessibility.cart_count' | t }}: {{ cart.item_count }}
+          {%- if cart.empty? -%}
+            <div class="theme-drawer__header">
+              <button
+                on:click="#cart-drawer/close"
+                class="theme-drawer__close-button cart-drawer__close-button--empty"
+                type="button"
+                aria-label="{{ 'actions.close' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </div>
+          {%- else -%}
+            {% capture cart_badge_html %}
+              <span
+                class="theme-drawer__badge{% if cart.item_count == 0 %} visually-hidden{% endif %}"
+                aria-hidden="true"
+                {% if cart.item_count <= 99 %}
+                  data-maintain-ratio
+                {% endif %}
+              >
+                {{- cart.item_count -}}
               </span>
-            {% endif %}
-          {% endcapture %}
-          <div class="theme-drawer__header cart-drawer__custom-head">
-            <button
-              on:click="#cart-drawer/close"
-              class="cart-drawer__back"
-              type="button"
-              aria-label="{{ 'actions.close' | t }}"
-            >
-              <span class="cart-drawer__back-chev" aria-hidden="true">&#8249;</span> Back
-            </button>
-            <h2 class="theme-drawer__title h4 cart-drawer__title" id="cart-drawer-heading">
-              Your Cart{{ cart_badge_html }}
-            </h2>
-          </div>
+              {% if cart.item_count > 0 %}
+                <span class="visually-hidden">
+                  {{ 'accessibility.cart_count' | t }}: {{ cart.item_count }}
+                </span>
+              {% endif %}
+            {% endcapture %}
+            {% assign cart_drawer_title = 'content.cart_title' | t %}
+            {% render 'theme-drawer-header',
+              title: cart_drawer_title,
+              drawer_id: 'cart-drawer',
+              heading_id: 'cart-drawer-heading',
+              title_append: cart_badge_html
+            %}
+          {%- endif -%}
 
           {% capture cart_items_children %}
             {%- if cart.empty? -%}
@@ -132,37 +141,6 @@
     --cart-drawer-padding: var(--theme-drawer-padding);
     --font-paragraph--line-height: 1;
     display: contents;
-  }
-
-  /* Custom cart header: "Back" on the left, "Your Cart" title on the right */
-  .cart-drawer__custom-head .cart-drawer__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: none;
-    border: none;
-    padding: 4px 2px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--color-foreground);
-    opacity: 0.75;
-    transition: opacity 0.15s ease;
-  }
-  .cart-drawer__custom-head .cart-drawer__back:hover {
-    opacity: 1;
-  }
-  .cart-drawer__custom-head .cart-drawer__back-chev {
-    font-size: 1.35em;
-    line-height: 1;
-    margin-top: -1px;
-  }
-  .cart-drawer__custom-head .cart-drawer__title {
-    margin: 0;
-    text-align: right;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
   }
 
   .cart-drawer__inner {

@@ -58,27 +58,16 @@
 {% endcapture %}
 
 <header-actions
-  class="{% if display_style == 'text' %}header-actions--text {% endif %}{% if cart.item_count > 0 %}sg-has-items{% endif %}"
+  {% if display_style == 'text' %}
+    class="header-actions--text"
+  {% endif %}
   {{- block.shopify_attributes -}}
 >
   <a
     href="/products/nmn-01"
-    class="header-cta header-cta--shop"
+    class="header-cta"
     data-testid="header-cta"
   >Get Started</a>
-  {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
-    <button
-      type="button"
-      class="header-cta header-cta--cart"
-      on:click="#cart-drawer/toggle"
-      aria-haspopup="dialog"
-      aria-controls="cart-drawer"
-      aria-label="{{ 'accessibility.cart' | t }}"
-      data-testid="header-cart"
-    >Cart<sup class="header-cta__count" data-sg-cart-count>{{ cart.item_count }}</sup></button>
-  {%- else -%}
-    <a href="/cart" class="header-cta header-cta--cart" data-testid="header-cart">Cart<sup class="header-cta__count" data-sg-cart-count>{{ cart.item_count }}</sup></a>
-  {%- endif -%}
 
   {% if shop.customer_accounts_enabled %}
     {% liquid
@@ -348,38 +337,3 @@
     }
   }
 {% endstylesheet %}
-
-<script>
-(function(){
-  if (window.__sgCartCta) return; window.__sgCartCta = true;
-  function readCount(){
-    var el = document.querySelector('.cart-bubble__text-count');
-    if (!el) return null;
-    var n = parseInt((el.textContent || '').trim(), 10);
-    return isNaN(n) ? 0 : n;
-  }
-  function sync(){
-    var n = readCount();
-    if (n === null) return;
-    document.querySelectorAll('header-actions').forEach(function(ha){
-      ha.classList.toggle('sg-has-items', n > 0);
-    });
-    document.querySelectorAll('[data-sg-cart-count]').forEach(function(c){ c.textContent = n; });
-  }
-  function boot(){
-    sync();
-    if ('MutationObserver' in window){
-      var mo = new MutationObserver(sync);
-      // Observe the header host (survives bubble re-renders); watch text/children,
-      // not attributes, so toggling sg-has-items on the host can't self-trigger.
-      document.querySelectorAll('header-actions').forEach(function(h){
-        mo.observe(h, { subtree:true, childList:true, characterData:true });
-      });
-    }
-    document.addEventListener('theme-drawer:open', sync);
-    document.addEventListener('theme-drawer:close', sync);
-    document.addEventListener('pageshow', sync);
-  }
-  if (document.readyState !== 'loading') boot(); else document.addEventListener('DOMContentLoaded', boot);
-})();
-</script>
