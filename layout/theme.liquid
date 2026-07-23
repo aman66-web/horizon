@@ -152,45 +152,6 @@
 
     {% render 'cart-drawer', render_wrapper: true %}
     {% render 'theme-drawer' %}
-    {% comment %}
-      Failsafe: guarantee the cart drawer opens on add-to-cart regardless of
-      the auto_open_cart_drawer theme setting. Arms the theme's own auto-open
-      attribute at runtime, and as a backstop opens the drawer imperatively
-      after any successful /cart/add request.
-    {% endcomment %}
-    <script>
-      (function () {
-        if (window.__sgCartFailsafe) return;
-        window.__sgCartFailsafe = true;
-        function arm() {
-          document.querySelectorAll('cart-drawer-component').forEach(function (c) {
-            c.setAttribute('auto-open', '');
-          });
-        }
-        function openDrawer() {
-          try {
-            if (document.querySelector('dialog:modal[open]')) return;
-          } catch (e) { /* :modal unsupported */ }
-          var d = document.getElementById('cart-drawer');
-          if (d && typeof d.open === 'function' && !d.hasAttribute('open')) d.open();
-        }
-        arm();
-        document.addEventListener('DOMContentLoaded', arm);
-        document.addEventListener('shopify:section:load', arm);
-        var origFetch = window.fetch;
-        window.fetch = function () {
-          var a = arguments[0];
-          var url = (a && a.url) || String(a || '');
-          var p = origFetch.apply(this, arguments);
-          if (url.indexOf('/cart/add') !== -1) {
-            p.then(function (res) {
-              if (res && res.ok) { arm(); setTimeout(openDrawer, 120); }
-            }).catch(function () {});
-          }
-          return p;
-        };
-      })();
-    </script>
 
     {% render 'search-modal' %}
 
