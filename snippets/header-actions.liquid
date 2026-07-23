@@ -63,11 +63,19 @@
   {% endif %}
   {{- block.shopify_attributes -}}
 >
-  <a
-    href="/products/nmn-01"
-    class="header-cta"
-    data-testid="header-cta"
-  >Get Started</a>
+  {%- if cart.item_count > 0 -%}
+    <a
+      href="{{ routes.cart_url }}"
+      class="header-cta header-cta--cart"
+      data-testid="header-cta"
+    >Cart: {{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %}</a>
+  {%- else -%}
+    <a
+      href="/products/nmn-01"
+      class="header-cta"
+      data-testid="header-cta"
+    >Get Started</a>
+  {%- endif -%}
 
   {% if shop.customer_accounts_enabled %}
     {% liquid
